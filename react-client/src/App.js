@@ -21,16 +21,15 @@ class App extends Component {
         this.buttonElement.addEventListener('click', () => {
             axios({
                 method: 'get',
-                url: '/servertest',
+                url: 'https://localhost:7030/servertest/',
                 data: {}
             }).then((response) => {
-                this.setState({ response: response });
+                this.setState({ response: JSON.stringify(response.data) });
             })
         })
     }
 
     render() {
-        console.log('test');
         return (
             <>
                 <TestButton />
