@@ -21,6 +21,7 @@ Plan by month:
 
 Plan (Dominykas, Edvinas, Karolis, Domantas)
 1 menesis - implement posting a listing:
+
 1sav:
 - Create a listing button that opens a new window
 - Creates new window - user input
