@@ -1,54 +1,81 @@
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\appsettings.json
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.exe
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.deps.json
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.runtimeconfig.json
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.dll
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.pdb
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.csproj.AssemblyReference.cache
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.AssemblyInfoInputs.cache
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.AssemblyInfo.cs
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.csproj.CoreCompileInputs.cache
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\scopedcss\bundle\roommate-app.styles.css
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.csproj.CopyComplete
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.dll
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\refint\roommate-app.dll
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.pdb
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.genruntimeconfig.cache
-C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app\obj\Debug\net6.0\ref\roommate-app.dll
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\appsettings.Development.json
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\appsettings.json
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.exe
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.deps.json
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.runtimeconfig.json
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.dll
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\roommate-app.pdb
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\Microsoft.OpenApi.dll
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\Edvis\SEappIII\roommate-app\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.csproj.AssemblyReference.cache
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.GeneratedMSBuildEditorConfig.editorconfig
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.AssemblyInfoInputs.cache
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.AssemblyInfo.cs
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.csproj.CoreCompileInputs.cache
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.MvcApplicationPartsAssemblyInfo.cs
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.MvcApplicationPartsAssemblyInfo.cache
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\staticwebassets.build.json
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\staticwebassets.development.json
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\scopedcss\bundle\roommate-app.styles.css
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.csproj.CopyComplete
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.dll
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\refint\roommate-app.dll
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.pdb
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\roommate-app.genruntimeconfig.cache
-D:\Edvis\SEappIII\roommate-app\obj\Debug\net6.0\ref\roommate-app.dll
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/appsettings.Development.json
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/appsettings.json
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.exe
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.deps.json
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.runtimeconfig.json
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.dll
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.pdb
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/Microsoft.OpenApi.dll
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.AssemblyReference.cache
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.AssemblyInfoInputs.cache
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.AssemblyInfo.cs
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.CoreCompileInputs.cache
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.MvcApplicationPartsAssemblyInfo.cs
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/staticwebassets.build.json
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/staticwebassets.development.json
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/scopedcss/bundle/roommate-app.styles.css
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.CopyComplete
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.dll
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/refint/roommate-app.dll
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.pdb
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.genruntimeconfig.cache
+C:/Users/domin/Documents/CODING/PROGRAMU SISTEMOS/SOFTWARE ENGINEERING/SEappIII/roommate-app/obj/Debug/net6.0/ref/roommate-app.dll
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/appsettings.Development.json
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/appsettings.json
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.exe
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.deps.json
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.runtimeconfig.json
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.dll
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.pdb
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/Microsoft.OpenApi.dll
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+D:/Edvis/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.AssemblyReference.cache
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.GeneratedMSBuildEditorConfig.editorconfig
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.AssemblyInfoInputs.cache
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.AssemblyInfo.cs
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.CoreCompileInputs.cache
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.MvcApplicationPartsAssemblyInfo.cs
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.MvcApplicationPartsAssemblyInfo.cache
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/staticwebassets.build.json
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/staticwebassets.development.json
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/scopedcss/bundle/roommate-app.styles.css
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.CopyComplete
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.dll
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/refint/roommate-app.dll
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.pdb
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.genruntimeconfig.cache
+D:/Edvis/SEappIII/roommate-app/obj/Debug/net6.0/ref/roommate-app.dll
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/appsettings.Development.json
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/appsettings.json
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.deps.json
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.runtimeconfig.json
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.dll
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/roommate-app.pdb
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/Microsoft.OpenApi.dll
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.AssemblyReference.cache
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.GeneratedMSBuildEditorConfig.editorconfig
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.AssemblyInfoInputs.cache
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.AssemblyInfo.cs
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.CoreCompileInputs.cache
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.MvcApplicationPartsAssemblyInfo.cs
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.MvcApplicationPartsAssemblyInfo.cache
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/staticwebassets.build.json
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/staticwebassets.development.json
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/scopedcss/bundle/roommate-app.styles.css
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.csproj.CopyComplete
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.dll
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/refint/roommate-app.dll
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.pdb
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/roommate-app.genruntimeconfig.cache
+/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/Debug/net6.0/ref/roommate-app.dll

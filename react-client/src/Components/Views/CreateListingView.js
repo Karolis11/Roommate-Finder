@@ -1,6 +1,7 @@
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
 import { Component } from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 
 
 export class CreateListingView extends Component {
@@ -19,6 +20,16 @@ export class CreateListingView extends Component {
             roommateCount: document.getElementById("roommateCount").value,
             maxPrice: document.getElementById("maxPrice").value,
         }
+        // SubmitListing
+        document.getElementById("submitBtn").addEventListener('click', () => {
+            axios({
+                method: 'post',
+                url: 'http://localhost:7030/submitlisting',
+                data: userInput
+            }).then((response) => {
+                this.setState({ response: JSON.stringify(response.data) });
+            })
+        });
     }
 
     render() {
@@ -38,6 +49,7 @@ export class CreateListingView extends Component {
                     <input id="email" text="text"></input><br></br>
                     <label>Maximum price: </label>
                     <input id="maxPrice" text="number"></input><br></br>
+                    <button id="submitBtn" text="submmit"> Submit </button><br></br>
                     </div>
                 }
             </div>

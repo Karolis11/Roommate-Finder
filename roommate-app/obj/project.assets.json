@@ -224,19 +224,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Edvinas\\.nuget\\packages\\": {}
+    "/Users/karolisjanusonis/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Edvis\\SEappIII\\roommate-app\\roommate-app.csproj",
+      "projectUniqueName": "/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/roommate-app.csproj",
       "projectName": "roommate-app",
-      "projectPath": "D:\\Edvis\\SEappIII\\roommate-app\\roommate-app.csproj",
-      "packagesPath": "C:\\Users\\Edvinas\\.nuget\\packages\\",
-      "outputPath": "D:\\Edvis\\SEappIII\\roommate-app\\obj\\",
+      "projectPath": "/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/roommate-app.csproj",
+      "packagesPath": "/Users/karolisjanusonis/.nuget/packages/",
+      "outputPath": "/Users/karolisjanusonis/Documents/Programming/SEappIII/roommate-app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Edvinas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/karolisjanusonis/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -284,7 +284,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.400/RuntimeIdentifierGraph.json"
       }
     }
   }
