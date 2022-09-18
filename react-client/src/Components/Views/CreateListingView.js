@@ -16,7 +16,8 @@ export class CreateListingView extends Component {
             lastName: document.getElementById("lastName").value,
             email: document.getElementById("email").value,
             city: document.getElementById("city").value,
-            roommateCount: document.getElementById("maxPrice").value,
+            roommateCount: document.getElementById("roommateCount").value,
+            maxPrice: document.getElementById("maxPrice").value,
         }
     }
 
@@ -35,7 +36,7 @@ export class CreateListingView extends Component {
                     <input id="roommateCount" text="number"></input><br></br>
                     <label for="email">E-mail: </label>
                     <input id="email" text="text"></input><br></br>
-                    <label for="firstName">Maximum price: </label>
+                    <label for="maxPrice">Maximum price: </label>
                     <input id="maxPrice" text="number"></input><br></br>
                     </div>
                 }
