@@ -1,6 +1,6 @@
 import { eventWrapper } from '@testing-library/user-event/dist/utils';
 import { Component } from 'react';
-
+import { useState } from 'react';
 
 
 export class CreateListingView extends Component {
@@ -26,17 +26,17 @@ export class CreateListingView extends Component {
             <div className="create-listing-form">
                 {
                     <div className="userInput">
-                    <label for="firstName">First Name: </label>
+                    <label>First Name: </label>
                     <input id="firstName" text="text"></input><br></br>
-                    <label for="lastName">Last name: </label>
+                    <label>Last name: </label>
                     <input id="lastName" text="text"></input><br></br>
-                    <label for="city">City: </label>
+                    <label>City: </label>
                     <input id="city" text="text"></input><br></br>
-                    <label for="roommateCount">Number of roommates: </label>
+                    <label>Number of roommates: </label>
                     <input id="roommateCount" text="number"></input><br></br>
-                    <label for="email">E-mail: </label>
+                    <label>E-mail: </label>
                     <input id="email" text="text"></input><br></br>
-                    <label for="maxPrice">Maximum price: </label>
+                    <label>Maximum price: </label>
                     <input id="maxPrice" text="number"></input><br></br>
                     </div>
                 }
