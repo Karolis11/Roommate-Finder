@@ -2,7 +2,6 @@ import './App.css';
 import { CreateListingView } from './Components/Views/CreateListingView';
 import { CreateListingButton } from './Components/Buttons/CreateListingButton';
 import { Component } from 'react';
-import axios from 'axios';
 
 class App extends Component {
     createListingButtonId = "create-listing-button";
