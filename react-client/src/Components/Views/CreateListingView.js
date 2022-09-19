@@ -20,17 +20,13 @@ export class CreateListingView extends Component {
                 maxPrice: document.getElementById("maxPrice").value,
             }
 
-            try {
-                axios({
-                    method: 'post',
-                    url: 'http://localhost:7030/listing',
-                    data: userInput
-                }).then((response) => {
-                    console.log(response.data);
-                })
-            } catch (error) {
-                console.log(error);
-            }
+            axios({
+                method: 'post',
+                url: 'https://localhost:44332/listing',
+                data: userInput
+            }).then((response) => {
+                console.log(response.data);
+            })
         });
     }
 
