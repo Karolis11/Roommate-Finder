@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Edvis\\SEappIII\\roommate-app\\roommate-app.csproj": {}
+    "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj": {}
   },
   "projects": {
-    "D:\\Edvis\\SEappIII\\roommate-app\\roommate-app.csproj": {
+    "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Edvis\\SEappIII\\roommate-app\\roommate-app.csproj",
+        "projectUniqueName": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj",
         "projectName": "roommate-app",
-        "projectPath": "D:\\Edvis\\SEappIII\\roommate-app\\roommate-app.csproj",
-        "packagesPath": "C:\\Users\\Edvinas\\.nuget\\packages\\",
-        "outputPath": "D:\\Edvis\\SEappIII\\roommate-app\\obj\\",
+        "projectPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj",
+        "packagesPath": "C:\\Users\\domin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Edvinas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\domin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,9 +40,25 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Swashbuckle.AspNetCore": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.2.3, )"
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[6.0.6, )"
             }
           },
           "imports": [
@@ -49,8 +67,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -62,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

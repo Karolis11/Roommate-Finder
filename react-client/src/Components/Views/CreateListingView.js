@@ -1,6 +1,5 @@
-import { eventWrapper } from '@testing-library/user-event/dist/utils';
 import { Component } from 'react';
-import { useState } from 'react';
+import axios from 'axios';
 
 
 export class CreateListingView extends Component {
@@ -11,21 +10,30 @@ export class CreateListingView extends Component {
 
     componentDidMount()
     {
-        let userInput ={
-            firstName: document.getElementById("firstName").value,
-            lastName: document.getElementById("lastName").value,
-            email: document.getElementById("email").value,
-            city: document.getElementById("city").value,
-            roommateCount: document.getElementById("roommateCount").value,
-            maxPrice: document.getElementById("maxPrice").value,
-        }
+        document.getElementById("submitBtn").addEventListener('click', () => {
+            let userInput ={
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value,
+                email: document.getElementById("email").value,
+                city: document.getElementById("city").value,
+                roommateCount: document.getElementById("roommateCount").value,
+                maxPrice: document.getElementById("maxPrice").value,
+            }
+
+            axios({
+                method: 'post',
+                url: 'https://localhost:44332/listing',
+                data: userInput
+            }).then((response) => {
+                console.log(response.data);
+            })
+        });
     }
 
     render() {
         return (
             <div className="create-listing-form">
-                {
-                    <div className="userInput">
+                <div className="userInput">
                     <label>First Name: </label>
                     <input id="firstName" text="text"></input><br></br>
                     <label>Last name: </label>
@@ -38,8 +46,8 @@ export class CreateListingView extends Component {
                     <input id="email" text="text"></input><br></br>
                     <label>Maximum price: </label>
                     <input id="maxPrice" text="number"></input><br></br>
-                    </div>
-                }
+                </div>
+                <button id="submitBtn">Submit</button>
             </div>
         )
     }
