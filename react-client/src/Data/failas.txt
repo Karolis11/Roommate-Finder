@@ -1,0 +1,4 @@
+{"listing":{"firstName":"asdads","lastName":"adsads","email":"adsasd","city":"dasdas","roommateCount":4,"maxPrice":4.0}}
+{"listing":{"firstName":"asddas","lastName":"asddas","email":"asdsda","city":"asdads","roommateCount":444,"maxPrice":4444.0}}
+{"listing":{"firstName":"asddas","lastName":"asddas","email":"adsasd","city":"asdasd","roommateCount":4,"maxPrice":444.0}}
+{"listing":{"firstName":"sadads","lastName":"asasd","email":"asddas","city":"asdasd","roommateCount":44,"maxPrice":4545.0}}
