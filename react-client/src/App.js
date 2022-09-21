@@ -23,6 +23,7 @@ class App extends Component {
 
     toggleCreateListing = (toggleBool) => {
         this.setState({ createListingView: toggleBool });
+        this.getListings();
     }
 
     componentDidMount() {
@@ -41,15 +42,7 @@ class App extends Component {
             url: 'https://localhost:44332/listing',
             data: {}
         }).then((response) => {
-            var strs = response.data;
-            console.log(strs);
-            var arrobjs = strs.map(str => {
-                if (str === "") {
-                    return null;
-                }
-                return JSON.parse(str, true)
-            });
-            this.setState({listings: arrobjs})
+            this.setState({listings: response.data})
         })
     }
 
