@@ -27,3 +27,9 @@ Plan (Dominykas, Edvinas, Karolis, Domantas)
 - Creates new window - user input
 - Creates button which saves the user to the file
 - Display the saved info on the first page
+
+2sav:
+- Create an account
+- Input validation and formik
+- Sign in into an account
+- css listing + design
