@@ -1,7 +1,9 @@
 import './App.css';
 import { CreateListingView } from './Components/Views/CreateListingView';
 import { CreateListingButton } from './Components/Buttons/CreateListingButton';
+import { ListOfListings } from './Components/ListOfListings';
 import { Component } from 'react';
+import axios from 'axios';
 
 class App extends Component {
     createListingButtonId = "create-listing-button";
@@ -10,8 +12,8 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            listings: undefined, // do axios request inside componentDisMount to get all listings to display
-            createListingView: false
+            listings: true,
+            createListingView: false,
         }
 
         this.createListingButton = document.createElement('button');
@@ -56,7 +58,7 @@ class App extends Component {
                                     text="New listing"
                                     class="btn"
                                 />
-                                {/* map all the listings here */}
+                                { this.state.listings && <ListOfListings /> }
                             </>
                         </div>
                     :

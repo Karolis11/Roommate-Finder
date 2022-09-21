@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace roommate_app.Controllers
 {
@@ -16,15 +18,20 @@ namespace roommate_app.Controllers
         }
 
         [HttpGet]
-        public string Get()
+        public string[] Get()
         {
-            return "works";
+            string[] lines = System.IO.File.ReadAllLines(@"../react-client/src/data/failas.txt");
+            return lines;
         }
 
         [HttpPost]
-        public JsonResult Submit([FromBody] ListingSubmission listing)
+        public JsonResult Submit([FromBody] Listing listing)
         {
-            Console.WriteLine(listing.ToString());
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(new { listing });
+            System.IO.StreamWriter tsw = new System.IO.StreamWriter("../react-client/src/data/failas.txt", true);
+            tsw.WriteLine(json);
+            tsw.WriteLine('\n');
+            tsw.Close();
             return Json(listing);
         }
     }

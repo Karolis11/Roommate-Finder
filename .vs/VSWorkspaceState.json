@@ -1,12 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\react-client",
-    "\\react-client\\src",
     "\\roommate-app",
     "\\roommate-app\\Controllers",
-    "\\roommate-app\\Properties"
+    "\\roommate-app\\Models"
   ],
-  "SelectedNode": "\\roommate-app\\roommate-app.csproj",
+  "SelectedNode": "\\roommate-app\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
