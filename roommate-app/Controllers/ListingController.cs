@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace roommate_app.Controllers
 {
@@ -17,22 +18,34 @@ namespace roommate_app.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public string[] Get()
+        public List<Listing> LoadJson()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"../react-client/src/data/failas.txt");
-            return lines;
+            using (StreamReader r = new StreamReader("./Data/listings.json"))
+            {
+                string json = r.ReadToEnd();
+                List<Listing> listings = JsonConvert.DeserializeObject<List<Listing>>(json);
+                return listings;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult Get()
+        {
+            //string[] lines = System.IO.File.ReadAllLines(@"../react-client/src/data/failas.txt");
+            return Json(this.LoadJson());
         }
 
         [HttpPost]
         public JsonResult Submit([FromBody] Listing listing)
         {
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(new { listing });
-            System.IO.StreamWriter tsw = new System.IO.StreamWriter("../react-client/src/data/failas.txt", true);
+            List<Listing> existingListings = LoadJson();
+            existingListings.Add(listing);
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(existingListings);
+            System.IO.StreamWriter tsw = new System.IO.StreamWriter("Data/listings.json", false);
             tsw.WriteLine(json);
-            tsw.WriteLine('\n');
+            //tsw.WriteLine('\n');
             tsw.Close();
-            return Json(listing);
+            return Json(existingListings);
         }
     }
 }

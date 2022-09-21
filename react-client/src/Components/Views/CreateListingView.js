@@ -25,8 +25,7 @@ export class CreateListingView extends Component {
                 url: 'https://localhost:44332/listing',
                 data: userInput
             }).then((response) => {
-                console.log(response.data);
-                window.location.reload();
+                this.props.toggleCreateListing(false);
             })
         });
     }

@@ -12,7 +12,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            listings: true,
+            listings: undefined,
             createListingView: false,
         }
 
@@ -23,6 +23,7 @@ class App extends Component {
 
     toggleCreateListing = (toggleBool) => {
         this.setState({ createListingView: toggleBool });
+        this.getListings();
     }
 
     componentDidMount() {
@@ -32,17 +33,17 @@ class App extends Component {
             this.toggleCreateListing(true);
         })
 
-        /* axios example
-        this.buttonElement.addEventListener('click', () => {
-            axios({
-                method: 'get',
-                url: 'https://localhost:7030/servertest/',
-                data: {}
-            }).then((response) => {
-                this.setState({ response: JSON.stringify(response.data) });
-            })
+        this.getListings();
+    }
+
+    getListings = () => {
+        axios({
+            method: 'get',
+            url: 'https://localhost:44332/listing',
+            data: {}
+        }).then((response) => {
+            this.setState({listings: response.data})
         })
-        */
     }
 
     render() {
@@ -58,11 +59,18 @@ class App extends Component {
                                     text="New listing"
                                     class="btn"
                                 />
-                                { this.state.listings && <ListOfListings /> }
+                                {
+                                    this.state.listings
+                                    ?
+                                        <ListOfListings listings={this.state.listings}/>
+                                    :
+                                        null
+                                }
+                                
                             </>
                         </div>
                     :
-                        <CreateListingView />
+                        <CreateListingView toggleCreateListing={this.toggleCreateListing}/>
                 }
                 
             </>
