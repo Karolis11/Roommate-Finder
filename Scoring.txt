@@ -1,0 +1,10 @@
+
+PIRMA SAVAITE
+|      | doma | Edv | kar | domi |
+|------|------|-----|-----|------|
+| Doma | 2    |     | 2   | 4    |
+| edv  | 2    |     | 2   | 2    |
+| kar  | 2    |     | 2   | 2    |
+| domi | 4    |     | 4   | 2    |
+
+ANTRA SAVAITE
