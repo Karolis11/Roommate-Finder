@@ -12,6 +12,7 @@ export const Signup = (props) => {
             firstName: "",
             lastName: "",
             email: "",
+            password: "",
             city: ""
         },
         validationSchema: Yup.object({
@@ -27,17 +28,30 @@ export const Signup = (props) => {
                         .string()
                         .email("Invalid email address")
                         .required("Required"),
+            password: Yup
+                        .string()
+                        .min(6, "Password must be at least 6 characters long")
+                        .required("Required"),
             city: Yup
                         .string()
                         .max(30, "City can only be up to 30 characters")
                         .required("Required")
         }),
         onSubmit: (values) => {
-            
-            setResponseMessage("Success")
-            setTimeout(() => {
-                props.toggleSignUp(false);
-            }, 5000);
+            axios({
+                method: 'post',
+                url: 'https://localhost:44332/registration',
+                data: values
+            }).then((response) => {
+                setResponseMessage(response.data.Message)
+
+                // if account was created, redirect in 5 seconds
+                if (response.data.Success) {
+                    setTimeout(() => {
+                        props.toggleSignUp(false);
+                    }, 5000);
+                }
+            })  
         }
     })
 
@@ -101,6 +115,27 @@ export const Signup = (props) => {
                             />
                             { 
                                 formik.touched.email && formik.errors.email 
+                                ? 
+                                    <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
+                                        {formik.errors.email}
+                                    </p> 
+                                : null 
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label htmlFor="password">Password</label></td>
+                        <td>
+                            <input 
+                                name="password" 
+                                id="password" 
+                                type="password"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.password}
+                            />
+                            { 
+                                formik.touched.password && formik.errors.password 
                                 ? 
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
                                         {formik.errors.email}
