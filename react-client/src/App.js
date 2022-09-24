@@ -1,9 +1,9 @@
 import './App.css';
-import { CreateListingComponent } from './Components/Views/CreateListingView';
-import { CreateListingButton } from './Components/Buttons/CreateListingButton';
-import { ListOfListings } from './Components/ListOfListings';
+import { EntryScreen } from './Components/Views/EntryScreen';
+import { Signup } from './Components/Views/Signup';
 import { Component } from 'react';
-import axios from 'axios';
+import { LoggedInMain } from './Components/Views/LoggedInMain';
+
 
 class App extends Component {
     createListingButtonId = "create-listing-button";
@@ -12,66 +12,29 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            listings: undefined,
-            createListingView: false,
+            signupScreen: false,
+            loggedIn: false,
         }
-
-        this.createListingButton = document.createElement('button');
-
-        this.toggleCreateListing = this.toggleCreateListing.bind(this);
     }
 
-    toggleCreateListing = (toggleBool) => {
-        this.setState({ createListingView: toggleBool });
-        this.getListings();
-    }
-
-    componentDidMount() {
-        this.createListingButton = document.getElementById(this.createListingButtonId);
-
-        this.createListingButton.addEventListener('click', () => {
-            this.toggleCreateListing(true);
-        })
-
-        this.getListings();
-    }
-
-    getListings = () => {
-        axios({
-            method: 'get',
-            url: 'https://localhost:44332/listing',
-            data: {}
-        }).then((response) => {
-            this.setState({listings: response.data})
-        })
+    toggleSignUp = (toggleBool) => {
+        this.setState({signupScreen: toggleBool});
     }
 
     render() {
         return (
             <>
-                {
-                    !this.state.createListingView
+            {
+                this.state.loggedIn
+                ?
+                    <LoggedInMain />
+                :
+                    this.state.signupScreen
                     ?
-                        <div className="listings-container">
-                            <>
-                                <CreateListingButton
-                                    id="create-listing-button"
-                                    text="New listing"
-                                    class="btn"
-                                />
-                                {
-                                    this.state.listings
-                                    ?
-                                        <ListOfListings listings={this.state.listings}/>
-                                    :
-                                        null
-                                }
-                                
-                            </>
-                        </div>
+                        <Signup toggleSignUp={this.toggleSignUp.bind(this)}/>
                     :
-                        <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
-                }
+                        <EntryScreen toggleSignUp={this.toggleSignUp.bind(this)}/>
+            }
                 
             </>
         );
