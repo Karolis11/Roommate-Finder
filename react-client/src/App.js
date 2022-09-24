@@ -1,5 +1,5 @@
 import './App.css';
-import { CreateListingView } from './Components/Views/CreateListingView';
+import { CreateListingComponent } from './Components/Views/CreateListingView';
 import { CreateListingButton } from './Components/Buttons/CreateListingButton';
 import { ListOfListings } from './Components/ListOfListings';
 import { Component } from 'react';
@@ -70,7 +70,7 @@ class App extends Component {
                             </>
                         </div>
                     :
-                        <CreateListingView toggleCreateListing={this.toggleCreateListing}/>
+                        <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
                 }
                 
             </>

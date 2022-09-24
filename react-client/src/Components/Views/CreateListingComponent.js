@@ -2,7 +2,7 @@ import { Component } from 'react';
 import axios from 'axios';
 
 
-export class CreateListingView extends Component {
+export class CreateListingComponent extends Component {
 
     constructor(props) {
         super(props);
