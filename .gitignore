@@ -1,4 +1,5 @@
 roommate-app/obj/**
 roommate-app/bin/**
 .vs/**
-node_modules/**
+roommate-app/.vs/**
+node_modules
