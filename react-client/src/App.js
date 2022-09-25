@@ -3,6 +3,7 @@ import { EntryScreen } from './Components/Views/EntryScreen';
 import { Signup } from './Components/Views/Signup';
 import { Component } from 'react';
 import { LoggedInMain } from './Components/Views/LoggedInMain';
+import { Login } from './Components/Views/Login';
 
 
 class App extends Component {
@@ -14,11 +15,16 @@ class App extends Component {
         this.state = {
             signupScreen: false,
             loggedIn: false,
+            loginScreen: false
         }
     }
 
     toggleSignUp = (toggleBool) => {
         this.setState({signupScreen: toggleBool});
+    }
+
+    toggleLogin = (toggleBool) => {
+        this.setState({loginScreen: toggleBool});
     }
 
     render() {
@@ -32,13 +38,21 @@ class App extends Component {
                     this.state.signupScreen
                     ?
                         <Signup toggleSignUp={this.toggleSignUp.bind(this)}/>
-                    :
-                        <EntryScreen toggleSignUp={this.toggleSignUp.bind(this)}/>
+                    :   
+                        this.state.loginScreen
+                        ?
+                        <Login toggleLogin={this.toggleLogin.bind(this)}/>
+                        :
+                        <EntryScreen toggleLogin={this.toggleLogin.bind(this)}
+                        EntryScreen toggleSignUp={this.toggleSignUp.bind(this)}/>
+                
             }
                 
             </>
         );
     } 
+
+    
 }
 
 export default App;

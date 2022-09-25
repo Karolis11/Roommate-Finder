@@ -5,6 +5,7 @@ export const EntryScreen = (props) => {
         <div className="login-signup-btn-container">
             <button 
                 id="loginButton"
+                onClick={() => { props.toggleLogin(true); }}
             >
                 Login
             </button>
