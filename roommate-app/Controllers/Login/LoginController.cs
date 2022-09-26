@@ -16,9 +16,10 @@ public class LoginController : ControllerBase{
 
         List<User> users = LoadUsers();
         bool passwordAndEmailCorrect = false;
+        bool emailExist = false;
 
-        foreach (var usr in users)
-        {
+        foreach (var usr in users){
+            if(usr.email.ToLower() == user.email.ToLower()) { emailExist = true; }
             if (usr.email.ToLower() == user.email.ToLower() &&
                 usr.password == user.password)
             {
@@ -27,15 +28,38 @@ public class LoginController : ControllerBase{
             }
         }
 
-
-        return JsonSerializer.Serialize(
+        if(!emailExist){
+            return JsonSerializer.Serialize(
+            new LoginResponse(
+                emailExist,
+                "The " + user.email + " is not registered"
+            )
+            );
+        }
+        else if (emailExist && !passwordAndEmailCorrect){
+            return JsonSerializer.Serialize(
             new LoginResponse(
                 passwordAndEmailCorrect,
-                passwordAndEmailCorrect 
-                    ? "Logged in successfully"
-                    : "Your email or password is not correct"
+                "Your entered password is incorrect"
             )
-        );
+            );
+        }
+        else if(passwordAndEmailCorrect){
+            return JsonSerializer.Serialize(
+            new LoginResponse(
+                passwordAndEmailCorrect,
+                "Logged in successfully"
+            )
+            );
+        }
+        else{
+            return JsonSerializer.Serialize(
+            new LoginResponse(
+                false,
+                "Error, contact support"
+            )
+            );
+        }
         
     }
     
