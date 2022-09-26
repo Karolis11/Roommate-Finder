@@ -31,6 +31,7 @@ export const Signup = (props) => {
             password: Yup
                         .string()
                         .min(6, "Password must be at least 6 characters long")
+                        .max(20,"Password can only be up to 20 characters")
                         .required("Required"),
             city: Yup
                         .string()
@@ -138,7 +139,7 @@ export const Signup = (props) => {
                                 formik.touched.password && formik.errors.password 
                                 ? 
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
-                                        {formik.errors.email}
+                                        {formik.errors.password}
                                     </p> 
                                 : null 
                             }
