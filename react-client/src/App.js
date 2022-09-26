@@ -44,8 +44,8 @@ class App extends Component {
                         <Login toggleLogin={this.toggleLogin.bind(this)}/>
                         :
                         <EntryScreen toggleLogin={this.toggleLogin.bind(this)}
-                        EntryScreen toggleSignUp={this.toggleSignUp.bind(this)}/>
-                
+                        EntryScreen toggleSignUp={this.toggleSignUp.bind(this)} />
+
             }
                 
             </>
