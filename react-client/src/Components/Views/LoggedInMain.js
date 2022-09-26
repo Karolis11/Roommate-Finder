@@ -5,6 +5,7 @@ import { ListOfListings } from '../ListOfListings';
 import axios from 'axios';
 
 export class LoggedInMain extends Component {
+    createListingButton;
     constructor(props) {
         super(props);
 
@@ -24,7 +25,7 @@ export class LoggedInMain extends Component {
     }
 
     componentDidMount() {
-        this.createListingButton = document.getElementById(this.createListingButtonId);
+        this.createListingButton = document.getElementById("create-listing-button");
 
         this.createListingButton.addEventListener('click', () => {
             this.toggleCreateListing(true);
