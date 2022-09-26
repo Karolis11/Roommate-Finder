@@ -31,7 +31,14 @@ export const Login = (props) => {
             })
             .then((response) => {
                 console.log(response.data);
-                props.toggleLogin(false);                
+                if(response.data.Success){ 
+                    props.toggleLoggedIn(true); 
+                    props.toggleLogin(false);
+                }
+                else{
+                    setResponseMessage(response.data.Message);
+                }
+                               
             })
         }
     })

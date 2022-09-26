@@ -27,6 +27,10 @@ class App extends Component {
         this.setState({loginScreen: toggleBool});
     }
 
+    toggleLoggedIn = (toggleBool) => {
+        this.setState({loggedIn: toggleBool})
+    }
+
     render() {
         return (
             <>
@@ -41,7 +45,8 @@ class App extends Component {
                     :   
                         this.state.loginScreen
                         ?
-                        <Login toggleLogin={this.toggleLogin.bind(this)}/>
+                        <Login toggleLogin={this.toggleLogin.bind(this)}
+                        Login toggleLoggedIn={this.toggleLoggedIn.bind(this)}/>
                         :
                         <EntryScreen toggleLogin={this.toggleLogin.bind(this)}
                         EntryScreen toggleSignUp={this.toggleSignUp.bind(this)} />
