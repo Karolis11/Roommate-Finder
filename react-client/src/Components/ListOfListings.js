@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import "./ListStyles.css";
 
 export class ListOfListings extends Component {
 
@@ -8,47 +9,49 @@ export class ListOfListings extends Component {
 
     render() {
         return (
-            <ul class="lineSeparated">
-                <hr class="line"> </hr>
+            <ul className="lineSeparated">
+                <hr className="line" />
                     {
                         this.props.listings
                             .map((listing, index) =>
-                                <li class="mainListing" key={index}>
+                                <li className="mainListing" key={index}>
 
-                                    <div class="listingInfo">
-                                        <div class="listingCity">
-                                            listing.city
+                                    <div className="listingInfo">
+                                        <div className="listingCity">
+                                            {listing.city}
                                         </div>
-                                        <div class="listingDate">
+                                        <div className="listingDate">
                                             listing.date
                                         </div>
                                     </div>
 
-                                    <div class="listingReview ">
-                                        <div class="listingName" >listing.firstName listing.lastName </div>
+                                    <div className="listingReview ">
+                                        <div className="listingName" >{listing.firstName} {listing.lastName} </div>
 
-                                        <div class="listingTexts">
-                                            <div class="listingTextReview">
+                                        <div className="listingTexts">
+                                            <div className="listingTextReview">
                                                 listing.extraComment
                                             </div>
-                                            <div class="listingMoreDetails">
-                                                listing.phone, listing.email
+                                            <div className="listingMoreDetails">
+                                                Prefered number of roommates: {listing.roommateCount}
+                                            </div>
+                                            <div className="listingContacts">
+                                                listing.phone, {listing.email}
                                             </div>
                                         </div>
 
-                                        <div class="listingPrice">
+                                        <div className="listingPrice">
                                             <span>
-                                                listing.maxPrice €
+                                                {listing.maxPrice} &#8364;
                                             </span>
                                         </div>
                                     </div>
-                                    <hr class="line"> </hr>
+                                    <hr className="line" />
                                 </li>
                             )
                     }
 
             </ul>
-
         );
     }
 

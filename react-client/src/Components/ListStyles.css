@@ -4,12 +4,12 @@ ul.lineSeparated {
     margin-left: 1em;
 }
 
-    ul.lineSeparated li {
-        background-color: white;
-        margin: 1px 0 0 0;
-        padding: 0;
-        list-style-type: none;
-    }
+ul.lineSeparated li {
+    background-color: white;
+    margin: 1px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+}
 
 .mainListing {
     font-weight: 500;
@@ -37,7 +37,7 @@ ul.lineSeparated {
 .listingName {
     font-weight: 600;
     font-size: 20px;
-    line-height: 150%;
+    padding: 2px 0 6px 0;
     color: #90BB1F;
 }
 
@@ -45,9 +45,17 @@ ul.lineSeparated {
 }
 
 .listingTextReview {
+    padding: 0 0 7px 0;
+    width: 750px;
+    word-wrap: break-word;
 }
 
 .listingMoreDetails {
+    font-size: 90%;
+}
+
+.listingContacts {
+    font-size: 90%;
 }
 
 .listingPrice {
@@ -58,4 +66,5 @@ ul.lineSeparated {
 
 .line {
     background-color: black;
+    height: 1px;
 }
