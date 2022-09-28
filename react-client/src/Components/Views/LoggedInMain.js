@@ -45,8 +45,10 @@ export class LoggedInMain extends Component {
         return (
             <>
             {
-                !this.state.createListingView
+                this.state.createListingView
                 ?
+                    <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
+                :
                     <div className="listings-container">
                         <>
                             <CreateListingButton
@@ -59,8 +61,6 @@ export class LoggedInMain extends Component {
                             
                         </>
                     </div>
-                :
-                    <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
             }
             </>
         );
