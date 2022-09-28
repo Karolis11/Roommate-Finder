@@ -55,13 +55,7 @@ export class LoggedInMain extends Component {
                                 class="btn"
                                 onclick={this.toggleCreateListingWrapper.bind(this)}
                             />
-                            {
-                                this.state.listings
-                                ?
-                                    <ListOfListings listings={this.state.listings}/>
-                                :
-                                    null
-                            }
+                            { this.state.listings && <ListOfListings listings={this.state.listings}/> }
                             
                         </>
                     </div>

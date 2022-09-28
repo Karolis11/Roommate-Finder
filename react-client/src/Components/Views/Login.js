@@ -60,12 +60,10 @@ export const Login = (props) => {
                                 value={formik.values.email}
                             />
                             { 
-                                formik.touched.email && formik.errors.email 
-                                ? 
+                                formik.touched.email && formik.errors.email &&
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
                                         {formik.errors.email}
                                     </p> 
-                                : null 
                             }
                         </td>
                     </tr>
@@ -81,12 +79,10 @@ export const Login = (props) => {
                                 value={formik.values.password}
                             />
                             { 
-                                formik.touched.password && formik.errors.password 
-                                ? 
+                                formik.touched.password && formik.errors.password &&
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
                                         {formik.errors.email}
-                                    </p> 
-                                : null 
+                                    </p>  
                             }
                         </td>
                     </tr>

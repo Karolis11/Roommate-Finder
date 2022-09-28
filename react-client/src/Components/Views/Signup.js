@@ -73,12 +73,10 @@ export const Signup = (props) => {
                                 value={formik.values.firstName}
                                 />
                             { 
-                                formik.touched.firstName && formik.errors.firstName 
-                                ? 
+                                formik.touched.firstName && formik.errors.firstName &&
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
                                         {formik.errors.firstName}
                                     </p> 
-                                : null 
                             }
                         </td>
                     </tr>
@@ -94,12 +92,10 @@ export const Signup = (props) => {
                                 value={formik.values.lastName}
                             />
                             { 
-                                formik.touched.lastName && formik.errors.lastName 
-                                ? 
+                                formik.touched.lastName && formik.errors.lastName &&
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
                                         {formik.errors.lastName}
                                     </p> 
-                                : null 
                             }
                         </td>
                     </tr>
@@ -115,12 +111,10 @@ export const Signup = (props) => {
                                 value={formik.values.email}
                             />
                             { 
-                                formik.touched.email && formik.errors.email 
-                                ? 
+                                formik.touched.email && formik.errors.email &&
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
                                         {formik.errors.email}
                                     </p> 
-                                : null 
                             }
                         </td>
                     </tr>
@@ -136,12 +130,10 @@ export const Signup = (props) => {
                                 value={formik.values.password}
                             />
                             { 
-                                formik.touched.password && formik.errors.password 
-                                ? 
+                                formik.touched.password && formik.errors.password &&
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
                                         {formik.errors.password}
                                     </p> 
-                                : null 
                             }
                         </td>
                     </tr>
@@ -157,12 +149,10 @@ export const Signup = (props) => {
                                 value={formik.values.city}
                             />
                             { 
-                                formik.touched.city && formik.errors.city 
-                                ? 
+                                formik.touched.city && formik.errors.city &&
                                     <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
                                         {formik.errors.city}
                                     </p> 
-                                : null 
                             }
                         </td>
                     </tr>
