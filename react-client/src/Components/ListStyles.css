@@ -1,0 +1,70 @@
+ul.lineSeparated {
+    background-color: white;
+    padding: 10px;
+    margin-left: 1em;
+}
+
+ul.lineSeparated li {
+    background-color: white;
+    margin: 1px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.mainListing {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+}
+
+.listingInfo {
+    position: absolute;
+}
+
+.listingCity {
+}
+
+.listingDate {
+    font-size: 85%;
+}
+
+.listingReview {
+    font-weight: 100;
+    position: relative;
+    left: 150px;
+}
+
+.listingName {
+    font-weight: 600;
+    font-size: 20px;
+    padding: 2px 0 6px 0;
+    color: #90BB1F;
+}
+
+.listingTexts {
+}
+
+.listingTextReview {
+    padding: 0 0 7px 0;
+    width: 750px;
+    word-wrap: break-word;
+}
+
+.listingMoreDetails {
+    font-size: 90%;
+}
+
+.listingContacts {
+    font-size: 90%;
+}
+
+.listingPrice {
+    line-height: 190%;
+    font-size: 105%;
+    font-weight: 600;
+}
+
+.line {
+    background-color: black;
+    height: 1px;
+}
