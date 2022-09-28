@@ -1,1 +1,66 @@
-[{"firstName":"test","lastName":"test","email":"asd@asd.com","city":"Vilnius","roommateCount":2,"maxPrice":400},{"firstName":"testas2","lastName":"testas2","email":"asd@asd.com","city":"Klaipeda","roommateCount":5,"maxPrice":200},{"firstName":"testas3","lastName":"testas3","email":"asd@asd.com","city":"vilnius","roommateCount":3,"maxPrice":300},{"firstName":"testas4","lastName":"testas4","email":"asd@asd.com","city":"Vilnius","roommateCount":2,"maxPrice":400},{"firstName":"bada","lastName":"Eicinas","email":"asd@asd.com","city":"Vilnius","roommateCount":2,"maxPrice":200},{"firstName":"bada","lastName":"Ei\u010Dinas","email":"asd@asd.com","city":"Klaipeda","roommateCount":2,"maxPrice":300},{"firstName":"kazkas","lastName":"kazaks","email":"kazkas@gmai.com","city":"kazkas","roommateCount":4,"maxPrice":8000}]
+[
+  {
+    "firstName": "test",
+    "lastName": "test",
+    "email": "asd@asd.com",
+    "city": "Vilnius",
+    "roommateCount": 2,
+    "maxPrice": 400
+  },
+  {
+    "firstName": "testas2",
+    "lastName": "testas2",
+    "email": "asd@asd.com",
+    "city": "Klaipeda",
+    "roommateCount": 5,
+    "maxPrice": 200
+  },
+  {
+    "firstName": "testas3",
+    "lastName": "testas3",
+    "email": "asd@asd.com",
+    "city": "vilnius",
+    "roommateCount": 3,
+    "maxPrice": 300
+  },
+  {
+    "firstName": "testas4",
+    "lastName": "testas4",
+    "email": "asd@asd.com",
+    "city": "Vilnius",
+    "roommateCount": 2,
+    "maxPrice": 400
+  },
+  {
+    "firstName": "bada",
+    "lastName": "Eicinas",
+    "email": "asd@asd.com",
+    "city": "Vilnius",
+    "roommateCount": 2,
+    "maxPrice": 200
+  },
+  {
+    "firstName": "bada",
+    "lastName": "Ei\u010Dinas",
+    "email": "asd@asd.com",
+    "city": "Klaipeda",
+    "roommateCount": 2,
+    "maxPrice": 300
+  },
+  {
+    "firstName": "kazkas",
+    "lastName": "kazaks",
+    "email": "kazkas@gmai.com",
+    "city": "kazkas",
+    "roommateCount": 4,
+    "maxPrice": 8000
+  },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "asd@asd.com",
+      "city": "Vilnius",
+      "roommateCount": 2,
+      "maxPrice": 400
+    }
+  ]
