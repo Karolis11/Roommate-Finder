@@ -6,6 +6,7 @@ export const CreateListingButton = (props) => {
         <button
             id={props.id}
             className={props.class}
+            onClick={props.onclick}
         >
             {props.text}
         </button>
