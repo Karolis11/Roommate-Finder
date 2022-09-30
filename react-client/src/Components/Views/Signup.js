@@ -47,7 +47,7 @@ export const Signup = (props) => {
             }).then((response) => {
 
                 // if account was created, redirect in 5 seconds
-                if (response.data.Success) {
+                if (response.data.IsSuccess) {
 
                     enqueueSnackbar(response.data.Message, {variant: "success"});
 

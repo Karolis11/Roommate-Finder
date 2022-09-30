@@ -32,8 +32,7 @@ export const Login = (props) => {
                 data: values
             })
             .then((response) => {
-                console.log(response.data);
-                if(response.data.Success){ 
+                if(response.data.IsSuccess){ 
                     enqueueSnackbar("You have successfully logged in.", {variant: "success"})
                     props.toggleLoggedIn(true); 
                     props.toggleLogin(false);

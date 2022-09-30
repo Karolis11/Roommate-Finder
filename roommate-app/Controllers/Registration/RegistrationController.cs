@@ -34,7 +34,7 @@ public class RegistrationController : ControllerBase
             // if email does not exist, add the user
             existingUsers.Add(user);
             string json = JsonSerializer.Serialize(existingUsers);
-            StreamWriter tsw = new StreamWriter("Data/users.json", false);
+            using StreamWriter tsw = new StreamWriter("Data/users.json", false);
             tsw.WriteLine(json);
             tsw.Close();
         }
