@@ -14,15 +14,14 @@ public class RegistrationController : ControllerBase
     public string Submit([FromBody] User user)
     {
         var emailExistsFlag = false;
-        char[] charsToTrim = { ' ', '\t' };
 
         List<User> existingUsers = LoadUsers();
 
         foreach (var usr in existingUsers)
         {
             // trim and lowercase the strings
-            if (usr.Email.Trim(charsToTrim).ToLower() 
-                == user.Email.Trim(charsToTrim).ToLower())
+            if (usr.Email.Trim().ToLower() 
+                == user.Email.Trim().ToLower())
             {
                 emailExistsFlag = true; 
                 break;
