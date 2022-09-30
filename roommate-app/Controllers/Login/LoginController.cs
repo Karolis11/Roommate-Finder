@@ -16,7 +16,6 @@ public class LoginController : ControllerBase{
 
         List<User> users = LoadUsers();
         bool passwordAndEmailCorrect = false;
-        bool emailExist = false;
 
         passwordAndEmailCorrect = (
                 from User usr in users
@@ -25,39 +24,14 @@ public class LoginController : ControllerBase{
                 select usr
             ).Count() == 1;
 
-        if(!emailExist){
-            return JsonSerializer.Serialize(
-            new LoginResponse(
-                emailExist,
-                "The " + user.Email + " is not registered"
-            )
-            );
-        }
-        else if (emailExist && !passwordAndEmailCorrect){
-            return JsonSerializer.Serialize(
+        return JsonSerializer.Serialize(
             new LoginResponse(
                 passwordAndEmailCorrect,
-                "Your entered password is incorrect"
+                passwordAndEmailCorrect
+                    ? "Logged in successfully."
+                    : "Either email or password is incorrect."
             )
-            );
-        }
-        else if(passwordAndEmailCorrect){
-            return JsonSerializer.Serialize(
-            new LoginResponse(
-                passwordAndEmailCorrect,
-                "Logged in successfully"
-            )
-            );
-        }
-        else{
-            return JsonSerializer.Serialize(
-            new LoginResponse(
-                false,
-                "Error, contact support"
-            )
-            );
-        }
-        
+        ); 
     }
     
     private List<User> LoadUsers()
