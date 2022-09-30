@@ -19,9 +19,9 @@ public class LoginController : ControllerBase{
         bool emailExist = false;
 
         foreach (var usr in users){
-            if(usr.email.ToLower() == user.email.ToLower()) { emailExist = true; }
-            if (usr.email.ToLower() == user.email.ToLower() &&
-                usr.password == user.password)
+            if(usr.Email.ToLower() == user.Email.ToLower()) { emailExist = true; }
+            if (usr.Email.ToLower() == user.Email.ToLower() &&
+                usr.Password == user.Password)
             {
                 passwordAndEmailCorrect = true;
                 break;
@@ -32,7 +32,7 @@ public class LoginController : ControllerBase{
             return JsonSerializer.Serialize(
             new LoginResponse(
                 emailExist,
-                "The " + user.email + " is not registered"
+                "The " + user.Email + " is not registered"
             )
             );
         }

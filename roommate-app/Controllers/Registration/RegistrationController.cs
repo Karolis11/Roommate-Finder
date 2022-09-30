@@ -21,8 +21,8 @@ public class RegistrationController : ControllerBase
         foreach (var usr in existingUsers)
         {
             // trim and lowercase the strings
-            if (usr.email.Trim(charsToTrim).ToLower() 
-                == user.email.Trim(charsToTrim).ToLower())
+            if (usr.Email.Trim(charsToTrim).ToLower() 
+                == user.Email.Trim(charsToTrim).ToLower())
             {
                 emailExistsFlag = true; 
                 break;
