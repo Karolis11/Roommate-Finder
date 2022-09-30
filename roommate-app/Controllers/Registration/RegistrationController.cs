@@ -17,16 +17,11 @@ public class RegistrationController : ControllerBase
 
         List<User> existingUsers = LoadUsers();
 
-        foreach (var usr in existingUsers)
-        {
-            // trim and lowercase the strings
-            if (usr.Email.Trim().ToLower() 
-                == user.Email.Trim().ToLower())
-            {
-                emailExistsFlag = true; 
-                break;
-            }
-        }
+        emailExistsFlag = (
+                from User usr in existingUsers
+                where usr.Email.Trim().ToLower() == user.Email.Trim().ToLower()
+                select usr
+            ).Count() > 0;
 
         if (!emailExistsFlag)
         {

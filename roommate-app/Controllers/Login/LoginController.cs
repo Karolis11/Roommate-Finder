@@ -18,15 +18,12 @@ public class LoginController : ControllerBase{
         bool passwordAndEmailCorrect = false;
         bool emailExist = false;
 
-        foreach (var usr in users){
-            if(usr.Email.ToLower() == user.Email.ToLower()) { emailExist = true; }
-            if (usr.Email.ToLower() == user.Email.ToLower() &&
-                usr.Password == user.Password)
-            {
-                passwordAndEmailCorrect = true;
-                break;
-            }
-        }
+        passwordAndEmailCorrect = (
+                from User usr in users
+                where usr.Email.ToLower() == user.Email.ToLower()
+                      && usr.Password == user.Password
+                select usr
+            ).Count() == 1;
 
         if(!emailExist){
             return JsonSerializer.Serialize(
