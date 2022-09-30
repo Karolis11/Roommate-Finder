@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useSnackbar } from 'notistack';
 
 export const Login = (props) => {
 
     const [responseMessage, setResponseMessage] = useState("");
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
     const formik = useFormik({
         initialValues: {
@@ -32,11 +34,12 @@ export const Login = (props) => {
             .then((response) => {
                 console.log(response.data);
                 if(response.data.Success){ 
+                    enqueueSnackbar("You have successfully logged in.", {variant: "success"})
                     props.toggleLoggedIn(true); 
                     props.toggleLogin(false);
                 }
                 else{
-                    setResponseMessage(response.data.Message);
+                    enqueueSnackbar(response.data.Message, {variant: "error"})
                 }
                                
             })
@@ -91,7 +94,6 @@ export const Login = (props) => {
             </table>
             <button type="submit">Submit</button>
         </form>
-        <p>{responseMessage}</p>
         </>
     )
 }

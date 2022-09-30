@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useSnackbar } from 'notistack'
 
 export const Signup = (props) => {
-
-    const [responseMessage, setResponseMessage] = useState("");
+    const [redirectionMsg, setRedirectionMsg] = useState("");
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
     const formik = useFormik({
         initialValues: {
@@ -44,13 +45,24 @@ export const Signup = (props) => {
                 url: 'https://localhost:44332/registration',
                 data: values
             }).then((response) => {
-                setResponseMessage(response.data.Message)
 
                 // if account was created, redirect in 5 seconds
                 if (response.data.Success) {
-                    setTimeout(() => {
-                        props.toggleSignUp(false);
-                    }, 5000);
+
+                    enqueueSnackbar(response.data.Message, {variant: "success"});
+
+                    let i = 5;
+                    setRedirectionMsg(`Redirecting in ${i}`);
+                    let interval = setInterval(() => {
+                        i--;
+                        if (i < 0) {
+                            props.toggleSignUp(false);
+                            clearInterval(interval);
+                        }
+                        setRedirectionMsg(`Redirecting in ${i}`);
+                    }, 1000);
+                } else {
+                    enqueueSnackbar(response.data.Message, {variant: "error"});
                 }
             })  
         }
@@ -160,7 +172,7 @@ export const Signup = (props) => {
             </table>
             <button type="submit">Submit</button>
         </form>
-        <p>{responseMessage}</p>
+        <p>{redirectionMsg}</p>
         </>
     )
 }
