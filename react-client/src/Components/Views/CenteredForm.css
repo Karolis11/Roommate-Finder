@@ -29,7 +29,7 @@ body {
     align-items: center;
 
     border-radius: 30px;
-    box-shadow: 0px 0px 6px 0px #000000
+    box-shadow: 0px 0px 5px 0px #316d93;
 }
 
 .form-field-container-flex {
@@ -45,6 +45,10 @@ body {
     height: 100%;
 }
 
+.form-field-flex label {
+    font-weight: 500;
+}
+
 .login-container {
     width: 500px;
     height: 250px;
@@ -52,10 +56,29 @@ body {
 
 .signup-container {
     width: 500px;
-    height: 400px;
+    height: 350px;
+    padding: 30px;
 }
 
 .create-listing-container {
     width: 500px;
     height: 600px;
+}
+
+form button {
+    padding: 10px;
+    margin: 0;
+    background-color: #f6f7ff;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 0px #316d93;
+    width: 100%;
+    transition: 100ms ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+form button:hover {
+    background-color: #ebedfd;
+    transition: 100ms ease-in-out;
 }
