@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 
+import './CenteredForm.css';
+
 export const Login = (props) => {
 
     const [responseMessage, setResponseMessage] = useState("");
@@ -47,52 +49,49 @@ export const Login = (props) => {
 
     return (
         <>
-        <form onSubmit={formik.handleSubmit}>
-            <table>
-                <tbody>
-                    <tr>
-                        <td><label htmlFor="email">Email</label></td>
-                        <td>
-                            <input 
-                                name="email" 
-                                id="email" 
-                                type="email"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.email}
-                            />
-                            { 
-                                formik.touched.email && formik.errors.email &&
-                                    <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
-                                        {formik.errors.email}
-                                    </p> 
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label htmlFor="password">Password</label></td>
-                        <td>
-                            <input 
-                                name="password" 
-                                id="password" 
-                                type="password"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.password}
-                            />
-                            { 
-                                formik.touched.password && formik.errors.password &&
-                                    <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
-                                        {formik.errors.email}
-                                    </p>  
-                            }
-                        </td>
-                    </tr>
-                    
-                </tbody>
-            </table>
-            <button type="submit">Submit</button>
-        </form>
+        <div className="centered-container login-container">
+            <form onSubmit={formik.handleSubmit}>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="email">Email</label></div>
+                    <div className="form-field-flex">
+                        <input 
+                            name="email" 
+                            id="email" 
+                            type="email"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.email}
+                        />
+                        { 
+                            formik.touched.email && formik.errors.email &&
+                                <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
+                                    {formik.errors.email}
+                                </p> 
+                        }
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="password">Password</label></div>
+                    <div className="form-field-flex">
+                        <input 
+                            name="password" 
+                            id="password" 
+                            type="password"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.password}
+                        />
+                        { 
+                            formik.touched.password && formik.errors.password &&
+                                <p style={{color: "red", margin:"0", padding: "0", fontSize: "10px"}}>
+                                    {formik.errors.email}
+                                </p>  
+                        }
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>          
+        </div>
         </>
     )
 }

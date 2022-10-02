@@ -44,24 +44,26 @@ export class LoggedInMain extends Component {
     render() {
         return (
             <>
-            {
-                this.state.createListingView
-                ?
-                    <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
-                :
-                    <div className="listings-container">
-                        <>
-                            <CreateListingButton
-                                id="create-listing-button"
-                                text="New listing"
-                                class="btn"
-                                onclick={this.toggleCreateListingWrapper.bind(this)}
-                            />
-                            { this.state.listings && <ListOfListings listings={this.state.listings}/> }
-                            
-                        </>
-                    </div>
-            }
+            <div className={`logged-in-main-container ${this.state.createListingView && ' create-listing-on'}`}>
+                {
+                    this.state.createListingView
+                    ?
+                        <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
+                    :
+                        <div className="listings-container">
+                            <>
+                                <CreateListingButton
+                                    id="create-listing-button"
+                                    text="New listing"
+                                    class="btn"
+                                    onclick={this.toggleCreateListingWrapper.bind(this)}
+                                />
+                                { this.state.listings && <ListOfListings listings={this.state.listings}/> }
+                                
+                            </>
+                        </div>
+                }
+            </div>
             </>
         );
     }

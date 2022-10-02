@@ -94,156 +94,154 @@ export const CreateListingComponent = (props) => {
 
     return (
         <>
+        <div className="centered-container create-listing-container">
             <form onSubmit={formik.handleSubmit}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><label htmlFor="firstName">First name</label></td>
-                            <td>
-                                <input
-                                    name="firstName"
-                                    id="firstName"
-                                    type="text"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.firstName}
-                                />
-                                {
-                                    formik.touched.firstName && formik.errors.firstName &&
-                                        <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                            {formik.errors.firstName}
-                                        </p>
-                                }
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="lastName">Last name</label></td>
-                            <td>
-                                <input
-                                    name="lastName"
-                                    id="lastName"
-                                    type="text"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.lastName}
-                                />
-                                {
-                                    formik.touched.lastName && formik.errors.lastName &&
-                                        <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                            {formik.errors.lastName}
-                                        </p>
-                                }
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="email">Email</label></td>
-                            <td>
-                                <input
-                                    name="email"
-                                    id="email"
-                                    type="email"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.email}
-                                />
-                                {
-                                    formik.touched.email && formik.errors.email && 
-                                        <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                            {formik.errors.email}
-                                        </p>
-                                }
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="phone">Phone Number</label></td>
-                            <td>
-                                <input
-                                    name="phone"
-                                    id="phone"
-                                    type="phone"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.phone}
-                                />
-                                {
-                                    formik.touched.phone && formik.errors.phone && 
-                                        <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                            {formik.errors.phone}
-                                        </p>
-                                }
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="city">City</label></td>
-                            <td>
-                                <input
-                                    name="city"
-                                    id="city"
-                                    type="text"
-                                    
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.city}
-                                />
-                                {
-                                    formik.touched.city && formik.errors.city && 
-                                        <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                            {formik.errors.city}
-                                        </p>
-                                }
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="roomateCount">Number of Roommates</label></td>
-                            <td>
-                                <CustomRoommates
-                                    options={options}
-                                    value={formik.values.roommateCount}
-                                    className={'number'}
-                                    onChange={value => formik.setFieldValue('roommateCount',value.value)}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="price">Price Range:</label></td>
-                            <td height="150">
-                                <Slider
-                                    min={100}
-                                    max={1000}
-                                    defaultValue={100}
-                                    step={10}
-                                    marks={customMarks}
-                                    getAriaValueText={getText}
-                                    valueLabelDisplay='auto'
-                                // add value assign later --
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label htmlFor="extraComment">Extra Comment * </label></td>
-                            <td>
-                                <input
-                                    name="extraComment"
-                                    id="extraComment"
-                                    type="extraComment"
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.extraComment}
-                                />
-                                {
-                                    formik.touched.extraComment && formik.errors.extraComment &&
-                                        <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                            {formik.errors.extraComment}
-                                        </p>
-                                }
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="firstName">First name</label></div>
+                    <div className="form-field-flex">
+                        <input
+                            name="firstName"
+                            id="firstName"
+                            type="text"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.firstName}
+                        />
+                        {
+                            formik.touched.firstName && formik.errors.firstName &&
+                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
+                                    {formik.errors.firstName}
+                                </p>
+                        }
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="lastName">Last name</label></div>
+                    <div className="form-field-flex">
+                        <input
+                            name="lastName"
+                            id="lastName"
+                            type="text"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.lastName}
+                        />
+                        {
+                            formik.touched.lastName && formik.errors.lastName &&
+                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
+                                    {formik.errors.lastName}
+                                </p>
+                        }
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="email">Email</label></div>
+                    <div className="form-field-flex">
+                        <input
+                            name="email"
+                            id="email"
+                            type="email"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.email}
+                        />
+                        {
+                            formik.touched.email && formik.errors.email && 
+                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
+                                    {formik.errors.email}
+                                </p>
+                        }
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="phone">Phone Number</label></div>
+                    <div className="form-field-flex">
+                        <input
+                            name="phone"
+                            id="phone"
+                            type="phone"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.phone}
+                        />
+                        {
+                            formik.touched.phone && formik.errors.phone && 
+                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
+                                    {formik.errors.phone}
+                                </p>
+                        }
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="city">City</label></div>
+                    <div className="form-field-flex">
+                        <input
+                            name="city"
+                            id="city"
+                            type="text"
+                            
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.city}
+                        />
+                        {
+                            formik.touched.city && formik.errors.city && 
+                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
+                                    {formik.errors.city}
+                                </p>
+                        }
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="roomateCount">Number of Roommates</label></div>
+                    <div className="form-field-flex">
+                        <CustomRoommates
+                            options={options}
+                            value={formik.values.roommateCount}
+                            className={'number'}
+                            onChange={value => formik.setFieldValue('roommateCount',value.value)}
+                        />
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="price">Price Range:</label></div>
+                    <div className="form-field-flex" style={{height: "150px"}}>
+                        <Slider
+                            min={100}
+                            max={1000}
+                            defaultValue={100}
+                            step={10}
+                            marks={customMarks}
+                            getAriaValueText={getText}
+                            valueLabelDisplay='auto'
+                        // add value assign later --
+                        />
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="extraComment">Extra Comment * </label></div>
+                    <div className="form-field-flex">
+                        <input
+                            name="extraComment"
+                            id="extraComment"
+                            type="extraComment"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.extraComment}
+                        />
+                        {
+                            formik.touched.extraComment && formik.errors.extraComment &&
+                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
+                                    {formik.errors.extraComment}
+                                </p>
+                        }
+                    </div>
+                </div>
                 <button type="submit">Submit</button>
             </form>
             <small>   * - Optional Fields</small>
             <p>{responseMessage}</p>
+        </div>
         </>
     )
 }
