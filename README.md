@@ -33,3 +33,9 @@ Plan (Dominykas, Edvinas, Karolis, Domantas)
 - Input validation and formik
 - Sign in into an account
 - css listing + design
+
+3sav:
+- fix the mistakes from last week
+- fix listing submission
+- enum (and possibly IEnumerable) for cities and dropdown for cities in frontend
+- fix login with react-router
