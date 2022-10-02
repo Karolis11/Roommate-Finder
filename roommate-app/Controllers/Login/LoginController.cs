@@ -12,7 +12,7 @@ namespace roommate_app.Controllers.Login;
 public class LoginController : ControllerBase{
 
     [HttpPost]
-    public string Submit([FromBody] User user){
+    public OkObjectResult Submit([FromBody] User user){
 
         List<User> users = LoadUsers();
         bool passwordAndEmailCorrect = false;
@@ -24,14 +24,14 @@ public class LoginController : ControllerBase{
                 select usr
             ).Count() == 1;
 
-        return JsonSerializer.Serialize(
+        return base.Ok(
             new LoginResponse(
                 passwordAndEmailCorrect,
                 passwordAndEmailCorrect
                     ? "Logged in successfully."
                     : "Either email or password is incorrect."
             )
-        ); 
+        );
     }
     
     private List<User> LoadUsers()

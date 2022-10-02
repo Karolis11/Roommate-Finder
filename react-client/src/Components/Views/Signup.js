@@ -47,9 +47,9 @@ export const Signup = (props) => {
             }).then((response) => {
 
                 // if account was created, redirect in 5 seconds
-                if (response.data.IsSuccess) {
+                if (response.data.isSuccess) {
 
-                    enqueueSnackbar(response.data.Message, {variant: "success"});
+                    enqueueSnackbar(response.data.message, {variant: "success"});
 
                     let i = 5;
                     setRedirectionMsg(`Redirecting in ${i}`);
@@ -62,7 +62,7 @@ export const Signup = (props) => {
                         setRedirectionMsg(`Redirecting in ${i}`);
                     }, 1000);
                 } else {
-                    enqueueSnackbar(response.data.Message, {variant: "error"});
+                    enqueueSnackbar(response.data.message, {variant: "error"});
                 }
             })  
         }

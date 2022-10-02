@@ -31,7 +31,7 @@ public class ListingController : Controller
     }
 
     [HttpPost]
-    public JsonResult Submit([FromBody] Listing listing)
+    public OkObjectResult Submit([FromBody] Listing listing)
     {
         List<Listing> existingListings = LoadJson();
         existingListings.Add(listing);
@@ -39,6 +39,7 @@ public class ListingController : Controller
         StreamWriter tsw = new StreamWriter("Data/listings.json", false);
         tsw.WriteLine(json);
         tsw.Close();
-        return Json(existingListings);
+
+        return base.Ok(existingListings);
     }
 }

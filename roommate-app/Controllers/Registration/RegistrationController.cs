@@ -11,7 +11,7 @@ namespace roommate_app.Controllers.Registration;
 public class RegistrationController : ControllerBase
 {
     [HttpPost]
-    public string Submit([FromBody] User user)
+    public OkObjectResult Submit([FromBody] User user)
     {
         var emailExistsFlag = false;
 
@@ -33,7 +33,7 @@ public class RegistrationController : ControllerBase
             tsw.Close();
         }
 
-        return JsonSerializer.Serialize(
+        return base.Ok(
             new RegistrationResponse(
                 !emailExistsFlag,
                 emailExistsFlag 
