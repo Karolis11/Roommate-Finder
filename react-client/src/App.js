@@ -14,7 +14,7 @@ class App extends Component {
         super(props)
         this.state = {
             signupScreen: false,
-            loggedIn: false,
+            loggedIn: true,
             loginScreen: false
         }
     }

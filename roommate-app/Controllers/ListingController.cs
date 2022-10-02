@@ -25,9 +25,9 @@ public class ListingController : Controller
     }
 
     [HttpGet]
-    public JsonResult Get()
+    public OkObjectResult Get()
     {
-        return Json(this.LoadJson());
+        return base.Ok(this.LoadJson());
     }
 
     [HttpPost]
