@@ -11,35 +11,29 @@ namespace roommate_app.Controllers.Registration;
 public class RegistrationController : ControllerBase
 {
     [HttpPost]
-    public string Submit([FromBody] User user)
+    public OkObjectResult Submit([FromBody] User user)
     {
         var emailExistsFlag = false;
-        char[] charsToTrim = { ' ', '\t' };
 
         List<User> existingUsers = LoadUsers();
 
-        foreach (var usr in existingUsers)
-        {
-            // trim and lowercase the strings
-            if (usr.email.Trim(charsToTrim).ToLower() 
-                == user.email.Trim(charsToTrim).ToLower())
-            {
-                emailExistsFlag = true; 
-                break;
-            }
-        }
+        emailExistsFlag = (
+                from User usr in existingUsers
+                where usr.Email.Trim().ToLower() == user.Email.Trim().ToLower()
+                select usr
+            ).Count() > 0;
 
         if (!emailExistsFlag)
         {
             // if email does not exist, add the user
             existingUsers.Add(user);
             string json = JsonSerializer.Serialize(existingUsers);
-            StreamWriter tsw = new StreamWriter("Data/users.json", false);
+            using StreamWriter tsw = new StreamWriter("Data/users.json", false);
             tsw.WriteLine(json);
             tsw.Close();
         }
 
-        return JsonSerializer.Serialize(
+        return base.Ok(
             new RegistrationResponse(
                 !emailExistsFlag,
                 emailExistsFlag 

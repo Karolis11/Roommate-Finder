@@ -12,55 +12,26 @@ namespace roommate_app.Controllers.Login;
 public class LoginController : ControllerBase{
 
     [HttpPost]
-    public string Submit([FromBody] User user){
+    public OkObjectResult Submit([FromBody] User user){
 
         List<User> users = LoadUsers();
         bool passwordAndEmailCorrect = false;
-        bool emailExist = false;
 
-        foreach (var usr in users){
-            if(usr.email.ToLower() == user.email.ToLower()) { emailExist = true; }
-            if (usr.email.ToLower() == user.email.ToLower() &&
-                usr.password == user.password)
-            {
-                passwordAndEmailCorrect = true;
-                break;
-            }
-        }
+        passwordAndEmailCorrect = (
+                from User usr in users
+                where usr.Email.ToLower() == user.Email.ToLower()
+                      && usr.Password == user.Password
+                select usr
+            ).Count() == 1;
 
-        if(!emailExist){
-            return JsonSerializer.Serialize(
-            new LoginResponse(
-                emailExist,
-                "The " + user.email + " is not registered"
-            )
-            );
-        }
-        else if (emailExist && !passwordAndEmailCorrect){
-            return JsonSerializer.Serialize(
+        return base.Ok(
             new LoginResponse(
                 passwordAndEmailCorrect,
-                "Your entered password is incorrect"
+                passwordAndEmailCorrect
+                    ? "Logged in successfully."
+                    : "Either email or password is incorrect."
             )
-            );
-        }
-        else if(passwordAndEmailCorrect){
-            return JsonSerializer.Serialize(
-            new LoginResponse(
-                passwordAndEmailCorrect,
-                "Logged in successfully"
-            )
-            );
-        }
-        else{
-            return JsonSerializer.Serialize(
-            new LoginResponse(
-                false,
-                "Error, contact support"
-            )
-            );
-        }
-        
+        );
     }
     
     private List<User> LoadUsers()

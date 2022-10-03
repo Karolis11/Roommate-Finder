@@ -5,7 +5,7 @@ import { ListOfListings } from '../ListOfListings';
 import axios from 'axios';
 
 export class LoggedInMain extends Component {
-    createListingButton;
+
     constructor(props) {
         super(props);
 
@@ -13,8 +13,6 @@ export class LoggedInMain extends Component {
             listings: undefined,
             createListingView: false,
         }
-
-        this.createListingButton = document.createElement('button');
 
         this.toggleCreateListing = this.toggleCreateListing.bind(this);
     }
@@ -24,12 +22,11 @@ export class LoggedInMain extends Component {
         this.getListings();
     }
 
-    componentDidMount() {
-        this.createListingButton = document.getElementById("create-listing-button");
+    toggleCreateListingWrapper = () => {
+        this.toggleCreateListing(true);
+    }
 
-        this.createListingButton.addEventListener('click', () => {
-            this.toggleCreateListing(true);
-        })
+    componentDidMount() {
 
         this.getListings();
     }
@@ -47,29 +44,26 @@ export class LoggedInMain extends Component {
     render() {
         return (
             <>
-            {
-                !this.state.createListingView
-                ?
-                    <div className="listings-container">
-                        <>
-                            <CreateListingButton
-                                id="create-listing-button"
-                                text="New listing"
-                                class="btn"
-                            />
-                            {
-                                this.state.listings
-                                ?
-                                    <ListOfListings listings={this.state.listings}/>
-                                :
-                                    null
-                            }
-                            
-                        </>
-                    </div>
-                :
-                    <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
-            }
+            <div className={`logged-in-main-container ${this.state.createListingView && ' create-listing-on'}`}>
+                {
+                    this.state.createListingView
+                    ?
+                        <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
+                    :
+                        <div className="listings-container">
+                            <>
+                                <CreateListingButton
+                                    id="create-listing-button"
+                                    text="New listing"
+                                    class="btn"
+                                    onclick={this.toggleCreateListingWrapper.bind(this)}
+                                />
+                                { this.state.listings && <ListOfListings listings={this.state.listings}/> }
+                                
+                            </>
+                        </div>
+                }
+            </div>
             </>
         );
     }

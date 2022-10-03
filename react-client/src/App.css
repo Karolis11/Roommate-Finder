@@ -1,3 +1,7 @@
+#root {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -51,3 +55,4 @@
         background-color: #f0f1f7;
         transition: 200ms;
     }
+

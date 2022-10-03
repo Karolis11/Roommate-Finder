@@ -2,12 +2,12 @@
 
 public class RegistrationResponse
 {
-    public RegistrationResponse(bool success, string message)
+    public RegistrationResponse(bool isSuccess, string message)
     {
-        Success = success;
+        IsSuccess = isSuccess;
         Message = message;
     }
 
-    public bool Success { get; }
+    public bool IsSuccess { get; }
     public string Message { get; }
 }
