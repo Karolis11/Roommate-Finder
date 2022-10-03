@@ -17,7 +17,7 @@ public class ListingController : Controller
 
     private List<Listing> LoadJson()
     {
-        using StreamReader r = new StreamReader("./Data/listings.json");
+        using StreamReader r = new StreamReader("Data/listings.json");
         string json = r.ReadToEnd();
         List<Listing> listings = JsonSerializer.Deserialize<List<Listing>>(json);
         return listings;
@@ -36,7 +36,7 @@ public class ListingController : Controller
         List<Listing> existingListings = LoadJson();
         existingListings.Add(listing);
         string json = JsonSerializer.Serialize(existingListings);
-        StreamWriter tsw = new StreamWriter("Data/listings.json", false);
+        using StreamWriter tsw = new StreamWriter("Data/listings.json", false);
         tsw.WriteLine(json);
         tsw.Close();
 
