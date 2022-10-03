@@ -7,6 +7,8 @@ import axios from 'axios';
 import CustomRoommates from './CustomRoommates'
 import "yup-phone";
 import { Slider } from '@material-ui/core'
+import { LithuanianCities } from './LithuanianCities.ts';
+import CitySelect from './CitySelect';
 
 const options = [
     { value: '1', label: '1' },
@@ -14,7 +16,13 @@ const options = [
     { value: '3', label: '3+' },
 ]
 
+const cityOptions = []
+
 export const CreateListingComponent = (props) => {
+
+    for(let i = 0; i < Object.keys(LithuanianCities).length/2; ++i){
+        cityOptions[i] = {value: i, label: LithuanianCities[i]}
+    }
 
     const [value, setValue] = useState(100); // slider settings
 
@@ -175,21 +183,12 @@ export const CreateListingComponent = (props) => {
                 <div className="form-field-container-flex">
                     <div className="form-field-flex"><label htmlFor="city">City</label></div>
                     <div className="form-field-flex">
-                        <input
-                            name="city"
-                            id="city"
-                            type="text"
-                            
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
+                        <CitySelect
+                            options={cityOptions}
                             value={formik.values.city}
+                            className={'number'}
+                            onChange={value => formik.setFieldValue('city',value.value)}
                         />
-                        {
-                            formik.touched.city && formik.errors.city && 
-                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                    {formik.errors.city}
-                                </p>
-                        }
                     </div>
                 </div>
                 <div className="form-field-container-flex">
