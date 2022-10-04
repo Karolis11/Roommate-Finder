@@ -5,6 +5,13 @@ export class ListOfListings extends Component {
 
     constructor(props) {
         super(props);
+
+        var today = new Date(),
+        date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+
+        this.state = {
+            date: date
+        };
     }
 
     render() {
@@ -21,7 +28,7 @@ export class ListOfListings extends Component {
                                             {listing.city}
                                         </div>
                                         <div className="listingDate">
-                                            listing.date
+                                            {this.state.date}
                                         </div>
                                     </div>
 
@@ -30,13 +37,13 @@ export class ListOfListings extends Component {
 
                                         <div className="listingTexts">
                                             <div className="listingTextReview">
-                                                listing.extraComment
+                                                {listing.extraComment}
                                             </div>
                                             <div className="listingMoreDetails">
                                                 Prefered number of roommates: {listing.roommateCount}
                                             </div>
                                             <div className="listingContacts">
-                                                listing.phone, {listing.email}
+                                                {listing.phone}, {listing.email}
                                             </div>
                                         </div>
 
@@ -50,10 +57,7 @@ export class ListOfListings extends Component {
                                 </li>
                             )
                     }
-
             </ul>
         );
     }
-
-
 }
