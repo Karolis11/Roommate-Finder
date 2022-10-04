@@ -6,7 +6,6 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import CustomRoommates from './CustomRoommates'
 import "yup-phone";
-import { Slider } from '@material-ui/core'
 import { LithuanianCities } from './LithuanianCities.ts';
 import CitySelect from './CitySelect';
 
@@ -24,31 +23,6 @@ export const CreateListingComponent = (props) => {
         cityOptions[i] = {value: i, label: LithuanianCities[i]}
     }
 
-    const [value, setValue] = useState(100); // slider settings
-
-    const changeValue = (event, value) => {
-        setValue(value);
-    }
-
-    const customMarks = [
-        {
-            value: 100,
-            label: '100EU'
-        },
-
-        {
-            value: 500,
-            label: '500EU'
-        },
-
-        {
-            value: 1000,
-            label: '1000EU'
-        }
-    ]
-
-    const getText = (value) => '${value}'
-
     const [responseMessage, setResponseMessage] = useState("");
 
     const formik = useFormik({
@@ -56,11 +30,11 @@ export const CreateListingComponent = (props) => {
             firstName: "",
             lastName: "",
             email: "",
-            city: "",
             phone: "",
+            city: "",
+            maxPrice: "",
             roommateCount: "1",
-            maxPrice: '',
-            extraComment: "",
+            extraComment: ""
         },
         validationSchema: Yup.object({
             firstName: Yup
@@ -83,6 +57,11 @@ export const CreateListingComponent = (props) => {
                 .string()
                 .max(30, "City can only be up to 30 characters")
                 .required("Required"),
+            maxPrice: Yup
+                .string()
+                .max(20, "Maximum price can only be up to 20 characters")
+                .matches(/^[0-9]+$/, 'Only use digits')
+                .required("Required"),
             extraComment: Yup
                 .string()
                 .max(200, "Extra Comment can only be up to 200 characters")
@@ -90,7 +69,7 @@ export const CreateListingComponent = (props) => {
         onSubmit: (values) => {
             axios({
                 method: 'post',
-                url: 'https://localhost:44332/createlisting',
+                url: 'https://localhost:44332/listing',
                 data: values
             }).then((response) => {
                 console.log(response.data);
@@ -187,7 +166,7 @@ export const CreateListingComponent = (props) => {
                             options={cityOptions}
                             value={formik.values.city}
                             className={'number'}
-                            onChange={value => formik.setFieldValue('city',value.value)}
+                            onChange={value => formik.setFieldValue('city',value.label)}
                         />
                     </div>
                 </div>
@@ -203,18 +182,22 @@ export const CreateListingComponent = (props) => {
                     </div>
                 </div>
                 <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="price">Price Range:</label></div>
-                    <div className="form-field-flex" style={{height: "150px"}}>
-                        <Slider
-                            min={100}
-                            max={1000}
-                            defaultValue={100}
-                            step={10}
-                            marks={customMarks}
-                            getAriaValueText={getText}
-                            valueLabelDisplay='auto'
-                        // add value assign later --
-                        />
+                    <div className="form-field-flex"><label htmlFor="price">Maximum Price:</label></div>
+                        <div className="form-field-flex" style={{ height: "150px" }}>
+                            <input
+                                name="maxPrice"
+                                id="maxPrice"
+                                type="maxPrice"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.maxPrice}>
+                            </input>
+                            {
+                                formik.touched.maxPrice && formik.errors.maxPrice &&
+                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
+                                    {formik.errors.maxPrice}
+                                </p>
+                            }
                     </div>
                 </div>
                 <div className="form-field-container-flex">
