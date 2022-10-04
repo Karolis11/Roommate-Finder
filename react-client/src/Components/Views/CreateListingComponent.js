@@ -180,7 +180,7 @@ export const CreateListingComponent = (props) => {
                             onChange={value => formik.setFieldValue('roommateCount',value.value)}
                         />
                     </div>
-                    </div>
+                </div>
                 <div className="form-field-container-flex">
                     <div className="form-field-flex"><label htmlFor="price">Maximum Price:</label></div>
                         <div className="form-field-flex" style={{ height: "150px" }}>
@@ -222,8 +222,8 @@ export const CreateListingComponent = (props) => {
                 <button type="submit">Submit</button>
             </form>
             <small>   * - Optional Fields</small>
-                <p>{responseMessage}</p>
-            </div>
+            <p>{responseMessage}</p>
+        </div>
         </>
     )
 }

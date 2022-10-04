@@ -20,12 +20,12 @@ export const Signup = (props) => {
             firstName: Yup
                         .string()
                         .max(20, "Name can only be up to 20 characters")
-                        .matches(/^[A-Za-z]+$/, 'Only use alphabter letters')
+                        .matches(/^[A-Za-z]+$/, 'Only use alphabet letters')
                         .required("Required"),
             lastName: Yup
                         .string()
                         .max(20, "Lastname can only be up to 20 characters")
-                        .matches(/^[A-Za-z]+$/, 'Only use alphabter letters')
+                        .matches(/^[A-Za-z]+$/, 'Only use alphabet letters')
                         .required("Required"),
             email: Yup
                         .string()
