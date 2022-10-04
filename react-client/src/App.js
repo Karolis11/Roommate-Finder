@@ -1,9 +1,19 @@
 import './App.css';
-import { EntryScreen } from './Components/Views/EntryScreen';
-import { Signup } from './Components/Views/Signup';
+import { EntryScreen } from './Components/Pages/EntryScreen';
+import { Signup } from './Components/Pages/Signup';
 import { Component } from 'react';
-import { LoggedInMain } from './Components/Views/LoggedInMain';
-import { Login } from './Components/Views/Login';
+import { LoggedInMain } from './Components/Pages/LoggedInMain';
+import { Login } from './Components/Pages/Login';
+import {
+    Routes,
+    Route,
+    Outlet,
+    Link,
+    NavLink,
+    useParams,
+    useNavigate,
+    useSearchParams,
+} from 'react-router-dom';
 
 
 class App extends Component {
@@ -13,18 +23,8 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            signupScreen: false,
-            loggedIn: false,
-            loginScreen: false
+            loggedIn: false
         }
-    }
-
-    toggleSignUp = (toggleBool) => {
-        this.setState({signupScreen: toggleBool});
-    }
-
-    toggleLogin = (toggleBool) => {
-        this.setState({loginScreen: toggleBool});
     }
 
     toggleLoggedIn = (toggleBool) => {
@@ -33,31 +33,16 @@ class App extends Component {
 
     render() {
         return (
-            <>
-            {
-                this.state.loggedIn
-                ?
-                    <LoggedInMain />
-                :
-                    this.state.signupScreen
-                    ?
-                        <Signup toggleSignUp={this.toggleSignUp.bind(this)}/>
-                    :   
-                        this.state.loginScreen
-                        ?
-                        <Login toggleLogin={this.toggleLogin.bind(this)}
-                        Login toggleLoggedIn={this.toggleLoggedIn.bind(this)}/>
-                        :
-                        <EntryScreen toggleLogin={this.toggleLogin.bind(this)}
-                        EntryScreen toggleSignUp={this.toggleSignUp.bind(this)} />
+            <Routes>
+                <Route index element={<EntryScreen />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/dashboard" element={
 
-            }
-                
-            </>
+                    <LoggedInMain />} />
+            </Routes>
         );
-    } 
-
-    
+    }
 }
 
 export default App;
