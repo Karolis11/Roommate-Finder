@@ -9,6 +9,6 @@
         public string Phone { get; set;}
         public int RoommateCount { get; set; }
         public float MaxPrice { get; set; }
-        public string extraComment { get; set; }
+        public string ExtraComment { get; set; }
     }
 }
