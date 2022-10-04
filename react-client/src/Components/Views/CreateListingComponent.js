@@ -8,7 +8,6 @@ import CustomRoommates from './CustomRoommates'
 import "yup-phone";
 import { LithuanianCities } from './LithuanianCities.ts';
 import CitySelect from './CitySelect';
-import Slider from 'react-input-slider';
 
 const options = [
     { value: '1', label: '1' },
@@ -23,28 +22,6 @@ export const CreateListingComponent = (props) => {
     for(let i = 0; i < Object.keys(LithuanianCities).length/2; ++i){
         cityOptions[i] = {value: i, label: LithuanianCities[i]}
     }
-
-    const [state, setState] = useState({x : 10}); // slider settings
-
-
-    const customMarks = [
-        {
-            value: 100,
-            label: '100EU'
-        },
-
-        {
-            value: 500,
-            label: '500EU'
-        },
-
-        {
-            value: 1000,
-            label: '1000EU'
-        }
-    ]
-
-    const getText = (value) => '${value}'
 
     const [responseMessage, setResponseMessage] = useState("");
 
