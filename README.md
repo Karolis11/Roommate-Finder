@@ -39,3 +39,9 @@ Plan (Dominykas, Edvinas, Karolis, Domantas)
 - fix listing submission
 - enum (and possibly IEnumerable) for cities and dropdown for cities in frontend
 - fix login with react-router
+
+4sav:
+- IComparer for sorting, Filtering listings by city, price, number of roommates, 10
+- validacija turi būti ir backend'e (tarkim jeigu siųstų requestą tiesiai į API), 4, 7 ?
+- enumą reikia naudot kaip enumą, 3, 8?
+- fix issues
