@@ -1,17 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const EntryScreen = (props) => {
+    let navigate = useNavigate();
+
     return (
         <div className="login-signup-btn-container">
-            <button 
+            <button
                 id="loginButton"
-                onClick={() => { props.toggleLogin(true); }}
+                onClick={() => { navigate(`/login`); }}
             >
                 Login
             </button>
-            <button 
+            <button
                 id="signupButton"
-                onClick={() => { props.toggleSignUp(true); }}
+                onClick={() => { navigate(`/signup`); }}
             >
                 Signup
             </button>

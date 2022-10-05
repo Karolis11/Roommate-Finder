@@ -3,11 +3,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
 
-import './CenteredForm.css';
+import '../Views/CenteredForm.css';
 
 export const Login = (props) => {
-
+    let navigate = useNavigate();
+    
     const [responseMessage, setResponseMessage] = useState("");
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
@@ -36,8 +38,8 @@ export const Login = (props) => {
             .then((response) => {
                 if(response.data.isSuccess){ 
                     enqueueSnackbar("You have successfully logged in.", {variant: "success"})
-                    props.toggleLoggedIn(true); 
-                    props.toggleLogin(false);
+                    //props.toggleLoggedIn(true); 
+                    navigate(`/dashboard`);
                 }
                 else{
                     enqueueSnackbar(response.data.message, {variant: "error"})

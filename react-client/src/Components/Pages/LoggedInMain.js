@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { CreateListingComponent } from './CreateListingComponent';
+import { CreateListingComponent } from '../Views/CreateListingComponent';
 import { CreateListingButton } from '../Buttons/CreateListingButton';
 import { ListOfListings } from '../ListOfListings';
 import axios from 'axios';

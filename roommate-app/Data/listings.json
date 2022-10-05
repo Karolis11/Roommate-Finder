@@ -1,66 +1,52 @@
 [
-    {
-        "FirstName": "test",
-        "LastName": "test",
-        "Email": "asd@asd.com",
-        "City": "Vilnius",
-        "RoommateCount": 2,
-        "MaxPrice": 400
-    },
-    {
-        "FirstName": "testas2",
-        "LastName": "testas2",
-        "Email": "asd@asd.com",
-        "City": "Klaipeda",
-        "RoommateCount": 5,
-        "MaxPrice": 200
-    },
-    {
-        "FirstName": "testas3",
-        "LastName": "testas3",
-        "Email": "asd@asd.com",
-        "City": "vilnius",
-        "RoommateCount": 3,
-        "MaxPrice": 300
-    },
-    {
-        "FirstName": "testas4",
-        "LastName": "testas4",
-        "Email": "asd@asd.com",
-        "City": "Vilnius",
-        "RoommateCount": 2,
-        "MaxPrice": 400
-    },
-    {
-        "FirstName": "bada",
-        "LastName": "Eicinas",
-        "Email": "asd@asd.com",
-        "City": "Vilnius",
-        "RoommateCount": 2,
-        "MaxPrice": 200
-    },
-    {
-        "FirstName": "bada",
-        "LastName": "Ei\u010Dinas",
-        "Email": "asd@asd.com",
-        "City": "Klaipeda",
-        "RoommateCount": 2,
-        "MaxPrice": 300
-    },
-    {
-        "FirstName": "kazkas",
-        "LastName": "kazaks",
-        "Email": "kazkas@gmai.com",
-        "City": "kazkas",
-        "RoommateCount": 4,
-        "MaxPrice": 8000
-    },
-    {
-        "FirstName": "test",
-        "LastName": "test",
-        "Email": "asd@asd.com",
-        "City": "Vilnius",
-        "RoommateCount": 2,
-        "MaxPrice": 400
-    }
+  {
+    "FirstName": "test",
+    "LastName": "test",
+    "Email": "asd@asd.com",
+    "Phone": "860026689",
+    "City": "Vilnius",
+    "RoommateCount": "2",
+    "MaxPrice": "100",
+    "ExtraComment": "as "
+  },
+  {
+    "FirstName": "edvinas",
+    "LastName": "edvinas",
+    "Email": "adas@gmail.com",
+    "Phone": "\u002B37060026689",
+    "City": "Anyk\u0161\u010Diai",
+    "RoommateCount": "2",
+    "MaxPrice": "1312",
+    "ExtraComment": "dsa"
+  },
+  {
+    "FirstName": "edvinas",
+    "LastName": "edvinas",
+    "Email": "adas@gmail.com",
+    "Phone": "\u002B37060026689",
+    "City": "Klaip\u0117da",
+    "RoommateCount": "2",
+    "MaxPrice": "100",
+    "ExtraComment": "dsa"
+  },
+  {
+    "FirstName": "edvinas",
+    "LastName": "edvinas",
+    "Email": "adas@gmail.com",
+    "Phone": "\u002B37060026689",
+    "City": "Kaunas",
+    "RoommateCount": "2",
+    "MaxPrice": "14221",
+    "ExtraComment": "dsa"
+  },
+  {
+    "FirstName": "edvinas",
+    "LastName": "edvinas",
+    "Email": "adas@gmail.com",
+    "Phone": "\u002B37060026689",
+    "City": "Vilnius",
+    "RoommateCount": "1",
+    "MaxPrice": "1423",
+    "ExtraComment": "yeee"
+  }
 ]

@@ -3,8 +3,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useSnackbar } from 'notistack'
+import { useNavigate } from 'react-router-dom';
 
 export const Signup = (props) => {
+    let navigate = useNavigate();
+
     const [redirectionMsg, setRedirectionMsg] = useState("");
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
@@ -58,8 +61,8 @@ export const Signup = (props) => {
                     let interval = setInterval(() => {
                         i--;
                         if (i < 0) {
-                            props.toggleSignUp(false);
                             clearInterval(interval);
+                            navigate(`/`);
                         }
                         setRedirectionMsg(`Redirecting in ${i}`);
                     }, 1000);
