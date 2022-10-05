@@ -16,6 +16,8 @@ ANTRA SAVAITE
 | KJ | 3  | 3  | 3  | 2  |
 | DE | 3  | 3  | 3  | 2  |
 
+
+TRECIA SAVAITE
 |    | DB | EK | KJ | DE |
 |----|----|----|----|----|
 | DB | 2  |    | 3  | 3  |
