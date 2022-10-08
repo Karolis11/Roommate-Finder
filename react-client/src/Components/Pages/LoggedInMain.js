@@ -2,7 +2,11 @@ import { Component } from 'react';
 import { CreateListingComponent } from '../Views/CreateListingComponent';
 import { CreateListingButton } from '../Buttons/CreateListingButton';
 import { ListOfListings } from '../ListOfListings';
+import { FilterComponent } from '../Views/FilterComponent';
 import axios from 'axios';
+
+import './Filters.css';
+
 
 export class LoggedInMain extends Component {
 
@@ -15,6 +19,10 @@ export class LoggedInMain extends Component {
         }
 
         this.toggleCreateListing = this.toggleCreateListing.bind(this);
+    }
+
+    updateListings = (listings) => {
+        this.setState({listings: listings});
     }
 
     toggleCreateListing = (toggleBool) => {
@@ -42,8 +50,10 @@ export class LoggedInMain extends Component {
     }
 
     render() {
+
         return (
             <>
+            <FilterComponent updateListings={this.updateListings.bind(this)}/>
             <div className={`logged-in-main-container ${this.state.createListingView && ' create-listing-on'}`}>
                 {
                     this.state.createListingView
