@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
-using roommate_app.Other;
+using roommate_app.Other.ListingComparers;
 using System.Text.Json;
 
 namespace roommate_app.Controllers;
@@ -25,22 +25,17 @@ public class ListingController : Controller
       
     }
 
-    [HttpGet]
-    public OkObjectResult Get()
-    {
-        var existingListings = LoadJson();
-        ListingComparer comparer = new ListingComparer(city: "Vilnius");
-        existingListings.Sort(comparer);
-        return base.Ok(existingListings);
-    }
-
     [HttpPost]
     [Route("sort")]
     public ActionResult GetSortedListings([FromBody] SortListingsRequestBody body)
     {
         var existingListings = LoadJson();
-        ListingComparer comparer = new ListingComparer(sortMode: body.Sort,city: "Vilnius");
+
+        var factory = new ListingComparerFactory();
+        var comparer = factory.GetComparer(body.Sort);
+
         existingListings.Sort(comparer);
+
         return base.Ok(existingListings);
     }
 

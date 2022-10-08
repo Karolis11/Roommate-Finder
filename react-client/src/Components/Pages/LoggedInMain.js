@@ -41,9 +41,9 @@ export class LoggedInMain extends Component {
 
     getListings = () => {
         axios({
-            method: 'get',
-            url: 'https://localhost:44332/listing',
-            data: {}
+            method: 'post',
+            url: 'https://localhost:44332/listing/sort',
+            data: {sort: 0}
         }).then((response) => {
             this.setState({listings: response.data})
         })
