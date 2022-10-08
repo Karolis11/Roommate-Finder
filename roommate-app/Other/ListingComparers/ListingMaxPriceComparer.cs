@@ -4,12 +4,8 @@ namespace roommate_app.Other.ListingComparers;
 
 public class ListingMaxPriceComparer : ListingComparer
 {
-    private string city;
 
-    public ListingMaxPriceComparer(string city)
-    {
-        this.city = city;
-    }
+    public ListingMaxPriceComparer(string city) : base(city) { }
 
     public override int Compare(Listing? x, Listing? y)
     {

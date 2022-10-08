@@ -4,7 +4,7 @@ namespace roommate_app.Other.ListingComparers;
 
 public abstract class ListingComparer : IComparer<Listing>
 {
-    private String city;
+    protected String city;
     public ListingComparer(String city = "Vilnius")
     {
         this.city = city;
