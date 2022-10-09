@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import CustomRoommates from './CustomRoommates'
 import "yup-phone";
-import { LithuanianCities } from './LithuanianCities.ts';
+import { LithuanianCities } from './LithuanianCities.js';
 import CitySelect from './CitySelect';
 
 const options = [
@@ -19,7 +19,7 @@ const cityOptions = []
 
 export const CreateListingComponent = (props) => {
 
-    for(let i = 0; i < Object.keys(LithuanianCities).length/2; ++i){
+    for(let i = 0; i < LithuanianCities.length; ++i){
         cityOptions[i] = {value: i, label: LithuanianCities[i]}
     }
 
