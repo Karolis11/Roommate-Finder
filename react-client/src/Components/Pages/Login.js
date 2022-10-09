@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -10,7 +10,6 @@ import '../Views/CenteredForm.css';
 export const Login = (props) => {
     let navigate = useNavigate();
     
-    const [responseMessage, setResponseMessage] = useState("");
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
     const formik = useFormik({
@@ -37,8 +36,7 @@ export const Login = (props) => {
             })
             .then((response) => {
                 if(response.data.isSuccess){ 
-                    enqueueSnackbar("You have successfully logged in.", {variant: "success"})
-                    //props.toggleLoggedIn(true); 
+                    enqueueSnackbar(response.data.message, {variant: "success"})
                     navigate(`/dashboard`);
                 }
                 else{

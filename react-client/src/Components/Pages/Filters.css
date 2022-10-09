@@ -1,0 +1,17 @@
+.filter-top-container {
+    min-height: 75px;
+    height: 75px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    border-bottom: 1px solid black;
+    align-items: center;
+    overflow: hidden;
+}
+
+.filter-top-container label {
+    font-size: 16px;
+    margin: 10px;
+}
