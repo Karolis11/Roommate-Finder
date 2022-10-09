@@ -43,11 +43,11 @@ export const CreateListingComponent = (props) => {
         validationSchema: Yup.object({
             firstName: Yup
                 .string()
-                .max(20, "Name can only be up to 20 characters")
+                .max(64, "Name can only be up to 64 characters")
                 .required("Required"),
             lastName: Yup
                 .string()
-                .max(20, "Lastname can only be up to 20 characters")
+                .max(128, "Lastname can only be up to 128 characters")
                 .required("Required"),
             phone: Yup
                 .string()
