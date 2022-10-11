@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const EntryScreen = (props) => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     return (
         <div className="login-signup-btn-container">

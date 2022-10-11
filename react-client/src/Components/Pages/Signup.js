@@ -6,7 +6,7 @@ import { useSnackbar } from 'notistack'
 import { useNavigate } from 'react-router-dom';
 
 export const Signup = (props) => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [redirectionMsg, setRedirectionMsg] = useState("");
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
