@@ -44,7 +44,7 @@ export const Login = (props) => {
                 if(response.data.isSuccess){ 
                     enqueueSnackbar(response.data.message, { variant: "success" });
                     const accessToken = response?.data?.accessToken;
-                    setAuth({ response.data.email, response.data.password, accessToken });
+                    setAuth({ email, password, accessToken });
                     navigate(`/dashboard`);
                 }
                 else{
