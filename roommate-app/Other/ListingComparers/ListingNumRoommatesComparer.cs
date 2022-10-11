@@ -18,7 +18,7 @@ public class ListingNumRoommatesComparer : ListingComparer
         }
         else
         {
-            return x.RoommateCount.CompareTo(y.MaxPrice);
+            return x.RoommateCount.CompareTo(y.RoommateCount);
         }
     }
 }

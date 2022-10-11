@@ -35,29 +35,8 @@ public static class ValidationExtensions
         }
 
         string regExp = "^[A-Za-z0-9-.]+@([A-Za-z-]+.)+[A-Za-z-]{2,4}$";
+
         if (!Regex.IsMatch(str.Email, regExp))
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static bool ValidatePassword(this Listing? str)
-    {
-        if (string.IsNullOrEmpty(str.FirstName))
-        {
-            return false;
-        }
-
-        if (str.FirstName.Length > 20 && str.FirstName.Length < 6)
-        {
-            return false;
-        }
-
-        string regExp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
-
-        if (!Regex.IsMatch(str.FirstName, regExp))
         {
             return false;
         }
@@ -110,6 +89,45 @@ public static class ValidationExtensions
         }
 
         if (str.RoommateCount.Length > 1)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static bool ValidatePhoneNumber(this Listing? str)
+    {
+        if (string.IsNullOrEmpty(str.Phone))
+        {
+            return false;
+        }
+
+        if (str.Phone.Length != 9 && str.Phone.Length != 12)
+        {
+            return false;
+        }
+
+        string regExp1 = "^+370?[1-9][0-9]{7,14}$"; // +370 validation
+
+        string regExp2 = "^86?[1-9][0-9]{7,14}$"; // 86 validation
+
+        if (!Regex.IsMatch(str.City, regExp1) || !Regex.IsMatch(str.City, regExp2))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static bool ValidateMaximumPrice(this Listing? number)
+    {
+        if (number.MaxPrice == null)
+        {
+            return false;
+        }
+
+        if (number.MaxPrice > 999999)
         {
             return false;
         }
