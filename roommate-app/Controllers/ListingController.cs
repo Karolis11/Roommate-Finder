@@ -40,7 +40,7 @@ public class ListingController : Controller
     }
 
     [HttpPost]
-    public OkObjectResult Submit([FromBody] Listing listing)
+    public ActionResult Submit([FromBody] Listing listing)
     {
         List<Listing> existingListings = LoadJson();
         existingListings.Add(listing);
