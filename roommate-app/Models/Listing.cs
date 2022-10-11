@@ -1,4 +1,6 @@
-﻿namespace roommate_app.Models
+﻿using Newtonsoft.Json.Linq;
+
+namespace roommate_app.Models
 {
 public class Listing
     {
@@ -11,4 +13,10 @@ public class Listing
         public string MaxPrice { get; set ; }
         public string ExtraComment { get; set; }
     }
+static public class ListingExtension
+    {
+        static public string FullName(this Listing value)
+        => $"{value.FirstName} {value.LastName}";
+    }
 }
+

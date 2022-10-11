@@ -22,13 +22,13 @@ export const Signup = (props) => {
         validationSchema: Yup.object({
             firstName: Yup
                         .string()
-                        .max(20, "Name can only be up to 20 characters")
-                        .matches(/^[A-Za-z]+$/, 'Only use alphabet letters')
+                        .max(30, "Name can only be up to 30 characters")
+                        .matches(/^[a-zA-Z]+(([',. -][a-zA-Z])?[a-zA-Z]*)*$/, 'Only use alphabet letters')
                         .required("Required"),
             lastName: Yup
                         .string()
-                        .max(20, "Lastname can only be up to 20 characters")
-                        .matches(/^[A-Za-z]+$/, 'Only use alphabet letters')
+                        .max(30, "Lastname can only be up to 30 characters")
+                        .matches(/^[a-zA-Z]+(([',. -][a-zA-Z])?[a-zA-Z]*)*$/, 'Only use alphabet letters')
                         .required("Required"),
             email: Yup
                         .string()
