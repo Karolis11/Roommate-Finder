@@ -4,7 +4,7 @@ public class RegistrationResponse
 {
     public RegistrationResponse(bool isSuccess, string message)
     {
-        IsSuccess = isSuccess;
+        IsSuccess = (Boolean)isSuccess;
         Message = message;
     }
 
