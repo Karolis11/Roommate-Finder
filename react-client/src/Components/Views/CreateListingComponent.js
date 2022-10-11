@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import CustomRoommates from './CustomRoommates'
 import "yup-phone";
-import { LithuanianCities } from './LithuanianCities.ts';
+import { LithuanianCities } from './LithuanianCities.js';
 import CitySelect from './CitySelect';
 
 const options = [
@@ -19,11 +19,14 @@ const cityOptions = []
 
 export const CreateListingComponent = (props) => {
 
-    for(let i = 0; i < Object.keys(LithuanianCities).length/2; ++i){
+    for(let i = 0; i < LithuanianCities.length; ++i){
         cityOptions[i] = {value: i, label: LithuanianCities[i]}
     }
 
     const [responseMessage, setResponseMessage] = useState("");
+
+    const today = new Date();
+    const date = new Intl.DateTimeFormat('en-EU', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today);
 
     const formik = useFormik({
         initialValues: {
@@ -34,16 +37,17 @@ export const CreateListingComponent = (props) => {
             city: "",
             maxPrice: "",
             roommateCount: "1",
-            extraComment: ""
+            extraComment: "",
+            date: date,
         },
         validationSchema: Yup.object({
             firstName: Yup
                 .string()
-                .max(20, "Name can only be up to 20 characters")
+                .max(64, "Name can only be up to 64 characters")
                 .required("Required"),
             lastName: Yup
                 .string()
-                .max(20, "Lastname can only be up to 20 characters")
+                .max(128, "Lastname can only be up to 128 characters")
                 .required("Required"),
             phone: Yup
                 .string()
@@ -217,6 +221,15 @@ export const CreateListingComponent = (props) => {
                                     {formik.errors.extraComment}
                                 </p>
                         }
+                    </div>
+                </div>
+                <div className="form-field-container-flex">
+                    <div className="form-field-flex"><label htmlFor="date">Date </label></div>
+                    <div className="form-field-flex">
+                        <input
+                            readOnly
+                            value={formik.values.date}
+                        /> 
                     </div>
                 </div>
                 <button type="submit">Submit</button>

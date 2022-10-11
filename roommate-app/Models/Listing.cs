@@ -12,6 +12,7 @@ public class Listing
         public string RoommateCount { get; set; }
         public int MaxPrice { get; set ; }
         public string ExtraComment { get; set; }
+        public string Date {get; set; }
     }
 static public class ListingExtension
     {
