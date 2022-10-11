@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { SnackbarProvider } from 'notistack';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './Contexts/AuthProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-        <SnackbarProvider>
-            <App />
-        </SnackbarProvider> 
+        <AuthProvider>
+            <SnackbarProvider>
+                <App />
+            </SnackbarProvider> 
+        </AuthProvider>    
     </BrowserRouter>  
 );
 

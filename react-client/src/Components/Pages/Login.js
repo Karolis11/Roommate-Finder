@@ -4,13 +4,19 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from "../../Contexts/AuthProvider";
 
 import '../Views/CenteredForm.css';
+
+const LOGIN_URL = '/auth';
 
 export const Login = (props) => {
     const navigate = useNavigate();
     
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+
+    const { setAuth } = useContext(AuthContext);
+
 
     const formik = useFormik({
         initialValues: {
@@ -36,11 +42,13 @@ export const Login = (props) => {
             })
             .then((response) => {
                 if(response.data.isSuccess){ 
-                    enqueueSnackbar(response.data.message, {variant: "success"})
+                    enqueueSnackbar(response.data.message, { variant: "success" });
+                    const accessToken = response?.data?.accessToken;
+                    setAuth({ response.data.email, response.data.password, accessToken });
                     navigate(`/dashboard`);
                 }
                 else{
-                    enqueueSnackbar(response.data.message, {variant: "error"})
+                    enqueueSnackbar(response.data.message, { variant: "error" });
                 }
                                
             })
