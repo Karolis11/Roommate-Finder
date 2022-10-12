@@ -45,3 +45,22 @@ Plan (Dominykas, Edvinas, Karolis, Domantas)
 - validacija turi būti ir backend'e (tarkim jeigu siųstų requestą tiesiai į API), 4, 7 ?
 - enumą reikia naudot kaip enumą, 3, 8?
 - fix issues
+
+5sav:
+NOTE VISIEM: pabandyk widening/narrowing conversions kur nors įkišt ir named parameters (nėra sunku)
+
+- dominykas
+	+ pasiimant sorted listings naudot query parametrus vietoj POST
+	+ negrąžina listingų, reik taisyt (priminimas, reikia pakeist json failą)
+	+ reikia roommateCount keisti į int'ą
+	+ padaryt kad location veiktų
+- edvinas
+	+ string.IsNullOrEmpty -> string.IsNullOrWhitespace pakeist
+	+ validacijoj reikia gražinti tiesiog expression, o ne false
+	+ įvykdyt kažkurį vieną punktą iš antro etapo
+- karolis
+	+ datą įstatyt į listing'ą reikia backend'e, o ne front'e
+	+ datai yra datetime tipas, nenaudot string
+	+ dependency injection 2.9
+- domantas
+	+ login/router
