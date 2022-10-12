@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import '../Views/CenteredForm.css';
 
 export const Login = (props) => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
