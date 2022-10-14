@@ -3,15 +3,11 @@ import { Select, MenuItem } from '@mui/material';
 import axios from 'axios';
 
 export const FilterComponent = (props) => {
-    
+
     const getListings = (values, city) => {
         axios({
             method: 'post',
-            url: 'https://localhost:44332/listing/sort',
-            data: {
-                sort: values.sort,
-                city: city
-            }
+            url: `https://localhost:44332/listing/sort?sort=${values.sort}&city=${encodeURIComponent(city)}`,
         })
         .then((response) => {
             props.updateListings(response.data);             

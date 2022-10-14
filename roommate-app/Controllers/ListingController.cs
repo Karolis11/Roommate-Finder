@@ -25,14 +25,14 @@ public class ListingController : Controller
       
     }
 
-    [HttpPost]
+    [HttpGet]
     [Route("sort")]
-    public ActionResult GetSortedListings([FromBody] SortListingsRequestBody body)
+    public ActionResult GetSortedListings(SortMode sort, string city)
     {
         var existingListings = LoadJson();
 
         var factory = new ListingComparerFactory();
-        var comparer = factory.GetComparer(sortMode: body.Sort, city: body.City);
+        var comparer = factory.GetComparer(sortMode: sort, city: city);
 
         existingListings.Sort(comparer);
 

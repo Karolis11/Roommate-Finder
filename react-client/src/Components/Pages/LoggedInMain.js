@@ -52,9 +52,8 @@ export class LoggedInMain extends Component {
 
     getListings = (city) => {
         axios({
-            method: 'post',
-            url: 'https://localhost:44332/listing/sort',
-            data: {sort: 0, city: city}
+            method: 'get',
+            url: `https://localhost:44332/listing/sort?sort=0&city=${encodeURIComponent(city)}`
         }).then((response) => {
             this.setState({listings: response.data})
         })
