@@ -9,6 +9,15 @@ public class ListingMaxPriceComparer : ListingComparer
 
     public override int Compare(Listing? x, Listing? y)
     {
+        /*if (x.City == this.city)
+        {
+            Console.WriteLine("= " + x.City + " " + this.city);
+            return -1;
+        } else {
+            Console.WriteLine("!= " + x.City + " " + this.city);
+            return x.MaxPrice.CompareTo(y.MaxPrice); 
+        }*/
+
         if (x.City == this.city && y.City == this.city)
         {
             return x.MaxPrice.CompareTo(y.MaxPrice);
@@ -16,6 +25,10 @@ public class ListingMaxPriceComparer : ListingComparer
         else if (x.City == this.city)
         {
             return -1;
+        }
+        else if (y.City == this.city)
+        {
+            return 1;
         }
         else
         {

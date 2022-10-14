@@ -16,6 +16,10 @@ public class ListingNumRoommatesComparer : ListingComparer
         {
             return -1;
         }
+        else if (y.City == this.city)
+        {
+            return 1;
+        }
         else
         {
             return x.RoommateCount.CompareTo(y.RoommateCount);
