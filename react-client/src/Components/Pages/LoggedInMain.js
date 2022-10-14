@@ -35,15 +35,26 @@ export class LoggedInMain extends Component {
     }
 
     componentDidMount() {
-
-        this.getListings();
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                axios({
+                    method: "get",
+                    url: `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=default`
+                })
+                .then((response) => {
+                    this.getListings(response.data.city);
+                })
+            });
+        } else {
+            this.getListings(null);
+        }
     }
 
-    getListings = () => {
+    getListings = (city) => {
         axios({
             method: 'post',
             url: 'https://localhost:44332/listing/sort',
-            data: {sort: 0}
+            data: {sort: 0, city: city}
         }).then((response) => {
             this.setState({listings: response.data})
         })

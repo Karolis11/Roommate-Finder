@@ -32,7 +32,7 @@ public class ListingController : Controller
         var existingListings = LoadJson();
 
         var factory = new ListingComparerFactory();
-        var comparer = factory.GetComparer(body.Sort);
+        var comparer = factory.GetComparer(sortMode: body.Sort, city: body.City);
 
         existingListings.Sort(comparer);
 
