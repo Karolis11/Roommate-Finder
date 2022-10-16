@@ -1,10 +1,12 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from "../../Contexts/AuthProvider";
+import setAuthToken from "../../Contexts/SetAuthToken";
 
 import '../Views/CenteredForm.css';
 
@@ -13,7 +15,7 @@ const LOGIN_URL = '/auth';
 export const Login = (props) => {
     const navigate = useNavigate();
     
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
     const { setAuth } = useContext(AuthContext);
 
@@ -44,7 +46,12 @@ export const Login = (props) => {
                 if(response.data.isSuccess){ 
                     enqueueSnackbar(response.data.message, { variant: "success" });
                     const accessToken = response?.data?.accessToken;
-                    setAuth({ email, password, accessToken });
+                    const email = response?.data?.email;
+                    setAuth({ email, accessToken });
+                    localStorage.setItem('token', accessToken);
+                    localStorage.getItem('token');
+                    setAuthToken(accessToken);
+                    console.log(accessToken);
                     navigate(`/dashboard`);
                 }
                 else{

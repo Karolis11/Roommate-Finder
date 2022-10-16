@@ -29,7 +29,13 @@ public class LoginController : ControllerBase{
                 passwordAndEmailCorrect,
                 passwordAndEmailCorrect
                     ? "Logged in successfully."
-                    : "Either email or password is incorrect."
+                    : "Either email or password is incorrect.",
+                passwordAndEmailCorrect
+                    ? user.Email
+                    : string.Empty,
+                passwordAndEmailCorrect
+                    ? "asd"
+                    : string.Empty
             )
         );
     }

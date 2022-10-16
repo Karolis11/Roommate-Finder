@@ -7,12 +7,13 @@ import {
     useNavigate,
 } from 'react-router-dom';
 
-export const ProtectedRoute = (props, { children }) => {
-
-
-    if (!props.loggedIn) {
+export const ProtectedRoute = ({ children }) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
         return <Navigate to="/login" replace />;
     }
 
     return children;
 };
+
+export default ProtectedRoute;

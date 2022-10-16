@@ -14,7 +14,7 @@ import {
     useNavigate,
     useSearchParams,
 } from 'react-router-dom';
-
+import { ProtectedRoute } from './Components/Routers/ProtectedRoute';
 
 class App extends Component {
     createListingButtonId = "create-listing-button";
@@ -26,7 +26,7 @@ class App extends Component {
             loggedIn: false
         }
     }
-
+    
     toggleLoggedIn = (toggleBool) => {
         this.setState({loggedIn: toggleBool})
     }
@@ -37,9 +37,7 @@ class App extends Component {
                 <Route index element={<EntryScreen />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/dashboard" element={
-
-                    <LoggedInMain />} />
+                <Route path="/dashboard" element={<ProtectedRoute><LoggedInMain /></ProtectedRoute>} />
             </Routes>
         );
     }
