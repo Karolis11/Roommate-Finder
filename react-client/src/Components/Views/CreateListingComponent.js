@@ -62,9 +62,9 @@ export const CreateListingComponent = (props) => {
                 .max(30, "City can only be up to 30 characters")
                 .required("Required"),
             maxPrice: Yup
-                .string()
-                .max(20, "Maximum price can only be up to 20 characters")
-                .matches(/^[0-9]+$/, 'Only use digits')
+                .number()
+                .typeError("Only use digits")
+                .max(999999, "The price exceeds the maximum limit")
                 .required("Required"),
             extraComment: Yup
                 .string()
