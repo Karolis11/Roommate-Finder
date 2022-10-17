@@ -10,9 +10,9 @@ import { LithuanianCities } from './LithuanianCities.js';
 import CitySelect from './CitySelect';
 
 const options = [
-    { value: '1', label: '1' },
-    { value: '2', label: '2' },
-    { value: '3', label: '3+' },
+    { value: 1, label: '1' },
+    { value: 2, label: '2' },
+    { value: 3, label: '3+' },
 ]
 
 const cityOptions = []
@@ -36,7 +36,7 @@ export const CreateListingComponent = (props) => {
             phone: "",
             city: "",
             maxPrice: "",
-            roommateCount: "1",
+            roommateCount: "",
             extraComment: "",
             date: date,
         },
@@ -180,7 +180,7 @@ export const CreateListingComponent = (props) => {
                         <CustomRoommates
                             options={options}
                             value={formik.values.roommateCount}
-                            className={'number'}
+                            className={"roommateCount"}
                             onChange={value => formik.setFieldValue('roommateCount',value.value)}
                         />
                     </div>

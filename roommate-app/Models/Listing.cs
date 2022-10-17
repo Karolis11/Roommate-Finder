@@ -9,7 +9,7 @@ public class Listing
         public string Email { get; set; }
         public string Phone { get; set; }
         public string City { get; set; }
-        public string RoommateCount { get; set; }
+        public int RoommateCount { get; set; }
         public int MaxPrice { get; set ; }
         public string ExtraComment { get; set; }
         public string Date {get; set; }
