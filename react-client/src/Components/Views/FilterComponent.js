@@ -3,19 +3,35 @@ import { Select, MenuItem } from '@mui/material';
 import axios from 'axios';
 
 export const FilterComponent = (props) => {
+
+    const getListings = (values, city) => {
+        axios({
+            method: 'post',
+            url: `https://localhost:44332/listing/sort?sort=${values.sort}&city=${encodeURIComponent(city)}`,
+        })
+        .then((response) => {
+            props.updateListings(response.data);             
+        })
+    }
+
     const formik = useFormik({
         initialValues: {
             sort: 0,
         },
         onSubmit: (values) => {
-            axios({
-                method: 'post',
-                url: 'https://localhost:44332/listing/sort',
-                data: values
-            })
-            .then((response) => {
-                props.updateListings(response.data);             
-            })
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    axios({
+                        method: "get",
+                        url: `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=default`
+                    })
+                    .then((response) => {
+                        getListings(values, response.data.city);
+                    })
+                });
+            } else {
+                getListings(values, null);
+            } 
         }
     });
 
