@@ -6,7 +6,7 @@ export const FilterComponent = (props) => {
 
     const getListings = (values, city) => {
         axios({
-            method: 'post',
+            method: 'get',
             url: `https://localhost:44332/listing/sort?sort=${values.sort}&city=${encodeURIComponent(city)}`,
         })
         .then((response) => {
