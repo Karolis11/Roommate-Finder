@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using roommate_app.Data;
+using roommate_app.Controllers.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,13 +30,16 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUserService, UserService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+
+    app.UseMiddleware<JwtMiddleware>();
 }
 else
 {
