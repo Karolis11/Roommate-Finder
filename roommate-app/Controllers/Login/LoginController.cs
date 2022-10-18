@@ -11,6 +11,13 @@ namespace roommate_app.Controllers.Login;
 
 public class LoginController : ControllerBase{
 
+    private readonly IFileCreator _file;
+
+    public LoginController(IFileCreator file)
+    {
+        _file = file;
+    }
+
     [HttpPost]
     public OkObjectResult Submit([FromBody] User user){
 
@@ -36,8 +43,8 @@ public class LoginController : ControllerBase{
     
     private List<User> LoadUsers()
     {
-        using StreamReader r = new StreamReader("./Data/users.json");
-        string json = r.ReadToEnd();
+        string json = _file.ReadToEndFile("./Data/users.json");
+        Console.WriteLine(json);
         return JsonSerializer.Deserialize<List<User>>(json);
     }
 

@@ -4,7 +4,7 @@ public class LoginResponse
 {
     public LoginResponse(bool isSuccess, string message)
     {
-        IsSuccess = (Boolean)isSuccess;
+        IsSuccess = isSuccess;
         Message = message;
     }
 

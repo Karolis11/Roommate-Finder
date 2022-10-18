@@ -10,6 +10,13 @@ namespace roommate_app.Controllers.Registration;
 [ApiController]
 public class RegistrationController : ControllerBase
 {
+    private readonly IFileCreator _file;
+
+    public RegistrationController(IFileCreator file)
+    {
+        _file = file;
+    }
+
     [HttpPost]
     public OkObjectResult Submit([FromBody] User user)
     {
@@ -28,9 +35,7 @@ public class RegistrationController : ControllerBase
             // if email does not exist, add the user
             existingUsers.Add(user);
             string json = JsonSerializer.Serialize(existingUsers);
-            using StreamWriter tsw = new StreamWriter("Data/users.json", false);
-            tsw.WriteLine(json);
-            tsw.Close();
+            _file.Write("Data/users.json", json, false);
         }
 
         return base.Ok(
@@ -45,8 +50,7 @@ public class RegistrationController : ControllerBase
 
     private List<User> LoadUsers()
     {
-        using StreamReader r = new StreamReader("./Data/users.json");
-        string json = r.ReadToEnd();
+        string json = _file.ReadToEndFile("./Data/users.json");
         return JsonSerializer.Deserialize<List<User>>(json);
     }
 }

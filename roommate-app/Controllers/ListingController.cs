@@ -10,16 +10,19 @@ namespace roommate_app.Controllers;
 public class ListingController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IFileCreator _file;
+    private readonly IListingCompreterFactory _listingFactory;
 
-    public ListingController(ILogger<HomeController> logger)
+    public ListingController(ILogger<HomeController> logger, IFileCreator file, IListingCompreterFactory listingFactory)
     {
         _logger = logger;
+        _file = file;
+        _listingFactory = listingFactory;
     }
 
     private List<Listing> LoadJson()
     {
-        using StreamReader r = new StreamReader("Data/listings.json");
-        string json = r.ReadToEnd();
+        string json = _file.ReadToEndFile("Data/listings.json");
         List<Listing> listings = JsonSerializer.Deserialize<List<Listing>>(json);
         return listings;
       
@@ -31,7 +34,7 @@ public class ListingController : Controller
     {
         var existingListings = LoadJson();
 
-        var factory = new ListingComparerFactory();
+        var factory = _listingFactory.createListingComparerFactory();
         var comparer = factory.GetComparer(sortMode: sort, city: city);
 
         existingListings.Sort(comparer);
@@ -44,10 +47,9 @@ public class ListingController : Controller
     {
         List<Listing> existingListings = LoadJson();
         existingListings.Add(listing);
+        listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
         string json = JsonSerializer.Serialize(existingListings);
-        using StreamWriter tsw = new StreamWriter("Data/listings.json", false);
-        tsw.WriteLine(json);
-        tsw.Close();
+        _file.Write("Data/listings.json", json, false);
 
         return base.Ok(existingListings);
     }
