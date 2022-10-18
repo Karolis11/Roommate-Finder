@@ -44,6 +44,7 @@ public class ListingController : Controller
     {
         List<Listing> existingListings = LoadJson();
         existingListings.Add(listing);
+        listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
         string json = JsonSerializer.Serialize(existingListings);
         using StreamWriter tsw = new StreamWriter("Data/listings.json", false);
         tsw.WriteLine(json);

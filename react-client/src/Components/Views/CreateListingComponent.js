@@ -25,9 +25,6 @@ export const CreateListingComponent = (props) => {
 
     const [responseMessage, setResponseMessage] = useState("");
 
-    const today = new Date();
-    const date = new Intl.DateTimeFormat('en-EU', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(today);
-
     const formik = useFormik({
         initialValues: {
             firstName: "",
@@ -38,7 +35,7 @@ export const CreateListingComponent = (props) => {
             maxPrice: "",
             roommateCount: "",
             extraComment: "",
-            date: date,
+            date: "",
         },
         validationSchema: Yup.object({
             firstName: Yup
@@ -221,15 +218,6 @@ export const CreateListingComponent = (props) => {
                                     {formik.errors.extraComment}
                                 </p>
                         }
-                    </div>
-                </div>
-                <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="date">Date </label></div>
-                    <div className="form-field-flex">
-                        <input
-                            readOnly
-                            value={formik.values.date}
-                        /> 
                     </div>
                 </div>
                 <button type="submit">Submit</button>
