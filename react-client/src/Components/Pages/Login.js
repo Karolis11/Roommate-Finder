@@ -1,16 +1,24 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from "../../Contexts/AuthProvider";
+import setAuthToken from "../../Contexts/SetAuthToken";
 
 import '../Views/CenteredForm.css';
+
+const LOGIN_URL = '/auth';
 
 export const Login = (props) => {
     const navigate = useNavigate();
     
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+    const { setAuth } = useContext(AuthContext);
+
 
     const formik = useFormik({
         initialValues: {
@@ -31,16 +39,22 @@ export const Login = (props) => {
         onSubmit: (values) => {
             axios({
                 method: 'post',
-                url: 'https://localhost:44332/login',
+                url: 'https://localhost:44332/authentication',
                 data: values
             })
             .then((response) => {
-                if(response.data.isSuccess){ 
-                    enqueueSnackbar(response.data.message, {variant: "success"})
+                if(response?.data?.token != null){ 
+                    enqueueSnackbar("Logged in successfully.", { variant: "success" });
+                    const accessToken = response?.data?.token;
+                    const email = response?.data?.email;
+                    setAuth({ email, accessToken });
+                    localStorage.setItem('token', accessToken);
+                    localStorage.getItem('token');
+                    setAuthToken(accessToken);
                     navigate(`/dashboard`);
                 }
                 else{
-                    enqueueSnackbar(response.data.message, {variant: "error"})
+                    enqueueSnackbar("Either email or password is incorrect.", { variant: "error" });
                 }
                                
             })

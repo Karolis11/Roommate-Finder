@@ -9,12 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CryptoHelper" Version="3.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.6" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.24.0" />
+    <PackageReference Include="Microsoft.Owin.Cors" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Owin.Host.SystemWeb" Version="4.2.2" />
+    <PackageReference Include="Microsoft.Owin.Security.OAuth" Version="4.2.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0" />
   </ItemGroup>
 
   <ItemGroup>

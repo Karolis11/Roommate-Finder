@@ -33,6 +33,8 @@ public class RegistrationController : ControllerBase
         if (!emailExistsFlag)
         {
             // if email does not exist, add the user
+            var lastUser = existingUsers.Last();
+            user.Id = lastUser.Id + 1;
             existingUsers.Add(user);
             string json = JsonSerializer.Serialize(existingUsers);
             _file.Write("Data/users.json", json, false);
