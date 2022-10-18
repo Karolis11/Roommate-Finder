@@ -39,23 +39,22 @@ export const Login = (props) => {
         onSubmit: (values) => {
             axios({
                 method: 'post',
-                url: 'https://localhost:44332/login',
+                url: 'https://localhost:44332/authentication',
                 data: values
             })
             .then((response) => {
-                if(response.data.isSuccess){ 
-                    enqueueSnackbar(response.data.message, { variant: "success" });
-                    const accessToken = response?.data?.accessToken;
+                if(response?.data?.token != null){ 
+                    enqueueSnackbar("Logged in successfully.", { variant: "success" });
+                    const accessToken = response?.data?.token;
                     const email = response?.data?.email;
                     setAuth({ email, accessToken });
                     localStorage.setItem('token', accessToken);
                     localStorage.getItem('token');
                     setAuthToken(accessToken);
-                    console.log(accessToken);
                     navigate(`/dashboard`);
                 }
                 else{
-                    enqueueSnackbar(response.data.message, { variant: "error" });
+                    enqueueSnackbar("Either email or password is incorrect.", { variant: "error" });
                 }
                                
             })

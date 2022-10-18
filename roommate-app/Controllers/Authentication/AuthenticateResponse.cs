@@ -4,6 +4,7 @@ namespace roommate_app.Controllers.Authentication
 {
     public class AuthenticateResponse
     {
+        public bool SuccessfulLogin { get; set; }
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -12,8 +13,9 @@ namespace roommate_app.Controllers.Authentication
         public string Token { get; set; }
 
 
-        public AuthenticateResponse(User user, string token)
+        public AuthenticateResponse(bool b, User user, string token)
         {
+            SuccessfulLogin = b;
             Id = user.Id;
             FirstName = user.FirstName;
             LastName = user.LastName;
