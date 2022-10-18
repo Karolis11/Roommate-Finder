@@ -9,6 +9,9 @@ using roommate_app.Controllers.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IFileCreator, FileCreator>();
+builder.Services.AddScoped<IListingCompreterFactory, ListingComparerFactory>();
+
 builder.Services.AddCors((options) =>
 {
     options.AddPolicy("CORSPolicy",

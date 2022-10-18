@@ -4,7 +4,7 @@ public class LoginResponse
 {
     public LoginResponse(bool isSuccess, string message, string email, string accessToken)
     {
-        IsSuccess = (Boolean)isSuccess;
+        IsSuccess = isSuccess;
         Message = message;
         Email = email;
         AccessToken = accessToken;
