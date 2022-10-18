@@ -11,11 +11,13 @@ public class ListingController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IFileCreator _file;
+    private readonly IListingCompreterFactory _listingFactory;
 
-    public ListingController(ILogger<HomeController> logger, IFileCreator file)
+    public ListingController(ILogger<HomeController> logger, IFileCreator file, IListingCompreterFactory listingFactory)
     {
         _logger = logger;
         _file = file;
+        _listingFactory = listingFactory;
     }
 
     private List<Listing> LoadJson()
@@ -32,7 +34,7 @@ public class ListingController : Controller
     {
         var existingListings = LoadJson();
 
-        var factory = new ListingComparerFactory();
+        var factory = _listingFactory.createListingComparerFactory();
         var comparer = factory.GetComparer(sortMode: sort, city: city);
 
         existingListings.Sort(comparer);
