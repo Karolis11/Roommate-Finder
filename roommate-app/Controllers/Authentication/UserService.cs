@@ -21,7 +21,7 @@ public interface IUserService
 
 public class UserService : IUserService
 {
-    // users hardcoded for simplicity, store in a db with hashed passwords in production applications
+
     List<User> _users;
 
     private readonly AppSettings _appSettings;
@@ -36,7 +36,7 @@ public class UserService : IUserService
     {
         var user = _users.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
         string token = null;
-        // return null if user not found
+        
         if (user == null)
         {
             user = new User();
@@ -55,7 +55,6 @@ public class UserService : IUserService
     }
 
     // helper methods
-
     private string generateJwtToken(User user)
     {
         // generate token that is valid for 7 days
