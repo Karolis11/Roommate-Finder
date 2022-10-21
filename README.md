@@ -64,3 +64,10 @@ NOTE VISIEM: pabandyk widening/narrowing conversions kur nors įkišt ir named p
 	+ dependency injection 2.9
 - domantas
 	+ login/router
+	
+6sav:
+- Database
+- Events
+- Exceptions
+- Concurrent programming
+
