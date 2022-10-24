@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using roommate_app.Controllers.Authentication;
 using roommate_app.Models;
+using roommate_app.Data;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -25,11 +26,13 @@ public class UserService : IUserService
     List<User> _users;
 
     private readonly AppSettings _appSettings;
+    private readonly ApplicationDbContext _context;
 
-    public UserService(IOptions<AppSettings> appSettings)
+    public UserService(IOptions<AppSettings> appSettings, ApplicationDbContext context)
     {
         _appSettings = appSettings.Value;
-        _users = LoadUsers();
+        _context = context;
+        _users = _context.Users.ToList();
     }
 
     public AuthenticateResponse Authenticate(AuthenticateRequest model)
@@ -68,13 +71,6 @@ public class UserService : IUserService
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
-    }
-
-    private List<User> LoadUsers()
-    {
-        using StreamReader r = new StreamReader("./Data/users.json");
-        string json = r.ReadToEnd();
-        return JsonSerializer.Deserialize<List<User>>(json);
     }
 
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
+using roommate_app.Data;
 using roommate_app.Other.ListingComparers;
 using System.Text.Json;
 
@@ -10,29 +11,21 @@ namespace roommate_app.Controllers;
 public class ListingController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly IFileCreator _file;
     private readonly IListingCompreterFactory _listingFactory;
+    private readonly ApplicationDbContext _context;
 
-    public ListingController(ILogger<HomeController> logger, IFileCreator file, IListingCompreterFactory listingFactory)
+    public ListingController(ILogger<HomeController> logger, IListingCompreterFactory listingFactory, ApplicationDbContext context)
     {
         _logger = logger;
-        _file = file;
         _listingFactory = listingFactory;
-    }
-
-    private List<Listing> LoadJson()
-    {
-        string json = _file.ReadToEndFile("Data/listings.json");
-        List<Listing> listings = JsonSerializer.Deserialize<List<Listing>>(json);
-        return listings;
-      
+        _context = context;
     }
 
     [HttpGet]
     [Route("sort")]
     public ActionResult GetSortedListings(SortMode sort, string city)
     {
-        var existingListings = LoadJson();
+        var existingListings = _context.Listings.ToList();
 
         var factory = _listingFactory.createListingComparerFactory();
         var comparer = factory.GetComparer(sortMode: sort, city: city);
@@ -45,12 +38,10 @@ public class ListingController : Controller
     [HttpPost]
     public ActionResult Submit([FromBody] Listing listing)
     {
-        List<Listing> existingListings = LoadJson();
-        existingListings.Add(listing);
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
-        string json = JsonSerializer.Serialize(existingListings);
-        _file.Write("Data/listings.json", json, false);
+        _context.Listings.Add(listing);
+        _context.SaveChanges();
 
-        return base.Ok(existingListings);
+        return base.Ok(_context.Listings.ToList());
     }
 }
