@@ -33,6 +33,7 @@ KETVIRTA SAVAITE
 | KJ | 3  |    | 3  | 3  |
 | DE | 3  |    | 3  | 3  |
 
+PENKTA SAVAITE
 |    | DB | EK | KJ | DE |
 |----|----|----|----|----|
 | DB | 4  | 4  | 3  |    |
