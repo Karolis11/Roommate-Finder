@@ -31,9 +31,6 @@ KETVIRTA SAVAITE
 | DB | 1  |    | 2  | 1  |
 | EK | 3  |    | 2  | 3  |
 | KJ | 3  |    | 3  | 3  |
-<<<<<<< Updated upstream
-| DE | 3  |    | 3  | 3  |
-=======
 | DE | 3  |    | 3  | 3  |
 
 PENKTA SAVAITE
@@ -43,5 +40,3 @@ PENKTA SAVAITE
 | EK | 2  | 2  | 3  |    |
 | KJ | 3  | 2  | 3  |    |
 | DE | 1  | 2  | 1  |    |
-
->>>>>>> Stashed changes
