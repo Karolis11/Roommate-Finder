@@ -82,7 +82,7 @@ export const CreateListingComponent = (props) => {
 
     return (
         <>
-            <div className="centered-container create-listing-container">
+        <div className="centered-container create-listing-container">
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-field-container-flex">
                     <div className="form-field-flex"><label htmlFor="firstName">First name</label></div>
