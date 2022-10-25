@@ -28,14 +28,9 @@ public static class ValidationExtensions
         return string.IsNullOrWhiteSpace(str.City) && str.City.Length > 30 && !Regex.IsMatch(str.City, regExp);
     }
 
-    public static bool ValidateExtraComment(this Listing? str)
-    {
-        return string.IsNullOrWhiteSpace(str.ExtraComment) && str.ExtraComment.Length > 200;
-    }
-
     public static bool ValidateRoommateCount(this Listing? number)
     {
-        return number.RoommateCount == null && number.RoommateCount > 1;
+        return number.RoommateCount == null && number.RoommateCount >= 1 && number.RoommateCount <= 3; ;
     }
 
     public static bool ValidatePhoneNumber(this Listing? str)
@@ -47,15 +42,23 @@ public static class ValidationExtensions
         return string.IsNullOrWhiteSpace(str.Phone) && (str.Phone.Length != 9 && str.Phone.Length != 12)
                && (!Regex.IsMatch(str.City, regExp1) || !Regex.IsMatch(str.City, regExp2));
     }
-
-    public static bool ValidateMaximumPrice(this Listing? number) // lambda expression
+    public static bool ValidateExtraComment(this Listing? str)
+    {
+        List<Func<Listing, bool>> ValidationRules = new List<Func<Listing, bool>>
+        {
+            x => string.IsNullOrWhiteSpace(str.ExtraComment),
+            x => str.ExtraComment.Length > 200
+        };
+        return ValidationRules.All(x => x(str) == false); 
+    }
+    public static bool ValidateMaximumPrice(this Listing? number) 
     {
         List<Func<Listing, bool>> ValidationRules = new List<Func<Listing, bool>>
         {
             x => number.MaxPrice == null,
-            x => number.MaxPrice > 999999
+            x => number.MaxPrice > 999999 && number.MaxPrice < 0
         };
-        return ValidationRules.All(x => x(number) == false); // if any of the rules returns true then return false
+        return ValidationRules.All(x => x(number) == false);
     }
 
 }

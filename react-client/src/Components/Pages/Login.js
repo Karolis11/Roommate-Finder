@@ -47,6 +47,7 @@ export const Login = (props) => {
                     enqueueSnackbar("Logged in successfully.", { variant: "success" });
                     const accessToken = response?.data?.token;
                     const email = response?.data?.email;
+                    const id = response?.data?.id;
                     setAuth({ email, accessToken });
                     localStorage.setItem('token', accessToken);
                     localStorage.getItem('token');
