@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
-using System.Text.Json;
-using System.IO;
+using roommate_app.Data;
 
 namespace roommate_app.Controllers.Registration;
 
@@ -10,11 +9,11 @@ namespace roommate_app.Controllers.Registration;
 [ApiController]
 public class RegistrationController : ControllerBase
 {
-    private readonly IFileCreator _file;
+    private readonly ApplicationDbContext _context;
 
-    public RegistrationController(IFileCreator file)
+    public RegistrationController(ApplicationDbContext context)
     {
-        _file = file;
+        _context = context;
     }
 
     [HttpPost]
@@ -22,7 +21,7 @@ public class RegistrationController : ControllerBase
     {
         var emailExistsFlag = false;
 
-        List<User> existingUsers = LoadUsers();
+        List<User> existingUsers = _context.Users.ToList();
 
         emailExistsFlag = (
                 from User usr in existingUsers
@@ -32,12 +31,8 @@ public class RegistrationController : ControllerBase
 
         if (!emailExistsFlag)
         {
-            // if email does not exist, add the user
-            var lastUser = existingUsers.Last();
-            user.Id = lastUser.Id + 1;
-            existingUsers.Add(user);
-            string json = JsonSerializer.Serialize(existingUsers);
-            _file.Write("Data/users.json", json, false);
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
 
         return base.Ok(
@@ -48,12 +43,6 @@ public class RegistrationController : ControllerBase
                     : "Your account has been successfully created."
             )
         );
-    }
-
-    private List<User> LoadUsers()
-    {
-        string json = _file.ReadToEndFile("./Data/users.json");
-        return JsonSerializer.Deserialize<List<User>>(json);
     }
 }
 
