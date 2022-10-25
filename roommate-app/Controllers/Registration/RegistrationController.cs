@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
 using roommate_app.Data;
+using roommate_app.HelperMethods;
 
 namespace roommate_app.Controllers.Registration;
 
@@ -11,9 +12,11 @@ public class RegistrationController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
 
+    private ListingService _listingService;
     public RegistrationController(ApplicationDbContext context)
     {
         _context = context;
+        _listingService = new ListingService(context);
     }
 
     [HttpPost]
@@ -33,6 +36,7 @@ public class RegistrationController : ControllerBase
         {
             _context.Users.Add(user);
             _context.SaveChanges();
+            _listingService.UpdateListings();
         }
 
         return base.Ok(
