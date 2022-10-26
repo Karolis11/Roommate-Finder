@@ -12,12 +12,14 @@ public class ListingController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IFileCreator _file;
     private readonly IListingCompreterFactory _listingFactory;
+    private ErrorLogging errorLogging;
 
     public ListingController(ILogger<HomeController> logger, IFileCreator file, IListingCompreterFactory listingFactory)
     {
         _logger = logger;
         _file = file;
         _listingFactory = listingFactory;
+        errorLogging = new ErrorLogging(file);
     }
 
     private List<Listing> LoadJson()
@@ -25,7 +27,6 @@ public class ListingController : Controller
         string json = _file.ReadToEndFile("Data/listings.json");
         List<Listing> listings = JsonSerializer.Deserialize<List<Listing>>(json);
         return listings;
-      
     }
 
     [HttpGet]
@@ -45,11 +46,27 @@ public class ListingController : Controller
     [HttpPost]
     public ActionResult Submit([FromBody] Listing listing)
     {
-        List<Listing> existingListings = LoadJson();
-        existingListings.Add(listing);
+        List<Listing> existingListings = new List<Listing>();
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
-        string json = JsonSerializer.Serialize(existingListings);
-        _file.Write("Data/listings.json", json, false);
+
+        try{
+            existingListings = LoadJson();
+            existingListings.Add(listing);
+            string json = JsonSerializer.Serialize(existingListings);
+            _file.Write("Data/listings.json", json, false);
+        }
+        catch(ArgumentNullException e){
+            errorLogging.logError(e.Message);
+            errorLogging.messageError("Failed to load existing listing");
+        }
+        catch(FileNotFoundException e){
+            errorLogging.logError(e.Message);
+            errorLogging.messageError("The listings were not found");
+        }
+        catch(Exception e){
+            errorLogging.logError(e.Message);
+            errorLogging.messageError("Unexpected error, please restart the program");
+        }
 
         return base.Ok(existingListings);
     }

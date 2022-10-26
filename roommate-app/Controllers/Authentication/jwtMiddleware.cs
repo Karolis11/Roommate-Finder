@@ -14,11 +14,13 @@ public class JwtMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly AppSettings _appSettings;
+    ErrorLogging errorLogging;
 
-    public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
+    public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings, IFileCreator file)
     {
         _next = next;
         _appSettings = appSettings.Value;
+        errorLogging = new ErrorLogging(file);
     }
     public async Task Invoke(HttpContext context, IUserService userService)
     {
@@ -52,10 +54,12 @@ public class JwtMiddleware
             // attach user to context on successful jwt validation
             context.Items["User"] = userService.GetById(userId);
         }
-        catch
+        catch(Exception e)
         {
             // do nothing if jwt validation fails
             // user is not attached to context so request won't have access to secure routes
+            errorLogging.logError(e.Message);
+            errorLogging.messageError("Authentication failed, please try again");
         }
     }
 }
