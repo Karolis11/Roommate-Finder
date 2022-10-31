@@ -6,11 +6,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using roommate_app.Data;
 using roommate_app.Controllers.Authentication;
+using roommate_app.Other.FileCreator;
+using roommate_app.Other.ListingComparers;
+using roommate_app.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IFileCreator, FileCreator>();
 builder.Services.AddScoped<IListingCompreterFactory, ListingComparerFactory>();
+builder.Services.AddScoped<IErrorLogging, ErrorLogging>();
 
 builder.Services.AddCors((options) =>
 {
@@ -65,5 +69,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
 
 app.Run();

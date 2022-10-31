@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
 using System.Text.Json;
 using System.IO;
+using roommate_app.Other.FileCreator;
+using roommate_app.Exceptions;
 
 namespace roommate_app.Controllers.Login;
 
@@ -12,12 +14,11 @@ namespace roommate_app.Controllers.Login;
 public class LoginController : ControllerBase{
 
     private readonly IFileCreator _file;
-    ErrorLogging errorLogging;
+    ErrorLogging _errorLogging;
 
-    public LoginController(IFileCreator file)
+    public LoginController(ErrorLogging errorLogging)
     {
-        _file = file;
-        errorLogging = new ErrorLogging(file);
+        _errorLogging = _errorLogging;
     }
 
     [HttpPost]
@@ -36,16 +37,16 @@ public class LoginController : ControllerBase{
                 ).Count() == 1;
         }
         catch(FileNotFoundException e){
-            errorLogging.logError(e.Message);
-            errorLogging.messageError("The listings were not found");
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("The listings were not found");
         }
         catch(InvalidOperationException e){
-            errorLogging.logError(e.Message);
-            errorLogging.messageError("Linq expression failed");
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Linq expression failed");
         }
         catch(Exception e){
-            errorLogging.logError(e.Message);
-            errorLogging.messageError("Unexpected error, please restart the program");
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Unexpected error, please restart the program");
         }
 
         return base.Ok(

@@ -3,6 +3,8 @@ using roommate_app.Models;
 using roommate_app.Data;
 using roommate_app.Other.ListingComparers;
 using System.Text.Json;
+using Microsoft.Data.SqlClient;
+using roommate_app.Exceptions;
 
 namespace roommate_app.Controllers;
 
@@ -13,24 +15,20 @@ public class ListingController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IListingCompreterFactory _listingFactory;
 
-    private ErrorLogging errorLogging;
+    private readonly IErrorLogging _errorLogging;
     private readonly ApplicationDbContext _context;
-    private IFileCreator _file;
 
-    public ListingController(ILogger<HomeController> logger, IListingCompreterFactory listingFactory, ApplicationDbContext context, IFileCreator file)
+    public ListingController(
+        ILogger<HomeController> logger, 
+        IListingCompreterFactory listingFactory, 
+        ApplicationDbContext context, 
+        IErrorLogging errorLogging
+        )
     {
         _logger = logger;
         _listingFactory = listingFactory;
         _context = context;
-        _file = file;
-        errorLogging = new ErrorLogging(_file);
-    }
-
-    private List<Listing> LoadJson()
-    {
-        string json = _file.ReadToEndFile("Data/listings.json");
-        List<Listing> listings = JsonSerializer.Deserialize<List<Listing>>(json);
-        return listings;
+        _errorLogging = errorLogging;
     }
 
     [HttpGet]
@@ -59,16 +57,16 @@ public class ListingController : Controller
             existingListings.Add(listing);
         }
         catch(ArgumentNullException e){
-            errorLogging.logError(e.Message);
-            errorLogging.messageError("Failed to load existing listing");
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Failed to load existing listing");
         }
-        catch(FileNotFoundException e){
-            errorLogging.logError(e.Message);
-            errorLogging.messageError("The listings were not found");
+        catch(SqlException e){
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Could not insert a listing into the database.");
         }
         catch(Exception e){
-            errorLogging.logError(e.Message);
-            errorLogging.messageError("Unexpected error, please restart the program");
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Unexpected error, please restart the program");
         }
 
         return base.Ok(_context.Listings.ToList());
