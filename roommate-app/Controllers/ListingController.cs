@@ -12,6 +12,8 @@ public class ListingController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IListingCompreterFactory _listingFactory;
+
+    private ErrorLogging errorLogging;
     private readonly ApplicationDbContext _context;
 
     public ListingController(ILogger<HomeController> logger, IListingCompreterFactory listingFactory, ApplicationDbContext context)
@@ -19,6 +21,14 @@ public class ListingController : Controller
         _logger = logger;
         _listingFactory = listingFactory;
         _context = context;
+        errorLogging = new ErrorLogging(file);
+    }
+
+    private List<Listing> LoadJson()
+    {
+        string json = _file.ReadToEndFile("Data/listings.json");
+        List<Listing> listings = JsonSerializer.Deserialize<List<Listing>>(json);
+        return listings;
     }
 
     [HttpGet]
@@ -38,9 +48,26 @@ public class ListingController : Controller
     [HttpPost]
     public ActionResult Submit([FromBody] Listing listing)
     {
+        List<Listing> existingListings = new List<Listing>();
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
-        _context.Listings.Add(listing);
-        _context.SaveChanges();
+
+        try{
+            _context.Listings.Add(listing);
+            _context.SaveChanges();
+            existingListings.Add(listing);
+        }
+        catch(ArgumentNullException e){
+            errorLogging.logError(e.Message);
+            errorLogging.messageError("Failed to load existing listing");
+        }
+        catch(FileNotFoundException e){
+            errorLogging.logError(e.Message);
+            errorLogging.messageError("The listings were not found");
+        }
+        catch(Exception e){
+            errorLogging.logError(e.Message);
+            errorLogging.messageError("Unexpected error, please restart the program");
+        }
 
         return base.Ok(_context.Listings.ToList());
     }
