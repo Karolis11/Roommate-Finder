@@ -15,13 +15,15 @@ public class ListingController : Controller
 
     private ErrorLogging errorLogging;
     private readonly ApplicationDbContext _context;
+    private IFileCreator _file;
 
-    public ListingController(ILogger<HomeController> logger, IListingCompreterFactory listingFactory, ApplicationDbContext context)
+    public ListingController(ILogger<HomeController> logger, IListingCompreterFactory listingFactory, ApplicationDbContext context, IFileCreator file)
     {
         _logger = logger;
         _listingFactory = listingFactory;
         _context = context;
-        errorLogging = new ErrorLogging(file);
+        _file = file;
+        errorLogging = new ErrorLogging(_file);
     }
 
     private List<Listing> LoadJson()
