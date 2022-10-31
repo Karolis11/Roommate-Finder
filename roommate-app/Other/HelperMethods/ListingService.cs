@@ -2,12 +2,18 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using roommate_app.Models;
 using roommate_app.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace roommate_app.HelperMethods;
 
-public class ListingService
+public interface IListingService
 {
+    List<Listing> GetByUserId(int id);
+    Task UpdateListings();
+}
 
+public class ListingService : IListingService
+{
     static List<Listing> _listings;
 
     private readonly ApplicationDbContext _context;
@@ -20,7 +26,7 @@ public class ListingService
 
 
 
-    public static List<Listing> GetByUserId(int id)
+    public List<Listing> GetByUserId(int id)
     {
         List<Listing> _userListings = new List<Listing>();
         for(int i = 0; i < _listings.Count; i++)
@@ -32,9 +38,9 @@ public class ListingService
         return _userListings;
     }
 
-    public void UpdateListings()
+    public async Task UpdateListings()
     {
-        _listings = _context.Listings.ToList();
+        _listings = await _context.Listings.ToListAsync();
     }
 
 
