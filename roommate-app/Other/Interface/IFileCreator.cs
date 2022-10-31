@@ -1,3 +1,4 @@
+namespace roommate_app.Other.FileCreator;
 public interface IFileCreator
 {
     void Write(string path, string stringToWrite, bool append);

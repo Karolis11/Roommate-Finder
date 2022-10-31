@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using roommate_app.Controllers;
+using roommate_app.Other.FileCreator;
+using roommate_app.Exceptions;
 
 namespace roommate_app.Controllers.Authentication;
 
@@ -14,16 +16,16 @@ public class JwtMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly AppSettings _appSettings;
-    ErrorLogging errorLogging;
+    private IErrorLogging _errorLogging;
 
-    public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings, IFileCreator file)
+    public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
     {
         _next = next;
         _appSettings = appSettings.Value;
-        errorLogging = new ErrorLogging(file);
     }
-    public async Task Invoke(HttpContext context, IUserService userService)
+    public async Task Invoke(HttpContext context, IUserService userService, IErrorLogging errorLogging)
     {
+        _errorLogging = errorLogging;
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
         if (token != null)
@@ -58,8 +60,8 @@ public class JwtMiddleware
         {
             // do nothing if jwt validation fails
             // user is not attached to context so request won't have access to secure routes
-            errorLogging.logError(e.Message);
-            errorLogging.messageError("Authentication failed, please try again");
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Authentication failed, please try again");
         }
     }
 }
