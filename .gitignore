@@ -2,5 +2,4 @@ roommate-app/obj/**
 roommate-app/bin/**
 .vs/**
 roommate-app/.vs/**
-roommate-app/appsettings.json
 node_modules
