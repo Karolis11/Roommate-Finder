@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
+using roommate_app.Data;
 using roommate_app.Other.ListingComparers;
 using System.Text.Json;
 
@@ -10,15 +11,16 @@ namespace roommate_app.Controllers;
 public class ListingController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly IFileCreator _file;
     private readonly IListingCompreterFactory _listingFactory;
-    private ErrorLogging errorLogging;
 
-    public ListingController(ILogger<HomeController> logger, IFileCreator file, IListingCompreterFactory listingFactory)
+    private ErrorLogging errorLogging;
+    private readonly ApplicationDbContext _context;
+
+    public ListingController(ILogger<HomeController> logger, IListingCompreterFactory listingFactory, ApplicationDbContext context)
     {
         _logger = logger;
-        _file = file;
         _listingFactory = listingFactory;
+        _context = context;
         errorLogging = new ErrorLogging(file);
     }
 
@@ -33,7 +35,7 @@ public class ListingController : Controller
     [Route("sort")]
     public ActionResult GetSortedListings(SortMode sort, string city)
     {
-        var existingListings = LoadJson();
+        var existingListings = _context.Listings.ToList();
 
         var factory = _listingFactory.createListingComparerFactory();
         var comparer = factory.GetComparer(sortMode: sort, city: city);
@@ -50,10 +52,9 @@ public class ListingController : Controller
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
 
         try{
-            existingListings = LoadJson();
+            _context.Listings.Add(listing);
+            _context.SaveChanges();
             existingListings.Add(listing);
-            string json = JsonSerializer.Serialize(existingListings);
-            _file.Write("Data/listings.json", json, false);
         }
         catch(ArgumentNullException e){
             errorLogging.logError(e.Message);
@@ -68,6 +69,6 @@ public class ListingController : Controller
             errorLogging.messageError("Unexpected error, please restart the program");
         }
 
-        return base.Ok(existingListings);
+        return base.Ok(_context.Listings.ToList());
     }
 }
