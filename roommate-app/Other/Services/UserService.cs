@@ -12,16 +12,22 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 
-namespace roommate_app.Controllers.Authentication;
+namespace roommate_app.Other.Services;
 
 public interface IUserService
 {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     User GetById(int id);
+    Task UpdateUsers();
+    Task<IEnumerable<User>> GetAll();
+    void Add(User user);
+    void Update(int id, User user);
+    void Delete(int id);
 }
 
 public class UserService : IUserService
 {
+    string EncodingString = "aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2"; // TO CHANGE IN FUTURE
 
     List<User> _users;
 
@@ -39,7 +45,7 @@ public class UserService : IUserService
     {
         var user = _users.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
         string token = null;
-        
+
         if (user == null)
         {
             user = new User();
@@ -52,17 +58,11 @@ public class UserService : IUserService
         return new AuthenticateResponse(true, user, token);
     }
 
-    public User GetById(int id)
-    {
-        return _users.FirstOrDefault(x => x.Id == id);
-    }
-
-    // helper methods
     private string generateJwtToken(User user)
     {
         // generate token that is valid for 7 days
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes("aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2");
+        var key = Encoding.ASCII.GetBytes(EncodingString);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
@@ -73,4 +73,31 @@ public class UserService : IUserService
         return tokenHandler.WriteToken(token);
     }
 
+    public User GetById(int id)
+    {
+        return _users.FirstOrDefault(x => x.Id == id);
+    }
+    public Task UpdateUsers()
+    {
+        throw new NotImplementedException();
+    }
+    public Task<IEnumerable<User>> GetAll()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Add(User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Update(int id, User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Delete(int id)
+    {
+        throw new NotImplementedException();
+    }
 }

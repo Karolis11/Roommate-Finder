@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using roommate_app.Other.Services;
 
 namespace roommate_app.Controllers.Authentication;
 

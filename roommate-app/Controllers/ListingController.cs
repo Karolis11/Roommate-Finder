@@ -5,6 +5,7 @@ using roommate_app.Other.ListingComparers;
 using System.Text.Json;
 using Microsoft.Data.SqlClient;
 using roommate_app.Exceptions;
+using roommate_app.Services;
 
 namespace roommate_app.Controllers;
 
@@ -14,7 +15,6 @@ public class ListingController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IListingCompreterFactory _listingFactory;
-
     private readonly IErrorLogging _errorLogging;
     private readonly ApplicationDbContext _context;
 
