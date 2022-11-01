@@ -17,18 +17,21 @@ public class ListingController : Controller
     private readonly IListingCompreterFactory _listingFactory;
     private readonly IErrorLogging _errorLogging;
     private readonly IListingService _listingService;
+    private readonly IUserService _userService;
 
     public ListingController(
         ILogger<HomeController> logger, 
         IListingCompreterFactory listingFactory,
         IListingService listingService, 
-        IErrorLogging errorLogging
+        IErrorLogging errorLogging,
+        IUserService userService
         )
     {
         _logger = logger;
         _listingFactory = listingFactory;
         _listingService = listingService;
         _errorLogging = errorLogging;
+        _userService = userService;
     }
 
     [HttpGet]
@@ -49,8 +52,9 @@ public class ListingController : Controller
     public async Task<ActionResult> Submit([FromBody] Listing listing)
     {
         List<Listing> existingListings = new List<Listing>();
+        List<User> existingUsers = await _userService.GetAllAsync();
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
-        User user = _context.Users.Where(u => u.Email == listing.Email).First();
+        User user = existingUsers.Where(u => u.Email == listing.Email).First();
         Console.WriteLine(user.Id);
         listing.UserId = user.Id;
         listing.User = user;
