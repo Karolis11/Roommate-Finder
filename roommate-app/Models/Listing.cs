@@ -16,8 +16,8 @@ public class Listing
         public string ExtraComment { get; set; }
         public string Date {get; set; }
         public int UserId{ get; set; }
-        [ForeignKey("UserId")]
-        public User User { get; set; }
+        //[ForeignKey("UserId")]
+        //public User User { get; set; }
     }
 static public class ListingExtension
     {

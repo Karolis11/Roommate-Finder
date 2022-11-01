@@ -16,26 +16,26 @@ public class ListingController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IListingCompreterFactory _listingFactory;
     private readonly IErrorLogging _errorLogging;
-    private readonly ApplicationDbContext _context;
+    private readonly IListingService _listingService;
 
     public ListingController(
         ILogger<HomeController> logger, 
-        IListingCompreterFactory listingFactory, 
-        ApplicationDbContext context, 
+        IListingCompreterFactory listingFactory,
+        IListingService listingService, 
         IErrorLogging errorLogging
         )
     {
         _logger = logger;
         _listingFactory = listingFactory;
-        _context = context;
+        _listingService = listingService;
         _errorLogging = errorLogging;
     }
 
     [HttpGet]
     [Route("sort")]
-    public ActionResult GetSortedListings(SortMode sort, string city)
+    public async Task<ActionResult> GetSortedListings(SortMode sort, string city)
     {
-        var existingListings = _context.Listings.ToList();
+        var existingListings = await _listingService.GetAllAsync();
 
         var factory = _listingFactory.createListingComparerFactory();
         var comparer = factory.GetComparer(sortMode: sort, city: city);
@@ -46,14 +46,13 @@ public class ListingController : Controller
     }
 
     [HttpPost]
-    public ActionResult Submit([FromBody] Listing listing)
+    public async Task<ActionResult> Submit([FromBody] Listing listing)
     {
         List<Listing> existingListings = new List<Listing>();
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
 
         try{
-            _context.Listings.Add(listing);
-            _context.SaveChanges();
+            await _listingService.AddAsync(listing);
             existingListings.Add(listing);
         }
         catch(ArgumentNullException e){
@@ -69,6 +68,6 @@ public class ListingController : Controller
             _errorLogging.messageError("Unexpected error, please restart the program");
         }
 
-        return base.Ok(_context.Listings.ToList());
+        return base.Ok(await _listingService.GetAllAsync());
     }
 }

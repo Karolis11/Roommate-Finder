@@ -14,7 +14,7 @@ public class User
     public string Email { get; set; }
     public string Password { get; set; }
     public string City { get; set; }
-    public Lazy<IList<Listing>> Listings => new Lazy<IList<Listing>>(() => new ListingService().GetByUserId(this.Id));
+    //public List<Listing> Listings { get; set; }
 
 }
 

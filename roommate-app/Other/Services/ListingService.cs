@@ -9,11 +9,10 @@ namespace roommate_app.Services;
 public interface IListingService
 {
     IEnumerable<Listing> GetByUserId(int id);
-    Task UpdateListings();
-    Task<IEnumerable<Listing>> GetAll();
-    void Add(Listing listing);
-    void Update(int id, Listing listing);
-    void Delete(int id);
+    Task<List<Listing>> GetAllAsync();
+    Task AddAsync(Listing listing);
+    Task UpdateAsync(int id, Listing listing);
+    Task DeleteAsync(int id);
 }
 
 public class ListingService : IListingService
@@ -40,28 +39,26 @@ public class ListingService : IListingService
         }
         return _userListings;
     }
-    public async Task UpdateListings()
+    public async Task<List<Listing>> GetAllAsync()
     {
-        _listings = await _context.Listings.ToListAsync();
+        var existingListings = await _context.Listings.ToListAsync();
+        return existingListings;
     }
-    public void Add(Listing listing)
+    public async Task AddAsync(Listing listing)
     {
-        throw new NotImplementedException();
+        await _context.Listings.AddAsync(listing);
+        await _context.SaveChangesAsync();
     }
-    public void Delete(int id)
+    public async Task UpdateAsync(int id, Listing listing)
     {
-        throw new NotImplementedException();
+        _context.Listings.Update(listing);
+        await _context.SaveChangesAsync();
     }
-    public Task<IEnumerable<Listing>> GetAll()
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var _listing = _context.Listings.FirstOrDefault(x => x.Id == id);
+        _context.Listings.Remove(_listing);
+        await _context.SaveChangesAsync();
     }
-    public void Update(int id, Listing listing)
-    {
-        throw new NotImplementedException();
-    }
-
-    
-
 
 }

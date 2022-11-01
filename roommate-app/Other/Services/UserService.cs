@@ -11,18 +11,18 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
-namespace roommate_app.Other.Services;
+namespace roommate_app.Services;
 
 public interface IUserService
 {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     User GetById(int id);
-    Task UpdateUsers();
-    Task<IEnumerable<User>> GetAll();
-    void Add(User user);
-    void Update(int id, User user);
-    void Delete(int id);
+    Task<List<User>> GetAllAsync();
+    Task AddAsync(User user);
+    Task UpdateAsync(int id, User user);
+    Task DeleteAsync(int id);
 }
 
 public class UserService : IUserService
@@ -77,27 +77,28 @@ public class UserService : IUserService
     {
         return _users.FirstOrDefault(x => x.Id == id);
     }
-    public Task UpdateUsers()
+    public async Task<List<User>> GetAllAsync()
     {
-        throw new NotImplementedException();
-    }
-    public Task<IEnumerable<User>> GetAll()
-    {
-        throw new NotImplementedException();
+        var existingUsers = await _context.Users.ToListAsync();
+        return existingUsers;
     }
 
-    public void Add(User user)
+    public async Task AddAsync(User user)
     {
-        throw new NotImplementedException();
+        await _context.Users.AddAsync(user);
+        await _context.SaveChangesAsync();
     }
 
-    public void Update(int id, User user)
+    public async Task UpdateAsync(int id, User user)
     {
-        throw new NotImplementedException();
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var _user = _context.Users.FirstOrDefault(x => x.Id == id);
+        _context.Users.Remove(_user);
+        await _context.SaveChangesAsync();
     }
 }

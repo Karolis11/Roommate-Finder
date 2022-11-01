@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using roommate_app.Controllers;
 using roommate_app.Other.FileCreator;
 using roommate_app.Exceptions;
-using roommate_app.Other.Services;
+using roommate_app.Services;
 
 namespace roommate_app.Controllers.Authentication;
 

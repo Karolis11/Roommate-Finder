@@ -10,19 +10,19 @@ namespace roommate_app.Controllers.Registration;
 [ApiController]
 public class RegistrationController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IUserService _userService;
 
-    public RegistrationController(ApplicationDbContext context)
+    public RegistrationController(IUserService userService)
     {
-        _context = context;
+        _userService = userService;
     }
 
     [HttpPost]
-    public OkObjectResult Submit([FromBody] User user)
+    public async Task<OkObjectResult> Submit([FromBody] User user)
     {
         var emailExistsFlag = false;
 
-        List<User> existingUsers = _context.Users.ToList();
+        List<User> existingUsers = await _userService.GetAllAsync();
 
         emailExistsFlag = (
                 from User usr in existingUsers
@@ -32,8 +32,7 @@ public class RegistrationController : ControllerBase
 
         if (!emailExistsFlag)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            await _userService.AddAsync(user);
         }
 
         return base.Ok(
