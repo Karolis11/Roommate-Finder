@@ -50,6 +50,10 @@ public class ListingController : Controller
     {
         List<Listing> existingListings = new List<Listing>();
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
+        User user = _context.Users.Where(u => u.Email == listing.Email).First();
+        Console.WriteLine(user.Id);
+        listing.UserId = user.Id;
+        listing.User = user;
 
         try{
             await _listingService.AddAsync(listing);
