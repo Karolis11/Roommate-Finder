@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json.Linq;
 
 namespace roommate_app.Models
 {
@@ -14,7 +15,9 @@ public class Listing
         public int MaxPrice { get; set ; }
         public string ExtraComment { get; set; }
         public string Date {get; set; }
+        [ForeignKey("User")]
         public int UserId { get; set; }
+        public virtual User User { get; set; }
     }
 static public class ListingExtension
     {

@@ -11,7 +11,7 @@ using roommate_app.Data;
 namespace roommate_app.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221031095654_Initial")]
+    [Migration("20221031162222_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -260,6 +260,8 @@ namespace roommate_app.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Listings");
                 });
 
@@ -343,6 +345,17 @@ namespace roommate_app.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("roommate_app.Models.Listing", b =>
+                {
+                    b.HasOne("roommate_app.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -36,6 +36,8 @@ export const CreateListingComponent = (props) => {
             roommateCount: "",
             extraComment: "",
             date: "",
+            userid: 0,
+            user: {Id: 0, FirstName: "", LastName: "", Email: "", Password:"", City: ""}
         },
         validationSchema: Yup.object({
             firstName: Yup
@@ -68,6 +70,7 @@ export const CreateListingComponent = (props) => {
                 .max(200, "Extra Comment can only be up to 200 characters")
         }),
         onSubmit: (values) => {
+            console.log(values);
             axios({
                 method: 'post',
                 url: 'https://localhost:44332/listing',
