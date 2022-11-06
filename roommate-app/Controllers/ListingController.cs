@@ -5,6 +5,7 @@ using roommate_app.Other.ListingComparers;
 using System.Text.Json;
 using Microsoft.Data.SqlClient;
 using roommate_app.Exceptions;
+using roommate_app.Services;
 
 namespace roommate_app.Controllers;
 
@@ -14,28 +15,30 @@ public class ListingController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IListingCompreterFactory _listingFactory;
-
     private readonly IErrorLogging _errorLogging;
-    private readonly ApplicationDbContext _context;
+    private readonly IListingService _listingService;
+    private readonly IUserService _userService;
 
     public ListingController(
         ILogger<HomeController> logger, 
-        IListingCompreterFactory listingFactory, 
-        ApplicationDbContext context, 
-        IErrorLogging errorLogging
+        IListingCompreterFactory listingFactory,
+        IListingService listingService, 
+        IErrorLogging errorLogging,
+        IUserService userService
         )
     {
         _logger = logger;
         _listingFactory = listingFactory;
-        _context = context;
+        _listingService = listingService;
         _errorLogging = errorLogging;
+        _userService = userService;
     }
 
     [HttpGet]
     [Route("sort")]
-    public ActionResult GetSortedListings(SortMode sort, string city)
+    public async Task<ActionResult> GetSortedListings(SortMode sort, string city)
     {
-        var existingListings = _context.Listings.ToList();
+        var existingListings = await _listingService.GetAllAsync();
 
         var factory = _listingFactory.createListingComparerFactory();
         var comparer = factory.GetComparer(sortMode: sort, city: city);
@@ -46,18 +49,18 @@ public class ListingController : Controller
     }
 
     [HttpPost]
-    public ActionResult Submit([FromBody] Listing listing)
+    public async Task<ActionResult> Submit([FromBody] Listing listing)
     {
         List<Listing> existingListings = new List<Listing>();
+        List<User> existingUsers = await _userService.GetAllAsync();
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
-        User user = _context.Users.Where(u => u.Email == listing.Email).First();
+        User user = existingUsers.Where(u => u.Email == listing.Email).First();
         Console.WriteLine(user.Id);
         listing.UserId = user.Id;
         listing.User = user;
 
         try{
-            _context.Listings.Add(listing);
-            _context.SaveChanges();
+            await _listingService.AddAsync(listing);
             existingListings.Add(listing);
         }
         catch(ArgumentNullException e){
@@ -73,6 +76,6 @@ public class ListingController : Controller
             _errorLogging.messageError("Unexpected error, please restart the program");
         }
 
-        return base.Ok(_context.Listings.ToList());
+        return base.Ok(await _listingService.GetAllAsync());
     }
 }

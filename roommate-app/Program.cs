@@ -9,6 +9,7 @@ using roommate_app.Controllers.Authentication;
 using roommate_app.Other.FileCreator;
 using roommate_app.Other.ListingComparers;
 using roommate_app.Exceptions;
+using roommate_app.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IListingService, ListingService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

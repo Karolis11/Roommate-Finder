@@ -11,17 +11,23 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
 
-namespace roommate_app.Controllers.Authentication;
+namespace roommate_app.Services;
 
 public interface IUserService
 {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     User GetById(int id);
+    Task<List<User>> GetAllAsync();
+    Task AddAsync(User user);
+    Task UpdateAsync(int id, User user);
+    Task DeleteAsync(int id);
 }
 
 public class UserService : IUserService
 {
+    string EncodingString = "aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2"; // TO CHANGE IN FUTURE
 
     List<User> _users;
 
@@ -39,7 +45,7 @@ public class UserService : IUserService
     {
         var user = _users.SingleOrDefault(x => x.Email == model.Email && x.Password == model.Password);
         string token = null;
-        
+
         if (user == null)
         {
             user = new User();
@@ -52,17 +58,11 @@ public class UserService : IUserService
         return new AuthenticateResponse(true, user, token);
     }
 
-    public User GetById(int id)
-    {
-        return _users.FirstOrDefault(x => x.Id == id);
-    }
-
-    // helper methods
     private string generateJwtToken(User user)
     {
         // generate token that is valid for 7 days
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes("aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2");
+        var key = Encoding.ASCII.GetBytes(EncodingString);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
@@ -73,4 +73,32 @@ public class UserService : IUserService
         return tokenHandler.WriteToken(token);
     }
 
+    public User GetById(int id)
+    {
+        return _users.FirstOrDefault(x => x.Id == id);
+    }
+    public async Task<List<User>> GetAllAsync()
+    {
+        var existingUsers = await _context.Users.ToListAsync();
+        return existingUsers;
+    }
+
+    public async Task AddAsync(User user)
+    {
+        await _context.Users.AddAsync(user);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(int id, User user)
+    {
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var _user = _context.Users.FirstOrDefault(x => x.Id == id);
+        _context.Users.Remove(_user);
+        await _context.SaveChangesAsync();
+    }
 }

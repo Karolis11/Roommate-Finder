@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace roommate_app.Models
 {

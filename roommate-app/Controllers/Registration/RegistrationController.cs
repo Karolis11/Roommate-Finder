@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
 using roommate_app.Data;
-using roommate_app.HelperMethods;
+using roommate_app.Services;
 
 namespace roommate_app.Controllers.Registration;
 
@@ -10,21 +10,19 @@ namespace roommate_app.Controllers.Registration;
 [ApiController]
 public class RegistrationController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IUserService _userService;
 
-    private ListingService _listingService;
-    public RegistrationController(ApplicationDbContext context)
+    public RegistrationController(IUserService userService)
     {
-        _context = context;
-        _listingService = new ListingService(context);
+        _userService = userService;
     }
 
     [HttpPost]
-    public OkObjectResult Submit([FromBody] User user)
+    public async Task<OkObjectResult> Submit([FromBody] User user)
     {
         var emailExistsFlag = false;
 
-        List<User> existingUsers = _context.Users.ToList();
+        List<User> existingUsers = await _userService.GetAllAsync();
 
         emailExistsFlag = (
                 from User usr in existingUsers
@@ -34,9 +32,7 @@ public class RegistrationController : ControllerBase
 
         if (!emailExistsFlag)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
-            _listingService.UpdateListings();
+            await _userService.AddAsync(user);
         }
 
         return base.Ok(

@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore;
 using roommate_app.Data;
-using roommate_app.HelperMethods;
+using roommate_app.Services;
 
 namespace roommate_app.Models;
 
@@ -13,7 +14,7 @@ public class User
     public string Email { get; set; }
     public string Password { get; set; }
     public string City { get; set; }
-    public Lazy<IList<Listing>> Listings => new Lazy<IList<Listing>>(() => ListingService.GetByUserId(this.Id));
+    //public List<Listing> Listings { get; set; }
 
 }
 

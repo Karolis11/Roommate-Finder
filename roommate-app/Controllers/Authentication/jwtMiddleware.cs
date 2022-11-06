@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using roommate_app.Controllers;
 using roommate_app.Other.FileCreator;
 using roommate_app.Exceptions;
+using roommate_app.Services;
 
 namespace roommate_app.Controllers.Authentication;
 
 public class JwtMiddleware
 {
+    string EncodingString = "aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2"; // TO CHANGE IN FUTURE
+
     private readonly RequestDelegate _next;
     private readonly AppSettings _appSettings;
     private IErrorLogging _errorLogging;
@@ -39,7 +42,7 @@ public class JwtMiddleware
         try
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2");
+            var key = Encoding.ASCII.GetBytes(EncodingString);
             tokenHandler.ValidateToken(token, new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
