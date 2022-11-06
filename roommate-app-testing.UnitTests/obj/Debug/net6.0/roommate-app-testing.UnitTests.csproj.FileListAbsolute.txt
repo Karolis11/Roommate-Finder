@@ -189,3 +189,4 @@ C:\Users\karoj\Desktop\SEappIII\roommate-app-testing.UnitTests\obj\Debug\net6.0\
 C:\Users\karoj\Desktop\SEappIII\roommate-app-testing.UnitTests\obj\Debug\net6.0\roommate-app-testing.UnitTests.pdb
 C:\Users\karoj\Desktop\SEappIII\roommate-app-testing.UnitTests\obj\Debug\net6.0\roommate-app-testing.UnitTests.genruntimeconfig.cache
 C:\Users\karoj\Desktop\SEappIII\roommate-app-testing.UnitTests\obj\Debug\net6.0\ref\roommate-app-testing.UnitTests.dll
+C:\Users\karoj\Desktop\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll

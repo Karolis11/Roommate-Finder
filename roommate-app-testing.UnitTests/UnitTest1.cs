@@ -11,12 +11,12 @@ namespace roommate_app_testing.UnitTests
 {
     public class LoginTests
     {
-
+        FileCreator file = new FileCreator();
+        
         [Fact]
         public void isLoggedIn_EmailAndPasswordCorrect_ReturnsTrue()
         {
             // Arrange
-            var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
             var loginController = new LoginController(errorLoging, file);
 
@@ -36,7 +36,6 @@ namespace roommate_app_testing.UnitTests
         public void isLoggedIn_EmailCorrectAndPasswordNotCorrect_ReturnsFalse()
         {
             // Arrange
-            var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
             var loginController = new LoginController(errorLoging, file);
 
@@ -56,7 +55,6 @@ namespace roommate_app_testing.UnitTests
         public void isLoggedIn_EmailNotCorrectAndPasswordCorrect_ReturnsFalse()
         {
             // Arrange
-            var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
             var loginController = new LoginController(errorLoging, file);
 
@@ -76,7 +74,6 @@ namespace roommate_app_testing.UnitTests
         public void isLoggedIn_EmailAndPasswordNotCorrect_ReturnsFalse()
         {
             // Arrange
-            var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
             var loginController = new LoginController(errorLoging, file);
 
@@ -93,21 +90,18 @@ namespace roommate_app_testing.UnitTests
         }
     }
 
-    // TODO: PASS CORRECT DB TO RegistrationController
-    // TESTS BELOW FAILS
-
     public class RegisterTests
     {
         [Fact]
-        public void isRegistered_NewEmail_ReturnsTrue()
+        public void isRegistered_NewEmail_ReturnsFalse()
         {
             // Arrange
-            var options = new DbContextOptions<ApplicationDbContext>();
-            var context = new ApplicationDbContext(options);
-            var registrationController = new RegistrationController(context);
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
+            var _dbContext = new ApplicationDbContext(options);
+            var registrationController = new RegistrationController(_dbContext);
 
             // Act
-            var result = registrationController.Submit(new User { Email = "abc1@abc.com", Password = "" });
+            var result = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "" });
 
             // Assert
             Assert.NotNull(result);
@@ -119,15 +113,15 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void isRegistered_UsedEmail_ReturnsFalse()
+        public void isRegistered_2_UsedEmail_ReturnsFalse()
         {
             // Arrange
-            var options = new DbContextOptions<ApplicationDbContext>();
-            var context = new ApplicationDbContext(options);
-            var registrationController = new RegistrationController(context);
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
+            var _dbContext = new ApplicationDbContext(options);
+            var registrationController = new RegistrationController(_dbContext);
 
             // Act
-            var result = registrationController.Submit(new User { Email = "abc@abc.com", Password = "" });
+            var result = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "" });
 
             // Assert
             Assert.NotNull(result);
@@ -137,5 +131,6 @@ namespace roommate_app_testing.UnitTests
 
             Assert.False(model.IsSuccess);
         }
+
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MhT1Ig7TmjkTgGmYgCHllkg6sj6YHzookv3S8AvnD9lCnYuI1si4sFLHHt70C6pcd5NkP5di6ec8OtzVGobfLw==",
+  "dgSpecHash": "3jysDmP13nuh7TyIEhxuV6nelGrOe3PxYUX3i5kfDyx+hSkHm58oTKuX1UiYU8QmKQvt3W4172uqZ7OkOeN4kw==",
   "success": true,
   "projectFilePath": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\karoj\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.10\\microsoft.entityframeworkcore.6.0.10.nupkg.sha512",
     "C:\\Users\\karoj\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.10\\microsoft.entityframeworkcore.abstractions.6.0.10.nupkg.sha512",
     "C:\\Users\\karoj\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.10\\microsoft.entityframeworkcore.analyzers.6.0.10.nupkg.sha512",
+    "C:\\Users\\karoj\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\6.0.10\\microsoft.entityframeworkcore.inmemory.6.0.10.nupkg.sha512",
     "C:\\Users\\karoj\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.10\\microsoft.entityframeworkcore.relational.6.0.10.nupkg.sha512",
     "C:\\Users\\karoj\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\6.0.10\\microsoft.entityframeworkcore.sqlite.6.0.10.nupkg.sha512",
     "C:\\Users\\karoj\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\6.0.10\\microsoft.entityframeworkcore.sqlite.core.6.0.10.nupkg.sha512",
