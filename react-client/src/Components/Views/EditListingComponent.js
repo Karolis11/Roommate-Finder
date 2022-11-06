@@ -16,7 +16,7 @@ const options = [
 
 const cityOptions = []
 
-export const CreateListingComponent = (props) => {
+export const EditListingComponent = (props) => {
 
     for(let i = 0; i < LithuanianCities.length; ++i){
         cityOptions[i] = {value: i, label: LithuanianCities[i]}
@@ -26,34 +26,23 @@ export const CreateListingComponent = (props) => {
 
     const formik = useFormik({
         initialValues: {
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            city: "",
-            maxPrice: "",
-            roommateCount: "",
-            extraComment: "",
-            date: "",
-            userid: 0,
-            user: {Id: 0, FirstName: "", LastName: "", Email: "", Password:"", City: ""}
+            id: props.listing.id,
+            firstName: props.listing.firstName,
+            lastName: props.listing.lastName,
+            email: props.listing.email,
+            phone: props.listing.phone,
+            city: props.listing.city,
+            maxPrice: props.listing.maxPrice,
+            roommateCount: props.listing.roommateCount,
+            extraComment: props.listing.extraComment,
+            date: props.listing.date,
+            userid: props.listing.userId,
+            user: props.listing.user
         },
         validationSchema: Yup.object({
-            firstName: Yup
-                .string()
-                .max(64, "Name can only be up to 64 characters")
-                .required("Required"),
-            lastName: Yup
-                .string()
-                .max(128, "Lastname can only be up to 128 characters")
-                .required("Required"),
             phone: Yup
                 .string()
                 .phone("LT")
-                .required("Required"),
-            email: Yup
-                .string()
-                .email("Invalid email address")
                 .required("Required"),
             city: Yup
                 .string()
@@ -72,11 +61,10 @@ export const CreateListingComponent = (props) => {
             console.log(values);
             axios({
                 method: 'post',
-                url: 'https://localhost:44332/listing',
+                url: 'https://localhost:44332/listing/update',
                 data: values
             }).then((response) => {
-                console.log(response.data);
-                props.toggleCreateListing(false);
+                props.toggleEditListing(null, false);
             })
             }
         }
@@ -86,63 +74,6 @@ export const CreateListingComponent = (props) => {
         <>
         <div className="centered-container create-listing-container">
             <form onSubmit={formik.handleSubmit}>
-                <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="firstName">First name</label></div>
-                    <div className="form-field-flex">
-                        <input
-                            name="firstName"
-                            id="firstName"
-                            type="text"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.firstName}
-                        />
-                        {
-                            formik.touched.firstName && formik.errors.firstName &&
-                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                    {formik.errors.firstName}
-                                </p>
-                        }
-                    </div>
-                </div>
-                <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="lastName">Last name</label></div>
-                    <div className="form-field-flex">
-                        <input
-                            name="lastName"
-                            id="lastName"
-                            type="text"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.lastName}
-                        />
-                        {
-                            formik.touched.lastName && formik.errors.lastName &&
-                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                    {formik.errors.lastName}
-                                </p>
-                        }
-                    </div>
-                </div>
-                <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="email">Email</label></div>
-                    <div className="form-field-flex">
-                        <input
-                            name="email"
-                            id="email"
-                            type="email"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.email}
-                        />
-                        {
-                            formik.touched.email && formik.errors.email && 
-                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                    {formik.errors.email}
-                                </p>
-                        }
-                    </div>
-                </div>
                 <div className="form-field-container-flex">
                     <div className="form-field-flex"><label htmlFor="phone">Phone Number</label></div>
                     <div className="form-field-flex">
@@ -160,17 +91,6 @@ export const CreateListingComponent = (props) => {
                                     {formik.errors.phone}
                                 </p>
                         }
-                    </div>
-                </div>
-                <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="city">City</label></div>
-                    <div className="form-field-flex">
-                        <CitySelect
-                            options={cityOptions}
-                            value={formik.values.city}
-                            className={'number'}
-                            onChange={value => formik.setFieldValue('city',value.label)}
-                        />
                     </div>
                 </div>
                 <div className="form-field-container-flex">
@@ -222,7 +142,7 @@ export const CreateListingComponent = (props) => {
                         }
                     </div>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Update</button>
             </form>
             <small>   * - Optional Fields</small>
             <p>{responseMessage}</p>
