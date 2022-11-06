@@ -86,7 +86,6 @@ public class ListingController : Controller
     {
         try
         {
-            // 0 is dummy for now
             await _listingService.UpdateAsync(listing.Id, listing);
         } 
         catch(SqlException e)
