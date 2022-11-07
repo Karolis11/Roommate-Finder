@@ -16,9 +16,10 @@ public class LoginController : ControllerBase{
     private readonly IFileCreator _file;
     ErrorLogging _errorLogging;
 
-    public LoginController(ErrorLogging errorLogging)
+    public LoginController(ErrorLogging errorLogging, IFileCreator file)
     {
-        _errorLogging = _errorLogging;
+        _errorLogging = errorLogging;
+        _file = file;
     }
 
     [HttpPost]
@@ -27,8 +28,10 @@ public class LoginController : ControllerBase{
         
         bool passwordAndEmailCorrect = false;
 
-        try{
+        try
+        {
             List<User> users = LoadUsers();
+
             passwordAndEmailCorrect = (
                     from User usr in users
                     where usr.Email.ToLower() == user.Email.ToLower()
@@ -44,7 +47,8 @@ public class LoginController : ControllerBase{
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Linq expression failed");
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Unexpected error, please restart the program");
         }
