@@ -26,14 +26,12 @@ public class ListingService : IListingService
     public IList<Listing> GetByUserId(int id)
     {
         IList<Listing> _userListings = new List<Listing>();
-        IList<Listing> _existingListings = new List<Listing>.(_listings);
-        System.Diagnostics.Debug.WriteLine("DEBUG");
-        System.Diagnostics.Debug.WriteLine(_listings);
-        for (int i = 0; i < _listings.Count; i++)
+        IList<Listing> _existingListings = new List<Listing>((IEnumerable<Listing>)_listings);
+        for (int i = 0; i < _existingListings.Count; i++)
         {
-            if (_listings[i].UserId == id)
+            if (_existingListings[i].UserId == id)
             {
-                _userListings.Add(_listings[i]);
+                _userListings.Add(_existingListings[i]);
             }
         }
         return _userListings;
