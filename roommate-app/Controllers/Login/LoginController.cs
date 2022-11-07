@@ -1,17 +1,16 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using roommate_app.Models;
-using System.Text.Json;
-using System.IO;
-using roommate_app.Other.FileCreator;
 using roommate_app.Exceptions;
+using roommate_app.Models;
+using roommate_app.Other.FileCreator;
+using System.Text.Json;
 
 namespace roommate_app.Controllers.Login;
 
 [Route("[controller]")]
 [ApiController]
 
-public class LoginController : ControllerBase{
+public class LoginController : ControllerBase
+{
 
     private readonly IFileCreator _file;
     ErrorLogging _errorLogging;
@@ -22,12 +21,14 @@ public class LoginController : ControllerBase{
     }
 
     [HttpPost]
-    public OkObjectResult Submit([FromBody] User user){
+    public OkObjectResult Submit([FromBody] User user)
+    {
 
-        
+
         bool passwordAndEmailCorrect = false;
 
-        try{
+        try
+        {
             List<User> users = LoadUsers();
             passwordAndEmailCorrect = (
                     from User usr in users
@@ -36,15 +37,18 @@ public class LoginController : ControllerBase{
                     select usr
                 ).Count() == 1;
         }
-        catch(FileNotFoundException e){
+        catch (FileNotFoundException e)
+        {
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("The listings were not found");
         }
-        catch(InvalidOperationException e){
+        catch (InvalidOperationException e)
+        {
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Linq expression failed");
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Unexpected error, please restart the program");
         }
@@ -64,7 +68,7 @@ public class LoginController : ControllerBase{
             )
         );
     }
-    
+
     private List<User> LoadUsers()
     {
         string json = _file.ReadToEndFile("./Data/users.json");
