@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "roommate-app-testing.UnitTests/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.InMemory": "7.0.0",
           "Microsoft.NET.Test.Sdk": "17.1.0",
           "coverlet.collector": "3.1.2",
           "roommate-app": "1.0.0",
@@ -1903,7 +1904,6 @@
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.6",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.6",
           "Microsoft.AspNetCore.Identity.UI": "6.0.6",
-          "Microsoft.EntityFrameworkCore.InMemory": "7.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.10",
           "Microsoft.EntityFrameworkCore.Sqlite": "6.0.10",
           "Microsoft.IdentityModel.Tokens": "6.24.0",
