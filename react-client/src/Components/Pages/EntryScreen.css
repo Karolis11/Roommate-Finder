@@ -1,0 +1,99 @@
+.entry-btn {
+    position: relative;
+    display: block;
+    color: black;
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    font-family: "montserrat";
+    text-decoration: none;
+    margin: 30px 0;
+    border: 2px solid black;
+    left: 25px;
+    bottom: 25px;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.entry-btn::before {
+    background: #ff7675;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: -1;
+    transition: all 0.6s ease;
+}
+
+.create-listing-btn {
+    position: relative;
+    display: block;
+    color: black;
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    font-family: "montserrat";
+    text-decoration: none;
+    margin: 30px 0;
+    border: 2px solid black;
+    left: 650px;
+    bottom: 25px;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.create-listing-btn::before {
+        background: #ff7675;
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: -1;
+        transition: all 0.6s ease;
+}
+
+h2 {
+    font-family: sans-serif;
+    margin: 20px auto;
+    bottom: 30px;
+    color: black;
+    text-align: center;
+    font-size: 30px;
+    max-width: 600px;
+    position: relative;
+}
+
+h2:before {
+    content: "";
+    display: block;
+    height: 2px;
+    background: #000;
+    left: 0;
+    top: 50%;
+    position: absolute;
+    width: 400%;
+    margin-left: 120%;
+}
+
+h2:after {
+    content: "";
+    display: block;
+    height: 2px;
+    background: #000;
+    right: 0;
+    top: 50%;
+    position: absolute;
+    width: 500%;
+    margin-right: 120%;
+}
+
+.entry-logo
+{
+    margin-bottom: 20px;
+    bottom: 100px;
+    height:250px;
+    border-color: black;
+    border-width: 50px;
+}
