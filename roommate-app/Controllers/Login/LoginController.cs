@@ -16,7 +16,7 @@ public class LoginController : ControllerBase{
 
     private readonly IErrorLogging _errorLogging;
     private readonly IUserService _userService;
-    public LoginController(ErrorLogging errorLogging, IUserService userService)
+    public LoginController(IErrorLogging errorLogging, IUserService userService)
     {
         _errorLogging = errorLogging;
         _userService = userService;
