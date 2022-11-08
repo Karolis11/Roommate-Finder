@@ -12,11 +12,11 @@ using roommate_app.Services;
 
 namespace roommate_app_testing.UnitTests
 {
-    public class DataBaseTests
+    public class DataBaseTests_LoginAndRegister
     {
 
         [Fact]
-        public void Register_NewEmail_ReturnsTrue()
+        public void A_Register_NewEmail_ReturnsTrue()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
@@ -34,7 +34,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void Register2_UsedEmail_ReturnsFalse()
+        public void B_Register_UsedEmail_ReturnsFalse()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
@@ -52,7 +52,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void Second_Login_EmailAndPasswordCorrect_ReturnsTrue()
+        public void C_Login_EmailAndPasswordCorrect_ReturnsTrue()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
@@ -71,7 +71,7 @@ namespace roommate_app_testing.UnitTests
             Assert.True(model.IsSuccess);
         }
         [Fact]
-        public void Second_Login_EmailCorrectAndPasswordNotCorrect_ReturnsFalse()
+        public void C_Login_EmailCorrectAndPasswordNotCorrect_ReturnsFalse()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
@@ -91,7 +91,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void Second_Login_EmailNotCorrectAndPasswordCorrect_ReturnsFalse()
+        public void C_Login_EmailNotCorrectAndPasswordCorrect_ReturnsFalse()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
@@ -111,7 +111,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void Second_Login_EmailAndPasswordNotCorrect_ReturnsFalse()
+        public void C_Login_EmailAndPasswordNotCorrect_ReturnsFalse()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
