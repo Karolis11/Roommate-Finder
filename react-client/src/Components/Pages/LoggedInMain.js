@@ -4,7 +4,7 @@ import { CreateListingButton } from '../Buttons/CreateListingButton';
 import { ListOfListings } from '../ListOfListings';
 import { FilterComponent } from '../Views/FilterComponent';
 import axios from 'axios';
-
+import './EntryScreen.css'
 import './Filters.css';
 
 
@@ -75,7 +75,7 @@ export class LoggedInMain extends Component {
                                 <CreateListingButton
                                     id="create-listing-button"
                                     text="New listing"
-                                    class="btn"
+                                    class="create-listing-btn"
                                     onclick={this.toggleCreateListingWrapper.bind(this)}
                                 />
                                 { this.state.listings && <ListOfListings listings={this.state.listings}/> }

@@ -9206,19 +9206,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\karoj\\.nuget\\packages\\": {}
+    "C:\\Users\\Edvinas\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\Edvinas\\source\\repos\\psi\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
       "projectName": "roommate-app-testing.UnitTests",
-      "projectPath": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\karoj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app-testing.UnitTests\\obj\\",
+      "projectPath": "C:\\Users\\Edvinas\\source\\repos\\psi\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\Edvinas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Edvinas\\source\\repos\\psi\\SEappIII\\roommate-app-testing.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\karoj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Edvinas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9232,8 +9232,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app\\roommate-app.csproj": {
-              "projectPath": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app\\roommate-app.csproj"
+            "C:\\Users\\Edvinas\\source\\repos\\psi\\SEappIII\\roommate-app\\roommate-app.csproj": {
+              "projectPath": "C:\\Users\\Edvinas\\source\\repos\\psi\\SEappIII\\roommate-app\\roommate-app.csproj"
             }
           }
         }
