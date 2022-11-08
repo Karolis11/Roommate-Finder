@@ -4,9 +4,17 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useSnackbar } from 'notistack'
 import { useNavigate } from 'react-router-dom';
+import { LithuanianCities } from '../Views/LithuanianCities.js';
+import CitySelect from '../Views/CitySelect';
+
+const cityOptions = []
 
 export const Signup = (props) => {
     const navigate = useNavigate();
+
+    for (let i = 0; i < LithuanianCities.length; ++i) {
+        cityOptions[i] = { value: i, label: LithuanianCities[i] }
+    }
 
     const [redirectionMsg, setRedirectionMsg] = useState("");
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
@@ -75,12 +83,13 @@ export const Signup = (props) => {
 
     return (
         <>
+        <h1>Registration</h1>
         <div className="centered-container signup-container">
             <form onSubmit={formik.handleSubmit}>
-                <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="firstName">First name</label></div>
+            <div className="form-field-container-flex">
+                        <div className="form-field-flex-text"><label htmlFor="firstName">First Name</label></div>
                     <div className="form-field-flex">
-                        <input 
+                            <input className="signup-form-input"
                             name="firstName" 
                             id="firstName" 
                             type="text" 
@@ -97,9 +106,9 @@ export const Signup = (props) => {
                     </div>
                 </div>
                 <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="lastName">Last name</label></div>
+                        <div className="form-field-flex-text"><label htmlFor="lastName">Last Name</label></div>
                     <div className="form-field-flex">
-                        <input 
+                            <input className="signup-form-input"
                             name="lastName" 
                             id="lastName" 
                             type="text"
@@ -116,9 +125,9 @@ export const Signup = (props) => {
                     </div>
                 </div>
                 <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="email">Email</label></div>
+                        <div className="form-field-flex-text"><label htmlFor="email">Email</label></div>
                     <div className="form-field-flex">
-                        <input 
+                            <input className="signup-form-input"
                             name="email" 
                             id="email" 
                             type="email"
@@ -135,9 +144,9 @@ export const Signup = (props) => {
                     </div>
                 </div>
                 <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="password">Password</label></div>
+                        <div className="form-field-flex-text"><label htmlFor="password">Password</label></div>
                     <div className="form-field-flex">
-                        <input 
+                            <input className="signup-form-input"
                             name="password" 
                             id="password" 
                             type="password"
@@ -154,15 +163,13 @@ export const Signup = (props) => {
                     </div>
                 </div>
                 <div className="form-field-container-flex">
-                    <div className="form-field-flex"><label htmlFor="city">City</label></div>
+                    <div className="form-field-flex-text"><label htmlFor="city">City</label></div>
                     <div className="form-field-flex">
-                        <input 
-                            name="city" 
-                            id="city" 
-                            type="text"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
+                        <CitySelect
+                            options={cityOptions}
                             value={formik.values.city}
+                            className={'number'}
+                            onChange={value => formik.setFieldValue('city',value.label)}
                         />
                         { 
                             formik.touched.city && formik.errors.city &&
