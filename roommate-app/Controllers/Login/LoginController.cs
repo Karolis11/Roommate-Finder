@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using roommate_app.Exceptions;
 using roommate_app.Models;
 using roommate_app.Other.FileCreator;
-using System.Text.Json;
+using roommate_app.Exceptions;
+using roommate_app.Services;
 
 namespace roommate_app.Controllers.Login;
 
@@ -12,38 +13,29 @@ namespace roommate_app.Controllers.Login;
 public class LoginController : ControllerBase
 {
 
-    private readonly IFileCreator _file;
-    ErrorLogging _errorLogging;
-
-    public LoginController(ErrorLogging errorLogging)
+    private readonly IErrorLogging _errorLogging;
+    private readonly IUserService _userService;
+    public LoginController(IErrorLogging errorLogging, IUserService userService)
     {
-        _errorLogging = _errorLogging;
+        _errorLogging = errorLogging;
+        _userService = userService;
     }
 
     [HttpPost]
-    public OkObjectResult Submit([FromBody] User user)
-    {
-
+    public async Task<OkObjectResult> Submit([FromBody] User user){
 
         bool passwordAndEmailCorrect = false;
 
-        try
-        {
-            List<User> users = LoadUsers();
+        try{
+            List<User> existingUsers = await _userService.GetAllAsync();
             passwordAndEmailCorrect = (
-                    from User usr in users
+                    from User usr in existingUsers
                     where usr.Email.ToLower() == user.Email.ToLower()
                         && usr.Password == user.Password
                     select usr
                 ).Count() == 1;
         }
-        catch (FileNotFoundException e)
-        {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("The listings were not found");
-        }
-        catch (InvalidOperationException e)
-        {
+        catch(InvalidOperationException e){
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Linq expression failed");
         }
@@ -68,12 +60,4 @@ public class LoginController : ControllerBase
             )
         );
     }
-
-    private List<User> LoadUsers()
-    {
-        string json = _file.ReadToEndFile("./Data/users.json");
-        Console.WriteLine(json);
-        return JsonSerializer.Deserialize<List<User>>(json);
-    }
-
 }

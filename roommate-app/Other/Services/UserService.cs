@@ -26,12 +26,12 @@ public class UserService : IUserService
 
     List<User> _users;
 
-    private readonly AppSettings _appSettings;
+    // private readonly AppSettings _appSettings;
     private readonly ApplicationDbContext _context;
 
-    public UserService(IOptions<AppSettings> appSettings, ApplicationDbContext context)
+    public UserService(ApplicationDbContext context)
     {
-        _appSettings = appSettings.Value;
+        // _appSettings = appSettings.Value;
         _context = context;
         _users = _context.Users.ToList();
     }
