@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using roommate_app.Models;
 using roommate_app.Data;
 using Microsoft.EntityFrameworkCore;
+using roommate_app.Other.WebSocket;
 
 namespace roommate_app.Services;
 
@@ -21,10 +22,14 @@ public class ListingService : IListingService
 
     private readonly ApplicationDbContext _context;
 
+    public delegate void ListingUpdatedEventHandler(object source, EventArgs e);
+    public event ListingUpdatedEventHandler ListingUpdated;
+
     public ListingService(ApplicationDbContext context)
     {
         _context = context;
         _listings = _context.Listings.ToList();
+        ListingUpdated += PusherChannel.OnListingUpdated;
     }
 
     public IEnumerable<Listing> GetByUserId(int id)
@@ -51,14 +56,27 @@ public class ListingService : IListingService
     }
     public async Task UpdateAsync(int id, Listing listing)
     {
-        _context.Listings.Update(listing);
+        var lst = _context.Listings.Where(l => l.Id == id).First();
+        lst.Phone = listing.Phone;
+        lst.RoommateCount = listing.RoommateCount;
+        lst.MaxPrice = listing.MaxPrice;
+        lst.ExtraComment = listing.ExtraComment;
         await _context.SaveChangesAsync();
+        OnListingUpdated();
     }
     public async Task DeleteAsync(int id)
     {
         var _listing = _context.Listings.FirstOrDefault(x => x.Id == id);
         _context.Listings.Remove(_listing);
         await _context.SaveChangesAsync();
+    }
+
+    protected virtual void OnListingUpdated()
+    {
+        if (ListingUpdated != null)
+        {
+            ListingUpdated(this, EventArgs.Empty);
+        }
     }
 
 }

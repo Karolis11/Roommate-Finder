@@ -55,11 +55,12 @@ public class ListingController : Controller
         List<User> existingUsers = await _userService.GetAllAsync();
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
         User user = existingUsers.Where(u => u.Email == listing.Email).First();
-        Console.WriteLine(user.Id);
+
         listing.UserId = user.Id;
         listing.User = user;
 
-        try{
+        try
+        {
             await _listingService.AddAsync(listing);
             existingListings.Add(listing);
         }
@@ -77,5 +78,27 @@ public class ListingController : Controller
         }
 
         return base.Ok(await _listingService.GetAllAsync());
+    }
+
+    [HttpPost]
+    [Route("update")]
+    public async Task<ActionResult> UpdateListing([FromBody] Listing listing)
+    {
+        try
+        {
+            await _listingService.UpdateAsync(listing.Id, listing);
+        } 
+        catch(SqlException e)
+        {
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Could not update a listing (SQL database exception).");
+        } 
+        catch(Exception e)
+        {
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Unexpected error, please restart the program");
+        }
+
+        return base.Ok("Listing updated");
     }
 }

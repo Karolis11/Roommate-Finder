@@ -23,6 +23,9 @@ export class ListOfListings extends Component {
                                         <div className="listingDate">
                                             {listing.date}
                                         </div>
+                                        <button
+                                            onClick={() => {this.props.toggleEditListingView(listing, true);}}
+                                        >Edit</button>
                                     </div>
 
                                     <div className="listingReview ">

@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import { CreateListingComponent } from '../Views/CreateListingComponent';
+import { EditListingComponent } from '../Views/EditListingComponent';
 import { CreateListingButton } from '../Buttons/CreateListingButton';
 import { ListOfListings } from '../ListOfListings';
 import { FilterComponent } from '../Views/FilterComponent';
 import axios from 'axios';
+import Pusher from 'pusher-js';
 import './EntryScreen.css'
 import './Filters.css';
 
@@ -14,8 +16,11 @@ export class LoggedInMain extends Component {
         super(props);
 
         this.state = {
+            city: null,
             listings: undefined,
             createListingView: false,
+            editListingView: false,
+            editedListing: null,
         }
 
         this.toggleCreateListing = this.toggleCreateListing.bind(this);
@@ -34,6 +39,13 @@ export class LoggedInMain extends Component {
         this.toggleCreateListing(true);
     }
 
+    toggleEditListingView = (listing, toggleBool) => {
+        this.setState({
+            editedListing: listing,
+            editListingView: toggleBool
+        })
+    }
+
     componentDidMount() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
@@ -42,12 +54,22 @@ export class LoggedInMain extends Component {
                     url: `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=default`
                 })
                 .then((response) => {
+                    this.setState({city: response.data.city});
                     this.getListings(response.data.city);
                 })
             });
         } else {
             this.getListings(null);
         }
+
+        const pusher = new Pusher('ae5e63689c26a34fbdbf', {
+            cluster: 'mt1'
+        });
+        const channel = pusher.subscribe('listing_feed');
+        const that = this;
+        channel.bind('feed_updated', function(data) {
+            that.getListings(that.state.city);
+        });
     }
 
     getListings = (city) => {
@@ -60,7 +82,6 @@ export class LoggedInMain extends Component {
     }
 
     render() {
-
         return (
             <>
             <FilterComponent updateListings={this.updateListings.bind(this)}/>
@@ -70,18 +91,31 @@ export class LoggedInMain extends Component {
                     ?
                         <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
                     :
-                        <div className="listings-container">
-                            <>
-                                <CreateListingButton
-                                    id="create-listing-button"
-                                    text="New listing"
-                                    class="create-listing-btn"
-                                    onclick={this.toggleCreateListingWrapper.bind(this)}
-                                />
-                                { this.state.listings && <ListOfListings listings={this.state.listings}/> }
-                                
-                            </>
-                        </div>
+                        this.state.editListingView
+                        ?
+                            <EditListingComponent 
+                                listing={this.state.editedListing} 
+                                toggleEditListing={this.toggleEditListingView.bind(this)}
+                            />
+                        :
+                            <div className="listings-container">
+                                <>
+                                    <CreateListingButton
+                                        id="create-listing-button"
+                                        text="New listing"
+                                        class="create-listing-btn"
+                                        onclick={this.toggleCreateListingWrapper.bind(this)}
+                                    />
+                                    { 
+                                        this.state.listings && 
+                                        <ListOfListings 
+                                            listings={this.state.listings}
+                                            toggleEditListingView={this.toggleEditListingView.bind(this)}
+                                            /> 
+                                    }
+                                    
+                                </>
+                            </div>
                 }
             </div>
             </>
