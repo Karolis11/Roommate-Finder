@@ -25,7 +25,6 @@ public class ListingService : IListingService
     public ListingService(ApplicationDbContext context)
     {
         _context = context;
-        _listings = _context.Listings.ToList();
         ListingUpdated += PusherChannel.OnListingUpdated;
     }
 
