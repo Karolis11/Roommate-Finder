@@ -64,9 +64,10 @@ export const Login = (props) => {
 
     return (
         <>
-        <div className="centered-container login-container">
-            <form onSubmit={formik.handleSubmit}>
-                <div className="form-field-container-flex">
+            <div className="centered-container login-container">
+                <form onSubmit={formik.handleSubmit}>
+                    <h2>Login</h2>
+                    <div className="form-field-container-flex">
                     <div className="form-field-flex"><label htmlFor="email">Email</label></div>
                     <div className="form-field-flex">
                         <input 
