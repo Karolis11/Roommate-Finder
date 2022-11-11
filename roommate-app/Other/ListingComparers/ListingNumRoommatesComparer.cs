@@ -4,7 +4,7 @@ namespace roommate_app.Other.ListingComparers;
 
 public class ListingNumRoommatesComparer : ListingComparer
 {
-    public ListingNumRoommatesComparer(string city) : base(city) {}
+    public ListingNumRoommatesComparer(string city) : base(city) { }
 
     public override int Compare(Listing? x, Listing? y)
     {

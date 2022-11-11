@@ -1,17 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using roommate_app.Controllers.Authentication;
-using roommate_app.Models;
 using roommate_app.Data;
-using System;
-using System.Collections.Generic;
+using roommate_app.Models;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Text.Json;
-using Microsoft.EntityFrameworkCore;
 
 namespace roommate_app.Services;
 

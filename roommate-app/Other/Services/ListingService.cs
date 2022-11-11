@@ -1,15 +1,13 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using roommate_app.Models;
-using roommate_app.Data;
 using Microsoft.EntityFrameworkCore;
+using roommate_app.Data;
+using roommate_app.Models;
 using roommate_app.Other.WebSocket;
 
 namespace roommate_app.Services;
 
 public interface IListingService
 {
-    IEnumerable<Listing> GetByUserId(int id);
+    IList<Listing> GetByUserId(int id);
     Task<List<Listing>> GetAllAsync();
     Task AddAsync(Listing listing);
     Task UpdateAsync(int id, Listing listing);
@@ -18,8 +16,7 @@ public interface IListingService
 
 public class ListingService : IListingService
 {
-    List<Listing> _listings;
-
+    private Lazy<List<Listing>> _listings => new Lazy<List<Listing>>(() => _context.Listings.ToList());
     private readonly ApplicationDbContext _context;
 
     public delegate void ListingUpdatedEventHandler(object source, EventArgs e);
@@ -28,18 +25,18 @@ public class ListingService : IListingService
     public ListingService(ApplicationDbContext context)
     {
         _context = context;
-        _listings = _context.Listings.ToList();
         ListingUpdated += PusherChannel.OnListingUpdated;
     }
 
-    public IEnumerable<Listing> GetByUserId(int id)
+    public IList<Listing> GetByUserId(int id)
     {
-        List<Listing> _userListings = new List<Listing>();
-        for (int i = 0; i < _listings.Count; i++)
+        IList<Listing> _userListings = new List<Listing>();
+        IList<Listing> _existingListings = new List<Listing>((IEnumerable<Listing>)_listings);
+        for (int i = 0; i < _existingListings.Count; i++)
         {
-            if (_listings[i].UserId == id)
+            if (_existingListings[i].UserId == id)
             {
-                _userListings.Add(_listings[i]);
+                _userListings.Add(_existingListings[i]);
             }
         }
         return _userListings;

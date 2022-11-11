@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using roommate_app.Exceptions;
 using roommate_app.Models;
-using System.Text.Json;
-using System.IO;
 using roommate_app.Other.FileCreator;
 using roommate_app.Exceptions;
 using roommate_app.Services;
@@ -12,7 +10,8 @@ namespace roommate_app.Controllers.Login;
 [Route("[controller]")]
 [ApiController]
 
-public class LoginController : ControllerBase{
+public class LoginController : ControllerBase
+{
 
     private readonly IErrorLogging _errorLogging;
     private readonly IUserService _userService;
@@ -40,7 +39,8 @@ public class LoginController : ControllerBase{
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Linq expression failed");
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Unexpected error, please restart the program");
         }
@@ -60,5 +60,4 @@ public class LoginController : ControllerBase{
             )
         );
     }
-    
 }

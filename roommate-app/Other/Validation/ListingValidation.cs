@@ -1,8 +1,5 @@
-﻿using System;
+﻿using roommate_app.Models;
 using System.Text.RegularExpressions;
-using System.Globalization;
-using roommate_app.Models;
-using System.Reflection.Metadata.Ecma335;
 
 namespace roommate_app.Other.Validation;
 public static class ValidationExtensions
@@ -49,9 +46,9 @@ public static class ValidationExtensions
             x => string.IsNullOrWhiteSpace(str.ExtraComment),
             x => str.ExtraComment.Length > 200
         };
-        return ValidationRules.All(x => x(str) == false); 
+        return ValidationRules.All(x => x(str) == false);
     }
-    public static bool ValidateMaximumPrice(this Listing? number) 
+    public static bool ValidateMaximumPrice(this Listing? number)
     {
         List<Func<Listing, bool>> ValidationRules = new List<Func<Listing, bool>>
         {

@@ -1,15 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using roommate_app.Controllers;
-using roommate_app.Other.FileCreator;
 using roommate_app.Exceptions;
 using roommate_app.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace roommate_app.Controllers.Authentication;
 
@@ -59,7 +53,7 @@ public class JwtMiddleware
             // attach user to context on successful jwt validation
             context.Items["User"] = userService.GetById(userId);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             // do nothing if jwt validation fails
             // user is not attached to context so request won't have access to secure routes
