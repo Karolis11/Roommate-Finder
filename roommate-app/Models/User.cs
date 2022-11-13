@@ -1,10 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Microsoft.EntityFrameworkCore;
-using roommate_app.Data;
-using roommate_app.Services;
-
-namespace roommate_app.Models;
+﻿namespace roommate_app.Models;
 
 public class User
 {

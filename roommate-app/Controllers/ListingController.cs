@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using roommate_app.Models;
-using roommate_app.Data;
-using roommate_app.Other.ListingComparers;
-using System.Text.Json;
 using Microsoft.Data.SqlClient;
 using roommate_app.Exceptions;
+using roommate_app.Models;
+using roommate_app.Other.ListingComparers;
 using roommate_app.Services;
 
 namespace roommate_app.Controllers;
@@ -24,7 +22,7 @@ public class ListingController : Controller
         IListingCompreterFactory listingFactory, 
         IErrorLogging errorLogging,
         IListingService listingService,
-    IGenericService genericService
+        IGenericService genericService
         )
     {
         _logger = logger;
@@ -64,15 +62,18 @@ public class ListingController : Controller
             await _genericService.AddAsync<Listing>(listing);
             existingListings.Add(listing);
         }
-        catch(ArgumentNullException e){
+        catch (ArgumentNullException e)
+        {
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Failed to load existing listing");
         }
-        catch(SqlException e){
+        catch (SqlException e)
+        {
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Could not insert a listing into the database.");
         }
-        catch(Exception e){
+        catch (Exception e)
+        {
             _errorLogging.logError(e.Message);
             _errorLogging.messageError("Unexpected error, please restart the program");
         }

@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
-using roommate_app.Data;
 using roommate_app.Services;
 
 namespace roommate_app.Controllers.Registration;
@@ -37,7 +35,7 @@ public class RegistrationController : ControllerBase
         return base.Ok(
             new RegistrationResponse(
                 !emailExistsFlag,
-                emailExistsFlag 
+                emailExistsFlag
                     ? "Account with this email already exists"
                     : "Your account has been successfully created."
             )

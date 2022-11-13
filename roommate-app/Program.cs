@@ -1,14 +1,9 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using roommate_app.Data;
 using roommate_app.Controllers.Authentication;
-using roommate_app.Other.FileCreator;
-using roommate_app.Other.ListingComparers;
+using roommate_app.Data;
 using roommate_app.Exceptions;
+using roommate_app.Other.FileCreator;
 using roommate_app.Services;
 
 var builder = WebApplication.CreateBuilder(args);
