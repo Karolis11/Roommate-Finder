@@ -21,8 +21,8 @@ namespace roommate_app_testing.UnitTests
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
             var _dbContext = new ApplicationDbContext(options);
-            var userService = new UserService(_dbContext);
-            var registrationController = new RegistrationController(userService);
+            var genericService = new GenericService(_dbContext);
+            var registrationController = new RegistrationController(genericService);
 
             // Act
             var result = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "password" });
@@ -39,8 +39,8 @@ namespace roommate_app_testing.UnitTests
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
             var _dbContext = new ApplicationDbContext(options);
-            var userService = new UserService(_dbContext);
-            var registrationController = new RegistrationController(userService);
+            var genericService = new GenericService(_dbContext);
+            var registrationController = new RegistrationController(genericService);
 
             // Act
             var result = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "password" });
@@ -57,10 +57,10 @@ namespace roommate_app_testing.UnitTests
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
             var _dbContext = new ApplicationDbContext(options);
-            var userService = new UserService(_dbContext);
+            var genericService = new GenericService(_dbContext);
             var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
-            var loginController = new LoginController(errorLoging, userService);
+            var loginController = new LoginController(errorLoging, genericService);
 
             // Act
             var result = loginController.Submit(new User { Email = "abc@abc.com", Password = "password" });
@@ -76,10 +76,10 @@ namespace roommate_app_testing.UnitTests
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
             var _dbContext = new ApplicationDbContext(options);
-            var userService = new UserService(_dbContext);
+            var genericService = new GenericService(_dbContext);
             var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
-            var loginController = new LoginController(errorLoging, userService);
+            var loginController = new LoginController(errorLoging, genericService);
 
             // Act
             var result = loginController.Submit(new User { Email = "abc@abc.com", Password = "password1" });
@@ -96,10 +96,10 @@ namespace roommate_app_testing.UnitTests
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
             var _dbContext = new ApplicationDbContext(options);
-            var userService = new UserService(_dbContext);
+            var genericService = new GenericService(_dbContext);
             var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
-            var loginController = new LoginController(errorLoging, userService);
+            var loginController = new LoginController(errorLoging, genericService);
 
             // Act
             var result = loginController.Submit(new User { Email = "abc1@abc.com", Password = "password" });
@@ -116,10 +116,10 @@ namespace roommate_app_testing.UnitTests
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
             var _dbContext = new ApplicationDbContext(options);
-            var userService = new UserService(_dbContext);
+            var genericService = new GenericService(_dbContext);
             var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
-            var loginController = new LoginController(errorLoging, userService);
+            var loginController = new LoginController(errorLoging, genericService);
 
             // Act
             var result = loginController.Submit(new User { Email = "abc1@abc.com", Password = "password1" });
