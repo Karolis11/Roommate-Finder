@@ -16,18 +16,21 @@ public class ListingController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly IListingCompreterFactory _listingFactory;
     private readonly IErrorLogging _errorLogging;
+    private readonly IListingService _listingService;
     private readonly IGenericService _genericService;
 
     public ListingController(
         ILogger<HomeController> logger, 
         IListingCompreterFactory listingFactory, 
         IErrorLogging errorLogging,
-        IGenericService genericService
+        IListingService listingService,
+    IGenericService genericService
         )
     {
         _logger = logger;
         _listingFactory = listingFactory;
         _errorLogging = errorLogging;
+        _listingService = listingService;
         _genericService = genericService;
     }
 
@@ -83,7 +86,7 @@ public class ListingController : Controller
     {
         try
         {
-            await _genericService.UpdateAsync<Listing>(listing.Id, listing);
+            await _listingService.UpdateAsync(listing.Id, listing);
         } 
         catch(SqlException e)
         {

@@ -15,11 +15,11 @@ namespace roommate_app.Controllers.Login;
 public class LoginController : ControllerBase{
 
     private readonly IErrorLogging _errorLogging;
-    private readonly IUserService _userService;
-    public LoginController(IErrorLogging errorLogging, IUserService userService)
+    private readonly IGenericService _genericService;
+    public LoginController(IErrorLogging errorLogging, IGenericService genericService)
     {
         _errorLogging = errorLogging;
-        _userService = userService;
+        _genericService = genericService;
     }
 
     [HttpPost]
@@ -28,7 +28,7 @@ public class LoginController : ControllerBase{
         bool passwordAndEmailCorrect = false;
 
         try{
-            List<User> existingUsers = await _userService.GetAllAsync();
+            List<User> existingUsers = await _genericService.GetAllAsync<User>();
             passwordAndEmailCorrect = (
                     from User usr in existingUsers
                     where usr.Email.ToLower() == user.Email.ToLower()
