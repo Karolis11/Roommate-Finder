@@ -15,28 +15,28 @@ public class ListingController : Controller
     private readonly IListingCompreterFactory _listingFactory;
     private readonly IErrorLogging _errorLogging;
     private readonly IListingService _listingService;
-    private readonly IUserService _userService;
+    private readonly IGenericService _genericService;
 
     public ListingController(
-        ILogger<HomeController> logger,
-        IListingCompreterFactory listingFactory,
-        IListingService listingService,
+        ILogger<HomeController> logger, 
+        IListingCompreterFactory listingFactory, 
         IErrorLogging errorLogging,
-        IUserService userService
+        IListingService listingService,
+        IGenericService genericService
         )
     {
         _logger = logger;
         _listingFactory = listingFactory;
-        _listingService = listingService;
         _errorLogging = errorLogging;
-        _userService = userService;
+        _listingService = listingService;
+        _genericService = genericService;
     }
 
     [HttpGet]
     [Route("sort")]
     public async Task<ActionResult> GetSortedListings(SortMode sort, string city)
     {
-        var existingListings = await _listingService.GetAllAsync();
+        var existingListings = await _genericService.GetAllAsync<Listing>();
 
         var factory = _listingFactory.createListingComparerFactory();
         var comparer = factory.GetComparer(sortMode: sort, city: city);
@@ -50,7 +50,7 @@ public class ListingController : Controller
     public async Task<ActionResult> Submit([FromBody] Listing listing)
     {
         List<Listing> existingListings = new List<Listing>();
-        List<User> existingUsers = await _userService.GetAllAsync();
+        List<User> existingUsers = await _genericService.GetAllAsync<User>();
         listing.Date = DateTime.Now.ToString("yyyy-MM-dd");
         User user = existingUsers.Where(u => u.Email == listing.Email).First();
 
@@ -59,7 +59,7 @@ public class ListingController : Controller
 
         try
         {
-            await _listingService.AddAsync(listing);
+            await _genericService.AddAsync<Listing>(listing);
             existingListings.Add(listing);
         }
         catch (ArgumentNullException e)
@@ -78,7 +78,7 @@ public class ListingController : Controller
             _errorLogging.messageError("Unexpected error, please restart the program");
         }
 
-        return base.Ok(await _listingService.GetAllAsync());
+        return base.Ok(await _genericService.GetAllAsync<Listing>());
     }
 
     [HttpPost]

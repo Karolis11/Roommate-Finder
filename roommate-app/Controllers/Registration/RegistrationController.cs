@@ -8,11 +8,10 @@ namespace roommate_app.Controllers.Registration;
 [ApiController]
 public class RegistrationController : ControllerBase
 {
-    private readonly IUserService _userService;
-
-    public RegistrationController(IUserService userService)
+    private readonly IGenericService _genericService;
+    public RegistrationController(IGenericService genericService)
     {
-        _userService = userService;
+        _genericService = genericService;
     }
 
     [HttpPost]
@@ -20,7 +19,7 @@ public class RegistrationController : ControllerBase
     {
         var emailExistsFlag = false;
 
-        List<User> existingUsers = await _userService.GetAllAsync();
+        List<User> existingUsers = await _genericService.GetAllAsync<User>();
 
         emailExistsFlag = (
                 from User usr in existingUsers
@@ -30,7 +29,7 @@ public class RegistrationController : ControllerBase
 
         if (!emailExistsFlag)
         {
-            await _userService.AddAsync(user);
+            await _genericService.AddAsync<User>(user);
         }
 
         return base.Ok(

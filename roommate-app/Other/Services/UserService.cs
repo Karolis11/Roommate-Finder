@@ -14,10 +14,6 @@ public interface IUserService
 {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     User GetById(int id);
-    Task<List<User>> GetAllAsync();
-    Task AddAsync(User user);
-    Task UpdateAsync(int id, User user);
-    Task DeleteAsync(int id);
 }
 
 public class UserService : IUserService
@@ -71,29 +67,5 @@ public class UserService : IUserService
     public User GetById(int id)
     {
         return _users.FirstOrDefault(x => x.Id == id);
-    }
-    public async Task<List<User>> GetAllAsync()
-    {
-        var existingUsers = await _context.Users.ToListAsync();
-        return existingUsers;
-    }
-
-    public async Task AddAsync(User user)
-    {
-        await _context.Users.AddAsync(user);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task UpdateAsync(int id, User user)
-    {
-        _context.Users.Update(user);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task DeleteAsync(int id)
-    {
-        var _user = _context.Users.FirstOrDefault(x => x.Id == id);
-        _context.Users.Remove(_user);
-        await _context.SaveChangesAsync();
     }
 }

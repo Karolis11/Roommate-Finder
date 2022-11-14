@@ -8,10 +8,7 @@ namespace roommate_app.Services;
 public interface IListingService
 {
     IList<Listing> GetByUserId(int id);
-    Task<List<Listing>> GetAllAsync();
-    Task AddAsync(Listing listing);
     Task UpdateAsync(int id, Listing listing);
-    Task DeleteAsync(int id);
 }
 
 public class ListingService : IListingService
@@ -41,16 +38,6 @@ public class ListingService : IListingService
         }
         return _userListings;
     }
-    public async Task<List<Listing>> GetAllAsync()
-    {
-        var existingListings = await _context.Listings.ToListAsync();
-        return existingListings;
-    }
-    public async Task AddAsync(Listing listing)
-    {
-        await _context.Listings.AddAsync(listing);
-        await _context.SaveChangesAsync();
-    }
     public async Task UpdateAsync(int id, Listing listing)
     {
         var lst = _context.Listings.Where(l => l.Id == id).First();
@@ -61,13 +48,6 @@ public class ListingService : IListingService
         await _context.SaveChangesAsync();
         OnListingUpdated();
     }
-    public async Task DeleteAsync(int id)
-    {
-        var _listing = _context.Listings.FirstOrDefault(x => x.Id == id);
-        _context.Listings.Remove(_listing);
-        await _context.SaveChangesAsync();
-    }
-
     protected virtual void OnListingUpdated()
     {
         if (ListingUpdated != null)

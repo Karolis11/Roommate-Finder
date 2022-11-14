@@ -36,6 +36,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IListingService, ListingService>();
+builder.Services.AddScoped<IGenericService, GenericService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
