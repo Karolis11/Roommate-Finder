@@ -18,8 +18,8 @@ public class ListingController : Controller
     private readonly IGenericService _genericService;
 
     public ListingController(
-        ILogger<HomeController> logger, 
-        IListingCompreterFactory listingFactory, 
+        ILogger<HomeController> logger,
+        IListingCompreterFactory listingFactory,
         IErrorLogging errorLogging,
         IListingService listingService,
         IGenericService genericService
@@ -64,18 +64,18 @@ public class ListingController : Controller
         }
         catch (ArgumentNullException e)
         {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Failed to load existing listing");
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Failed to load existing listing");
         }
         catch (SqlException e)
         {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Could not insert a listing into the database.");
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Could not insert a listing into the database.");
         }
         catch (Exception e)
         {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Unexpected error, please restart the program");
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Unexpected error, please restart the program");
         }
 
         return base.Ok(await _genericService.GetAllAsync<Listing>());
@@ -88,16 +88,16 @@ public class ListingController : Controller
         try
         {
             await _listingService.UpdateAsync(listing.Id, listing);
-        } 
-        catch(SqlException e)
+        }
+        catch (SqlException e)
         {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Could not update a listing (SQL database exception).");
-        } 
-        catch(Exception e)
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Could not update a listing (SQL database exception).");
+        }
+        catch (Exception e)
         {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Unexpected error, please restart the program");
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Unexpected error, please restart the program");
         }
 
         return base.Ok("Listing updated");
