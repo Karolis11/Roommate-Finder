@@ -102,4 +102,26 @@ public class ListingController : Controller
 
         return base.Ok("Listing updated");
     }
+
+    [HttpPost]
+    [Route("delete")]
+    public async Task<ActionResult> DeleteListing([FromBody] Listing listing)
+    {
+        try
+        {
+            await _genericService.DeleteAsync<Listing>(listing.Id);
+        }
+        catch (SqlException e)
+        {
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Could not delete a listing (SQL database exception).");
+        }
+        catch (Exception e)
+        {
+            _errorLogging.logError(e.Message);
+            _errorLogging.messageError("Unexpected error, please restart the program");
+        }
+
+        return base.Ok("Listing deleted");
+    }
 }
