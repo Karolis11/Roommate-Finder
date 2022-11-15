@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, PropTypes } from 'react';
 import { CreateListingComponent } from '../Views/CreateListingComponent';
 import { EditListingComponent } from '../Views/EditListingComponent';
 import { CreateListingButton } from '../Buttons/CreateListingButton';
@@ -21,13 +21,18 @@ export class LoggedInMain extends Component {
             createListingView: false,
             editListingView: false,
             editedListing: null,
+            deletedListing: null,
         }
-
+        
         this.toggleCreateListing = this.toggleCreateListing.bind(this);
     }
 
     updateListings = (listings) => {
         this.setState({listings: listings});
+    }
+    
+    toggleDeletedListing = (listing) => {
+        this.setState({ deletedListing: listing });
     }
 
     toggleCreateListing = (toggleBool) => {
@@ -38,7 +43,7 @@ export class LoggedInMain extends Component {
     toggleCreateListingWrapper = () => {
         this.toggleCreateListing(true);
     }
-
+    
     toggleEditListingView = (listing, toggleBool) => {
         this.setState({
             editedListing: listing,
@@ -78,6 +83,16 @@ export class LoggedInMain extends Component {
             url: `https://localhost:44332/listing/sort?sort=0&city=${encodeURIComponent(city)}`
         }).then((response) => {
             this.setState({listings: response.data})
+        })
+    }
+    
+    deleteListing = () => {
+        axios({
+            method: 'delete',
+            url: `https://localhost:44332/listing/delete`,
+            data: this.state.deletedListing
+        }).then((response) => {
+            this.setState({ listings: response.data })
         })
     }
 
