@@ -22,11 +22,13 @@ public class LoginController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<OkObjectResult> Submit([FromBody] User user){
+    public async Task<OkObjectResult> Submit([FromBody] User user)
+    {
 
         bool passwordAndEmailCorrect = false;
 
-        try{
+        try
+        {
             List<User> existingUsers = await _genericService.GetAllAsync<User>();
             passwordAndEmailCorrect = (
                     from User usr in existingUsers
@@ -35,14 +37,15 @@ public class LoginController : ControllerBase
                     select usr
                 ).Count() == 1;
         }
-        catch(InvalidOperationException e){
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Linq expression failed");
+        catch (InvalidOperationException e)
+        {
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Linq expression failed");
         }
         catch (Exception e)
         {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Unexpected error, please restart the program");
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Unexpected error, please restart the program");
         }
 
         return base.Ok(

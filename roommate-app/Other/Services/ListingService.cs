@@ -16,27 +16,27 @@ public class ListingService : IListingService
     private Lazy<List<Listing>> _listings => new Lazy<List<Listing>>(() => _context.Listings.ToList());
     private readonly ApplicationDbContext _context;
 
-    public delegate void ListingUpdatedEventHandler(object source, EventArgs e);
-    public event ListingUpdatedEventHandler ListingUpdated;
+    public delegate void ListingFeedUpdatedEventHandler(object source, EventArgs e);
+    public event ListingFeedUpdatedEventHandler ListingFeedUpdated;
 
     public ListingService(ApplicationDbContext context)
     {
         _context = context;
-        ListingUpdated += PusherChannel.OnListingUpdated;
+        ListingFeedUpdated += PusherChannel.OnListingFeedUpdated;
     }
 
     public IList<Listing> GetByUserId(int id)
     {
-        IList<Listing> _userListings = new List<Listing>();
-        IList<Listing> _existingListings = new List<Listing>((IEnumerable<Listing>)_listings);
-        for (int i = 0; i < _existingListings.Count; i++)
+        IList<Listing> userListings = new List<Listing>();
+        IList<Listing> existingListings = new List<Listing>((IEnumerable<Listing>)_listings);
+        for (int i = 0; i < existingListings.Count; i++)
         {
-            if (_existingListings[i].UserId == id)
+            if (existingListings[i].UserId == id)
             {
-                _userListings.Add(_existingListings[i]);
+                userListings.Add(existingListings[i]);
             }
         }
-        return _userListings;
+        return userListings;
     }
     public async Task UpdateAsync(int id, Listing listing)
     {
@@ -46,13 +46,13 @@ public class ListingService : IListingService
         lst.MaxPrice = listing.MaxPrice;
         lst.ExtraComment = listing.ExtraComment;
         await _context.SaveChangesAsync();
-        OnListingUpdated();
+        OnListingFeedUpdated();
     }
-    protected virtual void OnListingUpdated()
+    protected virtual void OnListingFeedUpdated()
     {
-        if (ListingUpdated != null)
+        if (ListingFeedUpdated != null)
         {
-            ListingUpdated(this, EventArgs.Empty);
+            ListingFeedUpdated(this, EventArgs.Empty);
         }
     }
 

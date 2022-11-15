@@ -27,7 +27,7 @@ public class PusherChannel
         return new OkObjectResult(data);
     }
 
-    public static void OnListingUpdated(object source, EventArgs e)
+    public static void OnListingFeedUpdated(object source, EventArgs e)
     {
         Trigger(new object(), "listing_feed", "feed_updated");
     }

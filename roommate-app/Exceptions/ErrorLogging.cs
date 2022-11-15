@@ -3,8 +3,8 @@ using roommate_app.Other.FileCreator;
 namespace roommate_app.Exceptions;
 public interface IErrorLogging
 {
-    public void logError(string msg);
-    public void messageError(string msg);
+    void LogError(string msg);
+    void MessageError(string msg);
 }
 public class ErrorLogging : IErrorLogging
 {
@@ -15,11 +15,12 @@ public class ErrorLogging : IErrorLogging
         _file = file;
     }
 
-    public void logError(string msg){
+    public void LogError(string msg)
+    {
         _file.Write(path, "Date: " + DateTime.UtcNow.ToString() + " Message: " + msg, false);
     }
 
-    public void messageError(string msg)
+    public void MessageError(string msg)
     {
         Console.WriteLine(msg);
     }

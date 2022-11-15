@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using roommate_app.Data;
+using roommate_app.Other.WebSocket;
 
 public interface IGenericService
 {
@@ -11,13 +12,16 @@ public interface IGenericService
     Task SaveAsync();
 }
 public class GenericService : IGenericService
-{ 
+{
     private ApplicationDbContext _context;
+    public delegate void ListingFeedUpdatedEventHandler(object source, EventArgs e);
+    public event ListingFeedUpdatedEventHandler ListingFeedUpdated;
     public GenericService(ApplicationDbContext context)
     {
         _context = context;
+        ListingFeedUpdated += PusherChannel.OnListingFeedUpdated;
     }
-    public async Task<List<T>> GetAllAsync<T>() 
+    public async Task<List<T>> GetAllAsync<T>()
         where T : class
     {
         return await _context.Set<T>().ToListAsync();
@@ -32,8 +36,13 @@ public class GenericService : IGenericService
     {
         await _context.Set<T>().AddAsync(obj);
         await SaveAsync();
+
+        if (obj is roommate_app.Models.Listing)
+        {
+
+        }
     }
-    public async Task UpdateAsync<T>(int id, T obj) 
+    public async Task UpdateAsync<T>(int id, T obj)
         where T : class
     {
         var entity = _context.Set<T>().Find(id);
@@ -55,5 +64,12 @@ public class GenericService : IGenericService
     public async Task SaveAsync()
     {
         await _context.SaveChangesAsync();
+    }
+    protected virtual void OnListingFeedUpdated()
+    {
+        if (ListingFeedUpdated != null)
+        {
+            ListingFeedUpdated(this, EventArgs.Empty);
+        }
     }
 }

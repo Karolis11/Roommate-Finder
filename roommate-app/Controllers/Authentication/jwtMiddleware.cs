@@ -57,8 +57,8 @@ public class JwtMiddleware
         {
             // do nothing if jwt validation fails
             // user is not attached to context so request won't have access to secure routes
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Authentication failed, please try again");
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Authentication failed, please try again");
         }
     }
 }
