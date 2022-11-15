@@ -1,7 +1,9 @@
 ﻿using roommate_app.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Controllers.Authentication
 {
+    [ExcludeFromCodeCoverage]
     public class AuthenticateResponse
     {
         public bool SuccessfulLogin { get; set; }

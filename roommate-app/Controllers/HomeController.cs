@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Controllers
 {

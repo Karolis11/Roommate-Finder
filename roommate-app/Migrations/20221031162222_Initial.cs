@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable disable
 
 namespace roommate_app.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

@@ -1,10 +1,11 @@
 using roommate_app.Other.ListingComparers;
+using System.Diagnostics.CodeAnalysis;
 
 public interface IListingCompreterFactory
 {
     ListingComparerFactory createListingComparerFactory();
 }
-
+[ExcludeFromCodeCoverage]
 public class ListingComparerFactory : IListingCompreterFactory
 {
     ListingComparerFactory IListingCompreterFactory.createListingComparerFactory()

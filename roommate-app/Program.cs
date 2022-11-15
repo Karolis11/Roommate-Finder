@@ -5,6 +5,9 @@ using roommate_app.Data;
 using roommate_app.Exceptions;
 using roommate_app.Other.FileCreator;
 using roommate_app.Services;
+using System.Diagnostics.CodeAnalysis;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using roommate_app.Controllers.Authentication;
 using roommate_app.Data;
 using roommate_app.Models;
+using System.Diagnostics.CodeAnalysis;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -15,7 +16,7 @@ public interface IUserService
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     User GetById(int id);
 }
-
+[ExcludeFromCodeCoverage]
 public class UserService : IUserService
 {
     string EncodingString = "aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2"; // TO CHANGE IN FUTURE

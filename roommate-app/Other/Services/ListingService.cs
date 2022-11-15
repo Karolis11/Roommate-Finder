@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using roommate_app.Data;
 using roommate_app.Models;
 using roommate_app.Other.WebSocket;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Services;
 
@@ -10,7 +11,7 @@ public interface IListingService
     IList<Listing> GetByUserId(int id);
     Task UpdateAsync(int id, Listing listing);
 }
-
+[ExcludeFromCodeCoverage]
 public class ListingService : IListingService
 {
     private Lazy<List<Listing>> _listings => new Lazy<List<Listing>>(() => _context.Listings.ToList());

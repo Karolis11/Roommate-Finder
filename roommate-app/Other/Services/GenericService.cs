@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using roommate_app.Data;
 using roommate_app.Other.WebSocket;
+using System.Diagnostics.CodeAnalysis;
+
 
 public interface IGenericService
 {
@@ -11,6 +13,8 @@ public interface IGenericService
     Task DeleteAsync<T>(object id) where T : class;
     Task SaveAsync();
 }
+
+[ExcludeFromCodeCoverage]
 public class GenericService : IGenericService
 {
     private ApplicationDbContext _context;

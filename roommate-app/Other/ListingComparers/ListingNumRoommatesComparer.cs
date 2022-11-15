@@ -1,7 +1,8 @@
 ﻿using roommate_app.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Other.ListingComparers;
-
+[ExcludeFromCodeCoverage]
 public class ListingNumRoommatesComparer : ListingComparer
 {
     public ListingNumRoommatesComparer(string city) : base(city) { }
