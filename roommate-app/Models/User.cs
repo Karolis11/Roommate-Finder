@@ -1,5 +1,8 @@
-﻿namespace roommate_app.Models;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace roommate_app.Models;
+
+[ExcludeFromCodeCoverage]
 public class User
 {
     public int Id { get; set; }

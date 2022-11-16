@@ -4,11 +4,13 @@ using roommate_app.Exceptions;
 using roommate_app.Models;
 using roommate_app.Other.ListingComparers;
 using roommate_app.Services;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[ExcludeFromCodeCoverage]
 public class ListingController : Controller
 {
     private readonly ILogger<HomeController> _logger;

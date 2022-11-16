@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PusherServer;
 
 namespace roommate_app.Other.WebSocket;
+[ExcludeFromCodeCoverage]
 public class PusherChannel
 {
     public static async Task<IActionResult> Trigger(object data, string channelName, string eventName)

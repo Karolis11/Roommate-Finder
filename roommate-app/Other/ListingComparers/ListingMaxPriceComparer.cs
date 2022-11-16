@@ -1,7 +1,6 @@
 ﻿using roommate_app.Models;
 
 namespace roommate_app.Other.ListingComparers;
-
 public class ListingMaxPriceComparer : ListingComparer
 {
 

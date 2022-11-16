@@ -1,4 +1,5 @@
 using roommate_app.Other.FileCreator;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Exceptions;
 public interface IErrorLogging
@@ -6,6 +7,7 @@ public interface IErrorLogging
     void LogError(string msg);
     void MessageError(string msg);
 }
+[ExcludeFromCodeCoverage]
 public class ErrorLogging : IErrorLogging
 {
     private readonly IFileCreator _file;

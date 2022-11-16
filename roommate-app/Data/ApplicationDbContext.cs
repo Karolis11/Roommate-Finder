@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using roommate_app.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Data;
 public class ApplicationDbContext : IdentityDbContext
