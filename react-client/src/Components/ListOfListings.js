@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { useState } from 'react';
 import "./ListStyles.css";
 
 export class ListOfListings extends Component {
@@ -26,6 +27,12 @@ export class ListOfListings extends Component {
                                         <button
                                             onClick={() => {this.props.toggleEditListingView(listing, true);}}
                                         >Edit</button>
+                                        <button
+                                            onClick={() => {
+                                                //this.props.toggleDeletedListing(listing);
+                                                //this.props.deleteListing();
+                                            }}
+                                        >Delete</button>
                                     </div>
 
                                     <div className="listingReview ">

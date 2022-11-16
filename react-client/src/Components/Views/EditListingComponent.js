@@ -7,6 +7,7 @@ import CustomRoommates from './CustomRoommates'
 import "yup-phone";
 import { LithuanianCities } from './LithuanianCities.js';
 import CitySelect from './CitySelect';
+import Slider from 'react-input-slider';
 
 const options = [
     { value: 1, label: '1' },
@@ -23,6 +24,8 @@ export const EditListingComponent = (props) => {
     }
 
     const [responseMessage, setResponseMessage] = useState("");
+
+    const [state, setState] = useState({ x: 0 });
 
     const formik = useFormik({
         initialValues: {
@@ -107,20 +110,33 @@ export const EditListingComponent = (props) => {
                 <div className="form-field-container-flex">
                     <div className="form-field-flex"><label htmlFor="price">Maximum Price:</label></div>
                         <div className="form-field-flex" style={{ height: "150px" }}>
-                            <input
+                            <Slider
+                                styles={{
+                                    track: {
+                                    },
+                                    active: {
+                                        backgroundColor:'black'
+                                    },
+                                    thumb: {
+                                        backgroundColor: 'white',
+                                        width: 20,
+                                        height: 20
+                                    },
+                                    disabled: {
+                                        opacity: 0.5
+                                    }
+                                }}
+                                xmax={5000}
+                                axis="x"
+                                x={state.x}
+                                xStep={50}
                                 name="maxPrice"
                                 id="maxPrice"
                                 type="maxPrice"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.maxPrice}>
-                            </input>
-                            {
-                                formik.touched.maxPrice && formik.errors.maxPrice &&
-                                <p style={{ color: "red", margin: "0", padding: "0", fontSize: "10px" }}>
-                                    {formik.errors.maxPrice}
-                                </p>
-                            }
+                                onChange={({ x }) => setState(state => ({ ...state, x }))}
+                                value={formik.values.maxPrice = state.x}>
+                            </Slider>
+                            <div>{state.x} &#8364;</div>
                     </div>
                 </div>
                 <div className="form-field-container-flex">
