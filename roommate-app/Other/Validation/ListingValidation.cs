@@ -53,7 +53,7 @@ public static class ValidationExtensions
         List<Func<Listing, bool>> ValidationRules = new List<Func<Listing, bool>>
         {
             x => number.MaxPrice == null,
-            x => number.MaxPrice > 999999 && number.MaxPrice < 0
+            x => number.MaxPrice > 5000 && number.MaxPrice < 0
         };
         return ValidationRules.All(x => x(number) == false);
     }

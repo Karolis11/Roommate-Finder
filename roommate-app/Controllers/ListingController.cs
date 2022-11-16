@@ -105,11 +105,11 @@ public class ListingController : Controller
 
     [HttpDelete]
     [Route("delete")]
-    public async Task<ActionResult> DeleteListing([FromBody] Listing listing)
+    public async Task<ActionResult> DeleteListing(int Id)
     {
         try
         {
-            await _genericService.DeleteAsync<Listing>(listing.Id);
+            await _genericService.DeleteAsync<Listing>(Id);
         }
         catch (SqlException e)
         {
