@@ -136,7 +136,7 @@ export const EditListingComponent = (props) => {
                                 onChange={({ x }) => setState(state => ({ ...state, x }))}
                                 value={formik.values.maxPrice = state.x}>
                             </Slider>
-                            <div>{state.x}</div>
+                            <div>{state.x} &#8364;</div>
                     </div>
                 </div>
                 <div className="form-field-container-flex">
