@@ -103,7 +103,7 @@ public class ListingController : Controller
         return base.Ok("Listing updated");
     }
 
-    [HttpPost]
+    [HttpDelete]
     [Route("delete")]
     public async Task<ActionResult> DeleteListing([FromBody] Listing listing)
     {
