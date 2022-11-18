@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Other.ListingComparers;
-[ExcludeFromCodeCoverage]
 public class ListingCityComparer : ListingComparer
 {
 

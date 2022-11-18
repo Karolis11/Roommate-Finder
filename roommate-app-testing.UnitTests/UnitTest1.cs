@@ -8,6 +8,7 @@ using roommate_app.Data;
 using roommate_app.Exceptions;
 using roommate_app.Models;
 using roommate_app.Other.FileCreator;
+using roommate_app.Other.ListingComparers;
 using roommate_app.Services;
 
 namespace roommate_app_testing.UnitTests
@@ -71,7 +72,7 @@ namespace roommate_app_testing.UnitTests
             Assert.True(model.IsSuccess);
         }
         [Fact]
-        public void C_Login_EmailCorrectAndPasswordNotCorrect_ReturnsFalse()
+        public void D_Login_EmailCorrectAndPasswordNotCorrect_ReturnsFalse()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
@@ -91,7 +92,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void C_Login_EmailNotCorrectAndPasswordCorrect_ReturnsFalse()
+        public void E_Login_EmailNotCorrectAndPasswordCorrect_ReturnsFalse()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
@@ -111,7 +112,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void C_Login_EmailAndPasswordNotCorrect_ReturnsFalse()
+        public void F_Login_EmailAndPasswordNotCorrect_ReturnsFalse()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
@@ -128,6 +129,486 @@ namespace roommate_app_testing.UnitTests
             // Assert
             Assert.NotNull(model);
             Assert.False(model.IsSuccess);
+        }
+    }
+
+    public class ComparersTest_FactoryAndComparers
+    {
+        [Fact]
+        public void A_ListingComparerFactoryGeneratesClassesCorrectly()
+        {
+            var factory = new ListingComparerFactory();
+            Assert.IsType<ListingMaxPriceComparer>(factory.GetComparer(SortMode.MaxPrice));
+            Assert.IsType<ListingNumRoommatesComparer>(factory.GetComparer(SortMode.NumRoommates));
+            Assert.IsType<ListingCityComparer>(factory.GetComparer(SortMode.City));
+        }
+
+        [Fact]
+        public void B_MaxPriceComparerSortsListingsCorrectly()
+        {
+            var comparer = new ListingMaxPriceComparer("Vilnius");
+            List<Listing> listings = new List<Listing>();
+            listings.Add(new Listing { City = "Klaipeda", MaxPrice = 3 });
+            listings.Add(new Listing { City = "Klaipeda", MaxPrice = 1 });
+            listings.Add(new Listing { City = "Klaipeda", MaxPrice = 2 });
+            listings.Add(new Listing { City = "Vilnius", MaxPrice = 2 });
+            listings.Add(new Listing { City = "Vilnius", MaxPrice = 1 });
+            listings.Sort(comparer);
+
+            List<Listing> expectedListings = new List<Listing>();
+            expectedListings.Add(new Listing { City = "Vilnius", MaxPrice = 1 });
+            expectedListings.Add(new Listing { City = "Vilnius", MaxPrice = 2 });
+            expectedListings.Add(new Listing { City = "Klaipeda", MaxPrice = 1 });
+            expectedListings.Add(new Listing { City = "Klaipeda", MaxPrice = 2 });
+            expectedListings.Add(new Listing { City = "Klaipeda", MaxPrice = 3 });
+
+            for (int i = 0; i < listings.Count; i++)
+            {
+                Assert.Equal(expectedListings[i].City, listings[i].City);
+                Assert.Equal(expectedListings[i].MaxPrice, listings[i].MaxPrice);
+            }
+        }
+
+        [Fact]
+        public void C_NumRoommatesComparerSortsListingsCorrectly()
+        {
+            var comparer = new ListingNumRoommatesComparer("Vilnius");
+            List<Listing> listings = new List<Listing>();
+            listings.Add(new Listing { City = "Klaipeda", RoommateCount = 3 });
+            listings.Add(new Listing { City = "Klaipeda", RoommateCount = 1 });
+            listings.Add(new Listing { City = "Klaipeda", RoommateCount = 2 });
+            listings.Add(new Listing { City = "Vilnius", RoommateCount = 2 });
+            listings.Add(new Listing { City = "Vilnius", RoommateCount = 1 });
+            listings.Sort(comparer);
+
+            List<Listing> expectedListings = new List<Listing>();
+            expectedListings.Add(new Listing { City = "Vilnius", RoommateCount = 1 });
+            expectedListings.Add(new Listing { City = "Vilnius", RoommateCount = 2 });
+            expectedListings.Add(new Listing { City = "Klaipeda", RoommateCount = 1 });
+            expectedListings.Add(new Listing { City = "Klaipeda", RoommateCount = 2 });
+            expectedListings.Add(new Listing { City = "Klaipeda", RoommateCount = 3 });
+
+            for (int i = 0; i < listings.Count; i++)
+            {
+                Assert.Equal(expectedListings[i].City, listings[i].City);
+                Assert.Equal(expectedListings[i].MaxPrice, listings[i].MaxPrice);
+            }
+        }
+
+        [Fact]
+        public void D_CityComparerSortsListingsCorrectly()
+        {
+            var comparer = new ListingCityComparer();
+            List<Listing> listings = new List<Listing>();
+            listings.Add(new Listing { City = "C" });
+            listings.Add(new Listing { City = "E" });
+            listings.Add(new Listing { City = "B" });
+            listings.Add(new Listing { City = "A" });
+            listings.Add(new Listing { City = "D" });
+            listings.Sort(comparer);
+
+            List<Listing> expectedListings = new List<Listing>();
+            expectedListings.Add(new Listing { City = "A" });
+            expectedListings.Add(new Listing { City = "B" });
+            expectedListings.Add(new Listing { City = "C" });
+            expectedListings.Add(new Listing { City = "D" });
+            expectedListings.Add(new Listing { City = "E" });
+
+            for (int i = 0; i < listings.Count; i++)
+            {
+                Assert.Equal(expectedListings[i].City, listings[i].City);
+            }
+        }
+    }
+
+    public class GenericServiceTest
+    {
+        [Fact]
+        public void A_GenericServiceRetrievesAllUsersCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase1")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+            var genericService = new GenericService(context);
+
+            context.Users.Add(new User()
+            {
+                Id = 1,
+                FirstName = "a",
+                LastName = "b",
+                Email = "ab@email.com",
+                Password = "abc",
+                City = "c"
+            });
+            context.Users.Add(new User()
+            {
+                Id = 2,
+                FirstName = "c",
+                LastName = "d",
+                Email = "cd@email.com",
+                Password = "abc",
+                City = "c"
+            });
+            context.SaveChanges();
+
+            var users = genericService.GetAllAsync<User>();
+            var expectedUsers = new List<User>();
+            expectedUsers.Add(new User()
+            {
+                Id = 1,
+                FirstName = "a",
+                LastName = "b",
+                Email = "ab@email.com",
+                Password = "abc",
+                City = "c"
+            });
+            expectedUsers.Add(new User()
+            {
+                Id = 2,
+                FirstName = "c",
+                LastName = "d",
+                Email = "cd@email.com",
+                Password = "abc",
+                City = "c"
+            });
+
+            for (int i = 0; i < expectedUsers.Count; i++)
+            {
+                Assert.Equal(expectedUsers[i].Id, users.Result[i].Id);
+            }
+        }
+
+        [Fact]
+        public void B_GenericServiceRetrievesAUserByIdCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase2")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+            var genericService = new GenericService(context);
+
+            context.Users.Add(new User()
+            {
+                Id = 15,
+                FirstName = "a",
+                LastName = "b",
+                Email = "ab@email.com",
+                Password = "abc",
+                City = "c"
+            });
+
+            var user = genericService.GetById<User>(15);
+            var expectedUser = (new User()
+            {
+                Id = 15,
+                FirstName = "a",
+                LastName = "b",
+                Email = "ab@email.com",
+                Password = "abc",
+                City = "c"
+            });
+
+            Assert.Equal(expectedUser.Id, user.Id);
+        }
+
+        [Fact]
+        public async void C_GenericServiceUpdatesAUserByIdCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase3")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+            var genericService = new GenericService(context);
+
+            context.Users.Add(new User()
+            {
+                Id = 15,
+                FirstName = "a",
+                LastName = "b",
+                Email = "ab@email.com",
+                Password = "abc",
+                City = "c"
+            });
+
+            await genericService.UpdateAsync<User>(15, new User()
+            {
+                Id=15,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abcd@email.com",
+                Password = "abcdef",
+                City = "c"
+            });
+
+            var actualUser = context.Users.Find(15);
+
+            Assert.Equal("abcd@email.com", actualUser.Email);
+            Assert.Equal("abcdef", actualUser.Password);
+            Assert.Equal("a", actualUser.FirstName);
+            Assert.Equal("b", actualUser.LastName);
+            Assert.Equal("c", actualUser.City);
+        }
+
+        [Fact]
+        public async void D_GenericServiceDeletesAUserByIdCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase4")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+            var genericService = new GenericService(context);
+
+            context.Users.Add(new User()
+            {
+                Id = 15,
+                FirstName = "a",
+                LastName = "b",
+                Email = "ab@email.com",
+                Password = "abc",
+                City = "c"
+            });
+
+            Assert.NotNull(genericService.GetById<User>(15));
+
+            await genericService.DeleteAsync<User>(15);
+
+            Assert.Null(genericService.GetById<User>(15));
+        }
+    }
+
+    public class ListingServiceTest
+    {
+        [Fact]
+        public void A_ListingServiceRetrievesListingsByUserIdCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase5")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+            var listingService = new ListingService(context);
+
+            var user = new User()
+            {
+                Id = 16,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Password = "abc",
+                City = "c"
+            };
+
+            context.Users.Add(user);
+
+            context.Listings.Add(new Listing()
+            {
+                Id = 1,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Phone = "123",
+                City = "c",
+                RoommateCount = 1,
+                MaxPrice = 100,
+                ExtraComment = "",
+                Date = "10",
+                UserId = 16,
+                User = user
+            });
+
+            context.Listings.Add(new Listing()
+            {
+                Id = 2,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Phone = "123",
+                City = "c",
+                RoommateCount = 2,
+                MaxPrice = 200,
+                ExtraComment = "",
+                Date = "10",
+                UserId = 16,
+                User = user
+            });
+
+            context.SaveChanges();
+
+            var actualListings = listingService.GetByUserId(16);
+
+            Assert.Equal(2, actualListings.Count());
+            var actualIds = new[] { actualListings[0].Id, actualListings[1].Id };
+            Assert.Contains(1, actualIds);
+            Assert.Contains(2, actualIds);
+        }
+
+        [Fact]
+        public async void B_ListingServiceUpdatesListingsCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase6")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+            var listingService = new ListingService(context);
+
+            var user = new User()
+            {
+                Id = 17,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Password = "abc",
+                City = "c"
+            };
+
+            context.Users.Add(user);
+
+            context.Listings.Add(new Listing()
+            {
+                Id = 3,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Phone = "123",
+                City = "c",
+                RoommateCount = 2,
+                MaxPrice = 200,
+                ExtraComment = "",
+                Date = "10",
+                UserId = 17,
+                User = user
+            });
+
+            context.SaveChanges();
+
+            var newListing = new Listing()
+            {
+                Id = 3,
+                FirstName = "a",
+                LastName = "bc",
+                Email = "abc@email.com",
+                Phone = "1234",
+                City = "c",
+                RoommateCount = 3,
+                MaxPrice = 300,
+                ExtraComment = "abc",
+                Date = "10",
+                UserId = 17,
+                User = user
+            };
+
+            await listingService.UpdateAsync(3, newListing);
+
+            var updatedListing = context.Listings.Where(l => l.Id == 3).First();
+
+            Assert.Equal("b", updatedListing.LastName);
+            Assert.Equal("1234", updatedListing.Phone);
+            Assert.Equal(3, updatedListing.RoommateCount);
+            Assert.Equal(300, updatedListing.MaxPrice);
+            Assert.Equal("abc", updatedListing.ExtraComment);
+        }
+    }
+
+    public class UserServiceTest
+    {
+        [Fact]
+        public void A_UserServiceSucceedsInAuthenticatingUserCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase7")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+
+            context.Users.Add(new User
+            {
+                Id = 1,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Password = "abc",
+                City = "c"
+            });
+            context.SaveChanges();
+
+            var userService = new UserService(context);
+
+            var authenticateRequest = new AuthenticateRequest()
+            {
+                Email = "abc@email.com",
+                Password = "abc"
+            };
+
+            var authenticateResponse = userService.Authenticate(authenticateRequest);
+
+            Assert.NotNull(authenticateResponse.Token);
+        }
+
+        [Fact]
+        public void B_UserServiceFailsToAuthenticateCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase8")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+
+            context.Users.Add(new User
+            {
+                Id = 1,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Password = "abc",
+                City = "c"
+            });
+            context.SaveChanges();
+
+            var userService = new UserService(context);
+
+            var authenticateRequest = new AuthenticateRequest()
+            {
+                Email = "abc@email.com",
+                Password = "abcd"
+            };
+
+            var authenticateResponse = userService.Authenticate(authenticateRequest);
+
+            Assert.Null(authenticateResponse.Token);
+        }
+
+        [Fact]
+        public void C_UserServiceRetrievesUserByIdCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase("TestingDatabase9")
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+
+            context.Users.Add(new User
+            {
+                Id = 1,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Password = "abc",
+                City = "c"
+            });
+            context.SaveChanges();
+
+            var userService = new UserService(context);
+
+            var actualUser = userService.GetById(1);
+
+            Assert.Equal("abc@email.com", actualUser.Email);
+            Assert.Equal("abc", actualUser.Password);
         }
     }
 }
