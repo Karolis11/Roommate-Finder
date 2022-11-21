@@ -115,13 +115,13 @@ public class ListingController : Controller
         }
         catch (SqlException e)
         {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Could not delete a listing (SQL database exception).");
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Could not delete a listing (SQL database exception).");
         }
         catch (Exception e)
         {
-            _errorLogging.logError(e.Message);
-            _errorLogging.messageError("Unexpected error, please restart the program");
+            _errorLogging.LogError(e.Message);
+            _errorLogging.MessageError("Unexpected error, please restart the program");
         }
 
         return base.Ok("Listing deleted");

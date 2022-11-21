@@ -10,11 +10,10 @@ public interface IGenericService
     T GetById<T>(object id) where T : class;
     Task AddAsync<T>(T obj) where T : class;
     Task UpdateAsync<T>(int id, T obj) where T : class;
-    Task DeleteAsync<T>(object id) where T : class;
+    Task DeleteAsync<T>(int id) where T : class;
     Task SaveAsync();
 }
 
-[ExcludeFromCodeCoverage]
 public class GenericService : IGenericService
 {
     private ApplicationDbContext _context;
@@ -43,7 +42,7 @@ public class GenericService : IGenericService
 
         if (obj is roommate_app.Models.Listing)
         {
-
+            OnListingFeedUpdated();
         }
     }
     public async Task UpdateAsync<T>(int id, T obj)
@@ -58,7 +57,7 @@ public class GenericService : IGenericService
         _context.Entry(entity).CurrentValues.SetValues(obj);
         await SaveAsync();
     }
-    public async Task DeleteAsync<T>(object id)
+    public async Task DeleteAsync<T>(int id)
         where T : class
     {
         T existing = await _context.Set<T>().FindAsync(id);

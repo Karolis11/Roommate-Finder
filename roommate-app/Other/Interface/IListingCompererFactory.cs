@@ -5,7 +5,7 @@ public interface IListingCompreterFactory
 {
     ListingComparerFactory createListingComparerFactory();
 }
-[ExcludeFromCodeCoverage]
+
 public class ListingComparerFactory : IListingCompreterFactory
 {
     ListingComparerFactory IListingCompreterFactory.createListingComparerFactory()

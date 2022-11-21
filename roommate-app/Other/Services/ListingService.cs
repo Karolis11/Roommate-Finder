@@ -11,7 +11,7 @@ public interface IListingService
     IList<Listing> GetByUserId(int id);
     Task UpdateAsync(int id, Listing listing);
 }
-[ExcludeFromCodeCoverage]
+
 public class ListingService : IListingService
 {
     private Lazy<List<Listing>> _listings => new Lazy<List<Listing>>(() => _context.Listings.ToList());
@@ -29,7 +29,7 @@ public class ListingService : IListingService
     public IList<Listing> GetByUserId(int id)
     {
         IList<Listing> userListings = new List<Listing>();
-        IList<Listing> existingListings = new List<Listing>((IEnumerable<Listing>)_listings);
+        IList<Listing> existingListings = new List<Listing>((IEnumerable<Listing>)_listings.Value);
         for (int i = 0; i < existingListings.Count; i++)
         {
             if (existingListings[i].UserId == id)
