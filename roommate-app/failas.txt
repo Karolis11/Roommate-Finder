@@ -1,1 +1,0 @@
-{"firstName":"adsdas","lastName":"dasdas","email":"asddas","city":"dsadas","roommateCount":5485,"maxPrice":8484}
