@@ -7,7 +7,6 @@ using System.Text;
 using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Controllers.Authentication;
-[ExcludeFromCodeCoverage]
 public class JwtMiddleware
 {
     string EncodingString = "aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2"; // TO CHANGE IN FUTURE

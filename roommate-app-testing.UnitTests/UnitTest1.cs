@@ -10,6 +10,7 @@ using roommate_app.Models;
 using roommate_app.Other.FileCreator;
 using roommate_app.Other.ListingComparers;
 using roommate_app.Services;
+using roommate_app.Other.Validation;
 
 namespace roommate_app_testing.UnitTests
 {
@@ -609,6 +610,93 @@ namespace roommate_app_testing.UnitTests
 
             Assert.Equal("abc@email.com", actualUser.Email);
             Assert.Equal("abc", actualUser.Password);
+        }
+    }
+
+    public class ListingValidationTest
+    {
+        [Fact]
+        public void A_ListingValidateNameCorrectly()
+        {
+            // Arrange
+            Listing list = new Listing { FirstName = "Test-Test", LastName = "Test'Test" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateName(list);
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void B_ListingValidateEmailCorrectly()
+        {
+            // Arrange
+            Listing list = new Listing { Email = "abc@abc.com" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateEmail(list);
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void C_ListingValidateCityCorrectly()
+        {
+            // Arrange
+            Listing list = new Listing { City = "Vilnius" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateCity(list);
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void D_ListingValidateRoommateCountCorrectly()
+        {
+            // Arrange
+            Listing list = new Listing { RoommateCount = 3 };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateRoommateCount(list);
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void E_ListingValidatePhoneNumberCorrectly()
+        {
+            // Arrange
+            Listing list = new Listing { Phone = "+37060026689" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidatePhoneNumber(list);
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void F_ListingValidateExtraCommentCorrectly()
+        {
+            // Arrange
+            Listing list = new Listing { ExtraComment = "Test Test Test" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateExtraComment(list);
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void G_ListingValidateMaxPriceCorrectly()
+        {
+            // Arrange
+            Listing list = new Listing { MaxPrice = 1 };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateMaximumPrice(list);
+            // Assert
+            Assert.True(result);
         }
     }
 }
