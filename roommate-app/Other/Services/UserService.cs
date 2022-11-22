@@ -45,12 +45,12 @@ public class UserService : IUserService
             return new AuthenticateResponse(false, user, token);
         }
         // authentication successful so generate jwt token
-        token = generateJwtToken(user);
+        token = GenerateJwtToken(user);
 
         return new AuthenticateResponse(true, user, token);
     }
 
-    private string generateJwtToken(User user)
+    private string GenerateJwtToken(User user)
     {
         // generate token that is valid for 7 days
         var tokenHandler = new JwtSecurityTokenHandler();

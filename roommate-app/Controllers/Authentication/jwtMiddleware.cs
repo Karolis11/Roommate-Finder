@@ -5,6 +5,9 @@ using roommate_app.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using System.Drawing.Text;
+using Org.BouncyCastle.Bcpg;
 
 namespace roommate_app.Controllers.Authentication;
 [ExcludeFromCodeCoverage]
@@ -24,34 +27,41 @@ public class JwtMiddleware
     public async Task Invoke(HttpContext context, IUserService userService, IErrorLogging errorLogging)
     {
         _errorLogging = errorLogging;
+        var userId = -1;
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-
-        if (token != null)
-            attachUserToContext(context, userService, token);
-
+        if (token != null) {
+            userId = GetValidatedId(userService, token);
+            if (userId != -1) {
+                AttachUserToContext(context, userService, userId);
+            }
+        }
         await _next(context);
     }
 
-    private void attachUserToContext(HttpContext context, IUserService userService, string token)
-    {
-        try
+    private int GetValidatedId(IUserService userService, string token)
+    { 
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(EncodingString);
+        tokenHandler.ValidateToken(token, new TokenValidationParameters
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(EncodingString);
-            tokenHandler.ValidateToken(token, new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
-                ClockSkew = TimeSpan.Zero
-            }, out SecurityToken validatedToken);
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+            ClockSkew = TimeSpan.Zero
+        }, out SecurityToken validatedToken);
 
-            var jwtToken = (JwtSecurityToken)validatedToken;
-            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+        var jwtToken = (JwtSecurityToken)validatedToken;
+        var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
-            // attach user to context on successful jwt validation
+        return userId;  
+    }
+
+    private void AttachUserToContext(HttpContext context, IUserService userService, int userId)
+    {
+        try 
+        { 
             context.Items["User"] = userService.GetById(userId);
         }
         catch (Exception e)
