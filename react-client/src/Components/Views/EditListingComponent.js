@@ -75,7 +75,7 @@ export const EditListingComponent = (props) => {
 
     return (
         <>
-        <div className="centered-container create-listing-container">
+        <div className="centered-container edit-listing-container">
             <form onSubmit={formik.handleSubmit}>
                 <div className="form-field-container-flex">
                     <div className="form-field-flex"><label htmlFor="phone">Phone Number</label></div>
