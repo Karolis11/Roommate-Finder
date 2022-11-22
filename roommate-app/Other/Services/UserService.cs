@@ -50,7 +50,7 @@ public class UserService : IUserService
         return new AuthenticateResponse(true, user, token);
     }
 
-    private string GenerateJwtToken(User user)
+    public string GenerateJwtToken(User user)
     {
         // generate token that is valid for 7 days
         var tokenHandler = new JwtSecurityTokenHandler();

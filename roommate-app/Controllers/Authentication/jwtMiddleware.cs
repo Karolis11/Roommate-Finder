@@ -16,13 +16,11 @@ public class JwtMiddleware
     string EncodingString = "aspnet - roommate_app - F4B64644 - 62C9 - 4EB2 - 8F1A - 3D1849E382F2"; // TO CHANGE IN FUTURE
 
     private readonly RequestDelegate _next;
-    private readonly AppSettings _appSettings;
     private IErrorLogging _errorLogging;
 
-    public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
+    public JwtMiddleware(RequestDelegate next)
     {
         _next = next;
-        _appSettings = appSettings.Value;
     }
     public async Task Invoke(HttpContext context, IUserService userService, IErrorLogging errorLogging)
     {
@@ -38,7 +36,7 @@ public class JwtMiddleware
         await _next(context);
     }
 
-    private int GetValidatedId(IUserService userService, string token)
+    public int GetValidatedId(IUserService userService, string token)
     { 
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(EncodingString);
