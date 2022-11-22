@@ -8,6 +8,7 @@ import axios from 'axios';
 import Pusher from 'pusher-js';
 import './EntryScreen.css'
 import './Filters.css';
+import { DeleteListingComponent } from '../Views/DeleteListingComponent';
 
 
 export class LoggedInMain extends Component {
@@ -22,6 +23,7 @@ export class LoggedInMain extends Component {
             editListingView: false,
             editedListing: null,
             deletedListing: null,
+            deleteListingView: false
         }
         
         this.toggleCreateListing = this.toggleCreateListing.bind(this);
@@ -29,10 +31,6 @@ export class LoggedInMain extends Component {
 
     updateListings = (listings) => {
         this.setState({listings: listings});
-    }
-    
-    toggleDeletedListing = (listing) => {
-        this.setState({ deletedListing: listing });
     }
 
     toggleCreateListing = (toggleBool) => {
@@ -48,6 +46,13 @@ export class LoggedInMain extends Component {
         this.setState({
             editedListing: listing,
             editListingView: toggleBool
+        })
+    }
+
+    toggleDeleteListingView = (listing, toggleBool) => {
+        this.setState({
+            deletedListing: listing,
+            deleteListingView: toggleBool
         })
     }
 
@@ -97,7 +102,7 @@ export class LoggedInMain extends Component {
     }
 
     render() {
-        return (
+        return(
             <>
             <FilterComponent updateListings={this.updateListings.bind(this)}/>
             <div className={`logged-in-main-container ${this.state.createListingView && ' create-listing-on'}`}>
@@ -113,24 +118,32 @@ export class LoggedInMain extends Component {
                                 toggleEditListing={this.toggleEditListingView.bind(this)}
                             />
                         :
-                            <div className="listings-container">
-                                <>
-                                    <CreateListingButton
-                                        id="create-listing-button"
-                                        text="New listing"
-                                        class="create-listing-btn"
-                                        onclick={this.toggleCreateListingWrapper.bind(this)}
+                            this.state.deleteListingView
+                            ?
+                                    <DeleteListingComponent
+                                    listing={this.state.deletedListing}
+                                    toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
                                     />
-                                    { 
-                                        this.state.listings && 
-                                        <ListOfListings 
-                                            listings={this.state.listings}
-                                            toggleEditListingView={this.toggleEditListingView.bind(this)}
-                                            /> 
-                                    }
+                            :
+                                <div className="listings-container">
+                                    <>
+                                        <CreateListingButton
+                                            id="create-listing-button"
+                                            text="New listing"
+                                            class="create-listing-btn"
+                                            onclick={this.toggleCreateListingWrapper.bind(this)}
+                                        />
+                                        { 
+                                            this.state.listings && 
+                                            <ListOfListings 
+                                                    listings={this.state.listings}
+                                                    toggleEditListingView={this.toggleEditListingView.bind(this)}
+                                                    toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
+                                                /> 
+                                        }
                                     
-                                </>
-                            </div>
+                                    </>
+                                </div>
                 }
             </div>
             </>

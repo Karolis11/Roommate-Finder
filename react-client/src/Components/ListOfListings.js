@@ -28,10 +28,7 @@ export class ListOfListings extends Component {
                                             onClick={() => {this.props.toggleEditListingView(listing, true);}}
                                         >Edit</button>
                                         <button
-                                            onClick={() => {
-                                                //this.props.toggleDeletedListing(listing);
-                                                //this.props.deleteListing();
-                                            }}
+                                            onClick={() => {this.props.toggleDeleteListingView(listing, true);}}
                                         >Delete</button>
                                     </div>
 

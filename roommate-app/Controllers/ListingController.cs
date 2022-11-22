@@ -106,7 +106,6 @@ public class ListingController : Controller
     }
 
     [HttpDelete]
-    [Route("delete")]
     public async Task<ActionResult> DeleteListing(int Id)
     {
         try

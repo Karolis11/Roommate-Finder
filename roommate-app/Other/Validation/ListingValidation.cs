@@ -2,60 +2,59 @@
 using System.Text.RegularExpressions;
 
 namespace roommate_app.Other.Validation;
-public static class ValidationExtensions
+public class ListingValidation
 {
-    public static bool ValidateName(this Listing str)
+    public bool ValidateName(Listing? str)
     {
-        string regExp = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
+        string regExp1 = "^(?=.{1,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$";
+        string regExp2 = "^[A-Za-z]+(((\\'|\\-|\\.)?([A-Za-z])+))?$";
 
-        return string.IsNullOrWhiteSpace(str.FullName()) && str.FullName().Length > 61 && !Regex.IsMatch(str.FullName(), regExp);
+        return !string.IsNullOrWhiteSpace(str.FirstName) && str.FirstName.Length < 31 && Regex.IsMatch(str.FirstName, regExp1)
+            && !string.IsNullOrWhiteSpace(str.LastName) && str.LastName.Length < 31 && Regex.IsMatch(str.LastName, regExp2);
     }
 
-    public static bool ValidateEmail(this Listing? str)
+    public bool ValidateEmail(Listing? str)
     {
-        string regExp = "^[A-Za-z0-9-.]+@([A-Za-z-]+.)+[A-Za-z-]{2,4}$";
+        string regExp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
-        return string.IsNullOrWhiteSpace(str.Email) && !Regex.IsMatch(str.Email, regExp);
+        return !string.IsNullOrWhiteSpace(str.Email) && Regex.IsMatch(str.Email, regExp);
     }
 
-    public static bool ValidateCity(this Listing? str)
+    public bool ValidateCity(Listing? str)
     {
         string regExp = "^[A-Za-z]+$";
 
-        return string.IsNullOrWhiteSpace(str.City) && str.City.Length > 30 && !Regex.IsMatch(str.City, regExp);
+        return !string.IsNullOrWhiteSpace(str.City) && str.City.Length < 31 && Regex.IsMatch(str.City, regExp);
     }
 
-    public static bool ValidateRoommateCount(this Listing? number)
+    public bool ValidateRoommateCount(Listing? number)
     {
-        return number.RoommateCount == null && number.RoommateCount >= 1 && number.RoommateCount <= 3; ;
+        return !(number.RoommateCount == null) && number.RoommateCount > 0 && number.RoommateCount < 4; ;
     }
 
-    public static bool ValidatePhoneNumber(this Listing? str)
+    public bool ValidatePhoneNumber(Listing? str)
     {
-        string regExp1 = "^+370?[1-9][0-9]{7,14}$"; // +370 validation
+        string regExp1 = "\\+?370?\\s*\\(?-*\\.*(\\d{3})\\)?\\.*-*\\s*(\\d{2})\\.*-*\\s*(\\d{4})$"; // +370 validation
 
         string regExp2 = "^86?[1-9][0-9]{7,14}$"; // 86 validation
 
-        return string.IsNullOrWhiteSpace(str.Phone) && (str.Phone.Length != 9 && str.Phone.Length != 12)
-               && (!Regex.IsMatch(str.City, regExp1) || !Regex.IsMatch(str.City, regExp2));
-    }
-    public static bool ValidateExtraComment(this Listing? str)
-    {
-        List<Func<Listing, bool>> ValidationRules = new List<Func<Listing, bool>>
-        {
-            x => string.IsNullOrWhiteSpace(str.ExtraComment),
-            x => str.ExtraComment.Length > 200
-        };
-        return ValidationRules.All(x => x(str) == false);
-    }
-    public static bool ValidateMaximumPrice(this Listing? number)
-    {
-        List<Func<Listing, bool>> ValidationRules = new List<Func<Listing, bool>>
-        {
-            x => number.MaxPrice == null,
-            x => number.MaxPrice > 5000 && number.MaxPrice < 0
-        };
-        return ValidationRules.All(x => x(number) == false);
+        return (!string.IsNullOrWhiteSpace(str.Phone)) && (str.Phone.Length == 9 || str.Phone.Length == 12)
+            && (Regex.IsMatch(str.Phone, regExp1) || Regex.IsMatch(str.Phone, regExp2));
     }
 
+    public bool ValidateExtraComment(Listing? str)
+    {
+        return (string.IsNullOrEmpty(str.ExtraComment) || str.ExtraComment.Length < 200);
+    }
+
+    public bool ValidateMaximumPrice(Listing? number)
+    {
+        List<Func<Listing, bool>> ValidationRules = new List<Func<Listing, bool>>
+        {
+            x => !(number.MaxPrice == 0),
+            x => number.MaxPrice < 5001,
+            x => number.MaxPrice > 0
+        };
+        return ValidationRules.All(x => x(number) == true);
+    }
 }
