@@ -18,10 +18,10 @@ namespace roommate_app_testing.UnitTests
     {
 
         [Fact]
-        public void A_Register_NewEmail_ReturnsTrue()
+        public void Register_NewEmail_ReturnsTrue()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             var _dbContext = new ApplicationDbContext(options);
             var genericService = new GenericService(_dbContext);
             var registrationController = new RegistrationController(genericService);
@@ -36,15 +36,16 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void B_Register_UsedEmail_ReturnsFalse()
+        public void Register_UsedEmail_ReturnsFalse()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             var _dbContext = new ApplicationDbContext(options);
             var genericService = new GenericService(_dbContext);
             var registrationController = new RegistrationController(genericService);
 
             // Act
+            var submit = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "password" });
             var result = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "password" });
             var model = result.Result.Value as RegistrationResponse;
 
@@ -54,17 +55,19 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void C_Login_EmailAndPasswordCorrect_ReturnsTrue()
+        public void Login_EmailAndPasswordCorrect_ReturnsTrue()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             var _dbContext = new ApplicationDbContext(options);
             var genericService = new GenericService(_dbContext);
             var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
             var loginController = new LoginController(errorLoging, genericService);
+            var registrationController = new RegistrationController(genericService);
 
             // Act
+            var submit = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "password" });
             var result = loginController.Submit(new User { Email = "abc@abc.com", Password = "password" });
             var model = result.Result.Value as LoginResponse;
 
@@ -73,17 +76,19 @@ namespace roommate_app_testing.UnitTests
             Assert.True(model.IsSuccess);
         }
         [Fact]
-        public void D_Login_EmailCorrectAndPasswordNotCorrect_ReturnsFalse()
+        public void Login_EmailCorrectAndPasswordNotCorrect_ReturnsFalse()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             var _dbContext = new ApplicationDbContext(options);
             var genericService = new GenericService(_dbContext);
             var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
             var loginController = new LoginController(errorLoging, genericService);
+            var registrationController = new RegistrationController(genericService);
 
             // Act
+            var submit = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "password" });
             var result = loginController.Submit(new User { Email = "abc@abc.com", Password = "password1" });
             var model = result.Result.Value as LoginResponse;
 
@@ -93,17 +98,19 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void E_Login_EmailNotCorrectAndPasswordCorrect_ReturnsFalse()
+        public void Login_EmailNotCorrectAndPasswordCorrect_ReturnsFalse()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             var _dbContext = new ApplicationDbContext(options);
             var genericService = new GenericService(_dbContext);
             var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
             var loginController = new LoginController(errorLoging, genericService);
+            var registrationController = new RegistrationController(genericService);
 
             // Act
+            var submit = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "password" });
             var result = loginController.Submit(new User { Email = "abc1@abc.com", Password = "password" });
             var model = result.Result.Value as LoginResponse;
 
@@ -113,17 +120,19 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void F_Login_EmailAndPasswordNotCorrect_ReturnsFalse()
+        public void Login_EmailAndPasswordNotCorrect_ReturnsFalse()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("LocalDatabase").Options;
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
             var _dbContext = new ApplicationDbContext(options);
             var genericService = new GenericService(_dbContext);
             var file = new FileCreator();
             var errorLoging = new ErrorLogging(file);
             var loginController = new LoginController(errorLoging, genericService);
+            var registrationController = new RegistrationController(genericService);
 
             // Act
+            var submit = registrationController.Submit(new User { City = "", FirstName = "", LastName = "", Email = "abc@abc.com", Password = "password" });
             var result = loginController.Submit(new User { Email = "abc1@abc.com", Password = "password1" });
             var model = result.Result.Value as LoginResponse;
 
@@ -136,7 +145,7 @@ namespace roommate_app_testing.UnitTests
     public class ComparersTest_FactoryAndComparers
     {
         [Fact]
-        public void A_ListingComparerFactoryGeneratesClassesCorrectly()
+        public void ListingComparerFactoryGeneratesClassesCorrectly()
         {
             var factory = new ListingComparerFactory();
             Assert.IsType<ListingMaxPriceComparer>(factory.GetComparer(SortMode.MaxPrice));
@@ -145,7 +154,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void B_MaxPriceComparerSortsListingsCorrectly()
+        public void MaxPriceComparerSortsListingsCorrectly()
         {
             var comparer = new ListingMaxPriceComparer("Vilnius");
             List<Listing> listings = new List<Listing>();
@@ -171,7 +180,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void C_NumRoommatesComparerSortsListingsCorrectly()
+        public void NumRoommatesComparerSortsListingsCorrectly()
         {
             var comparer = new ListingNumRoommatesComparer("Vilnius");
             List<Listing> listings = new List<Listing>();
@@ -197,7 +206,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void D_CityComparerSortsListingsCorrectly()
+        public void CityComparerSortsListingsCorrectly()
         {
             var comparer = new ListingCityComparer();
             List<Listing> listings = new List<Listing>();
@@ -225,10 +234,10 @@ namespace roommate_app_testing.UnitTests
     public class GenericServiceTest
     {
         [Fact]
-        public void A_GenericServiceRetrievesAllUsersCorrectly()
+        public void GenericServiceRetrievesAllUsersCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase1")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
@@ -282,10 +291,10 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void B_GenericServiceRetrievesAUserByIdCorrectly()
+        public void GenericServiceRetrievesAUserByIdCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase2")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
@@ -316,10 +325,10 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public async void C_GenericServiceUpdatesAUserByIdCorrectly()
+        public async void GenericServiceUpdatesAUserByIdCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase3")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
@@ -355,10 +364,10 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public async void D_GenericServiceDeletesAUserByIdCorrectly()
+        public async void GenericServiceDeletesAUserByIdCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase4")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
@@ -385,10 +394,10 @@ namespace roommate_app_testing.UnitTests
     public class ListingServiceTest
     {
         [Fact]
-        public void A_ListingServiceRetrievesListingsByUserIdCorrectly()
+        public void ListingServiceRetrievesListingsByUserIdCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase5")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
@@ -449,10 +458,10 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public async void B_ListingServiceUpdatesListingsCorrectly()
+        public async void ListingServiceUpdatesListingsCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase6")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
@@ -519,10 +528,10 @@ namespace roommate_app_testing.UnitTests
     public class UserServiceTest
     {
         [Fact]
-        public void A_UserServiceSucceedsInAuthenticatingUserCorrectly()
+        public void UserServiceSucceedsInAuthenticatingUserCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase7")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
@@ -552,10 +561,10 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void B_UserServiceFailsToAuthenticateCorrectly()
+        public void UserServiceFailsToAuthenticateCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase8")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
@@ -585,10 +594,10 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void C_UserServiceRetrievesUserByIdCorrectly()
+        public void UserServiceRetrievesUserByIdCorrectly()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase("TestingDatabase9")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
             var context = new ApplicationDbContext(options);
             context.Database.EnsureCreated();
