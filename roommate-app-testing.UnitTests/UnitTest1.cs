@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -609,6 +610,42 @@ namespace roommate_app_testing.UnitTests
 
             Assert.Equal("abc@email.com", actualUser.Email);
             Assert.Equal("abc", actualUser.Password);
+        }
+    }
+
+    public class JWTMiddlewareTest
+    {
+        [Fact]
+        public void JWTMiddlewareValidatesCorrectly()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .Options;
+            var context = new ApplicationDbContext(options);
+            context.Database.EnsureCreated();
+
+            context.Users.Add(new User
+            {
+                Id = 1,
+                FirstName = "a",
+                LastName = "b",
+                Email = "abc@email.com",
+                Password = "abc",
+                City = "c"
+            });
+            context.SaveChanges();
+
+            var requestDelegate = new RequestDelegate((innerContext) => Task.FromResult(0));
+            var jwtMiddleware = new JwtMiddleware(requestDelegate);
+            var userService = new UserService(context);
+
+            var user = userService.GetById(1);
+            var token = userService.GenerateJwtToken(user);
+
+            var validatedUserId = jwtMiddleware.GetValidatedId(userService, token);
+
+            Assert.Equal(1, validatedUserId);
+
         }
     }
 }
