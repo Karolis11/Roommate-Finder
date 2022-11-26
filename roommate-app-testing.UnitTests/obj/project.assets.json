@@ -272,10 +272,10 @@
           }
         }
       },
-      "Microsoft.Data.Sqlite.Core/6.0.10": {
+      "Microsoft.Data.Sqlite.Core/7.0.0": {
         "type": "package",
         "dependencies": {
-          "SQLitePCLRaw.core": "2.0.6"
+          "SQLitePCLRaw.core": "2.1.2"
         },
         "compile": {
           "lib/net6.0/Microsoft.Data.Sqlite.dll": {}
@@ -346,11 +346,11 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.Relational.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Sqlite/6.0.10": {
+      "Microsoft.EntityFrameworkCore.Sqlite/7.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Sqlite.Core": "6.0.10",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.0.6"
+          "Microsoft.EntityFrameworkCore.Sqlite.Core": "7.0.0",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.2"
         },
         "compile": {
           "lib/net6.0/_._": {}
@@ -359,12 +359,12 @@
           "lib/net6.0/_._": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Sqlite.Core/6.0.10": {
+      "Microsoft.EntityFrameworkCore.Sqlite.Core/7.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Data.Sqlite.Core": "6.0.10",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.10",
-          "Microsoft.Extensions.DependencyModel": "6.0.0"
+          "Microsoft.Data.Sqlite.Core": "7.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.0",
+          "Microsoft.Extensions.DependencyModel": "7.0.0"
         },
         "compile": {
           "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll": {}
@@ -462,20 +462,20 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.DependencyModel/6.0.0": {
+      "Microsoft.Extensions.DependencyModel/7.0.0": {
         "type": "package",
         "dependencies": {
-          "System.Buffers": "4.5.1",
-          "System.Memory": "4.5.4",
-          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encodings.Web": "6.0.0",
-          "System.Text.Json": "6.0.0"
+          "System.Text.Encodings.Web": "7.0.0",
+          "System.Text.Json": "7.0.0"
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": {}
+          "lib/net6.0/Microsoft.Extensions.DependencyModel.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll": {}
+          "lib/net6.0/Microsoft.Extensions.DependencyModel.dll": {}
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "Microsoft.Extensions.FileProviders.Abstractions/6.0.0": {
@@ -1444,12 +1444,11 @@
           }
         }
       },
-      "SQLitePCLRaw.bundle_e_sqlite3/2.0.6": {
+      "SQLitePCLRaw.bundle_e_sqlite3/2.1.2": {
         "type": "package",
         "dependencies": {
-          "SQLitePCLRaw.core": "2.0.6",
-          "SQLitePCLRaw.lib.e_sqlite3": "2.0.6",
-          "SQLitePCLRaw.provider.e_sqlite3": "2.0.6"
+          "SQLitePCLRaw.lib.e_sqlite3": "2.1.2",
+          "SQLitePCLRaw.provider.e_sqlite3": "2.1.2"
         },
         "compile": {
           "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
@@ -1458,7 +1457,7 @@
           "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll": {}
         }
       },
-      "SQLitePCLRaw.core/2.0.6": {
+      "SQLitePCLRaw.core/2.1.2": {
         "type": "package",
         "dependencies": {
           "System.Memory": "4.5.3"
@@ -1470,7 +1469,7 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
-      "SQLitePCLRaw.lib.e_sqlite3/2.0.6": {
+      "SQLitePCLRaw.lib.e_sqlite3/2.1.2": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -1478,10 +1477,25 @@
         "runtime": {
           "lib/netstandard2.0/_._": {}
         },
+        "build": {
+          "buildTransitive/net6.0/SQLitePCLRaw.lib.e_sqlite3.targets": {}
+        },
         "runtimeTargets": {
+          "runtimes/alpine-arm/native/libe_sqlite3.so": {
+            "assetType": "native",
+            "rid": "alpine-arm"
+          },
+          "runtimes/alpine-arm64/native/libe_sqlite3.so": {
+            "assetType": "native",
+            "rid": "alpine-arm64"
+          },
           "runtimes/alpine-x64/native/libe_sqlite3.so": {
             "assetType": "native",
             "rid": "alpine-x64"
+          },
+          "runtimes/browser-wasm/nativeassets/net6.0/e_sqlite3.a": {
+            "assetType": "native",
+            "rid": "browser-wasm"
           },
           "runtimes/linux-arm/native/libe_sqlite3.so": {
             "assetType": "native",
@@ -1499,6 +1513,14 @@
             "assetType": "native",
             "rid": "linux-mips64"
           },
+          "runtimes/linux-musl-arm/native/libe_sqlite3.so": {
+            "assetType": "native",
+            "rid": "linux-musl-arm"
+          },
+          "runtimes/linux-musl-arm64/native/libe_sqlite3.so": {
+            "assetType": "native",
+            "rid": "linux-musl-arm64"
+          },
           "runtimes/linux-musl-x64/native/libe_sqlite3.so": {
             "assetType": "native",
             "rid": "linux-musl-x64"
@@ -1514,6 +1536,14 @@
           "runtimes/linux-x86/native/libe_sqlite3.so": {
             "assetType": "native",
             "rid": "linux-x86"
+          },
+          "runtimes/maccatalyst-arm64/native/libe_sqlite3.dylib": {
+            "assetType": "native",
+            "rid": "maccatalyst-arm64"
+          },
+          "runtimes/maccatalyst-x64/native/libe_sqlite3.dylib": {
+            "assetType": "native",
+            "rid": "maccatalyst-x64"
           },
           "runtimes/osx-arm64/native/libe_sqlite3.dylib": {
             "assetType": "native",
@@ -1541,16 +1571,16 @@
           }
         }
       },
-      "SQLitePCLRaw.provider.e_sqlite3/2.0.6": {
+      "SQLitePCLRaw.provider.e_sqlite3/2.1.2": {
         "type": "package",
         "dependencies": {
-          "SQLitePCLRaw.core": "2.0.6"
+          "SQLitePCLRaw.core": "2.1.2"
         },
         "compile": {
-          "lib/net5.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+          "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         },
         "runtime": {
-          "lib/net5.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
+          "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -2568,7 +2598,7 @@
           "ref/netstandard1.3/System.Text.Encoding.Extensions.dll": {}
         }
       },
-      "System.Text.Encodings.Web/6.0.0": {
+      "System.Text.Encodings.Web/7.0.0": {
         "type": "package",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
@@ -2580,7 +2610,7 @@
           "lib/net6.0/System.Text.Encodings.Web.dll": {}
         },
         "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
+          "buildTransitive/net6.0/_._": {}
         },
         "runtimeTargets": {
           "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll": {
@@ -2589,11 +2619,11 @@
           }
         }
       },
-      "System.Text.Json/6.0.0": {
+      "System.Text.Json/7.0.0": {
         "type": "package",
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
-          "System.Text.Encodings.Web": "6.0.0"
+          "System.Text.Encodings.Web": "7.0.0"
         },
         "compile": {
           "lib/net6.0/System.Text.Json.dll": {}
@@ -2602,7 +2632,7 @@
           "lib/net6.0/System.Text.Json.dll": {}
         },
         "build": {
-          "buildTransitive/netcoreapp3.1/_._": {}
+          "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
       },
       "System.Text.RegularExpressions/4.3.0": {
@@ -2801,10 +2831,16 @@
           "lib/netstandard1.1/xunit.execution.dotnet.dll": {}
         }
       },
-      "xunit.runner.visualstudio/2.4.3": {
+      "xunit.runner.visualstudio/2.4.5": {
         "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/_._": {}
+        },
         "build": {
-          "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
+          "build/netcoreapp3.1/xunit.runner.visualstudio.props": {}
         }
       },
       "roommate-app/1.0.0": {
@@ -2817,7 +2853,7 @@
           "Microsoft.AspNetCore.Identity.UI": "6.0.6",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.0",
-          "Microsoft.EntityFrameworkCore.Sqlite": "6.0.10",
+          "Microsoft.EntityFrameworkCore.Sqlite": "7.0.0",
           "Microsoft.IdentityModel.Tokens": "6.24.0",
           "Microsoft.Owin.Cors": "4.2.2",
           "Microsoft.Owin.Host.SystemWeb": "4.2.2",
@@ -2826,6 +2862,7 @@
           "Newtonsoft.Json": "13.0.1",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.2",
           "PusherServer": "4.6.1",
+          "System.Collections": "4.3.0",
           "System.IdentityModel.Tokens.Jwt": "6.24.0"
         },
         "compile": {
@@ -3462,10 +3499,10 @@
         "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll"
       ]
     },
-    "Microsoft.Data.Sqlite.Core/6.0.10": {
-      "sha512": "TWUjLTzSeENkEChqWrcaAzIrD9i5M2l2qrWDI00lC38xBPUuK1Qf57ZywO+dwmr2S3yS0VUPvpdpqCrq60QaRw==",
+    "Microsoft.Data.Sqlite.Core/7.0.0": {
+      "sha512": "WC7SANtaFTmQ/WPyhrE96h88MrH28C7kTBenDf5Eo+IR6CbWM0Uw2pR2++tyYr3qe/zSIsIYroEupB1mLg/adw==",
       "type": "package",
-      "path": "microsoft.data.sqlite.core/6.0.10",
+      "path": "microsoft.data.sqlite.core/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3474,7 +3511,7 @@
         "lib/net6.0/Microsoft.Data.Sqlite.xml",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.dll",
         "lib/netstandard2.0/Microsoft.Data.Sqlite.xml",
-        "microsoft.data.sqlite.core.6.0.10.nupkg.sha512",
+        "microsoft.data.sqlite.core.7.0.0.nupkg.sha512",
         "microsoft.data.sqlite.core.nuspec"
       ]
     },
@@ -3549,30 +3586,30 @@
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Sqlite/6.0.10": {
-      "sha512": "JWoqE8TMKg+SwMmig3UPsC1Fg00JQ3dyPpr64VuYlnaags+1eJ5gAYJ38CHdxSGIQQouUv7fK3rfuoKfFc5kiA==",
+    "Microsoft.EntityFrameworkCore.Sqlite/7.0.0": {
+      "sha512": "tufYoEHetVeALPRqzCi4YukL+uoS0pBi/6m3uSCuM5NxO/tTbuizvvBRa3qJNYZOvF3K7m4lUmmcCymKr3JSSQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlite/6.0.10",
+      "path": "microsoft.entityframeworkcore.sqlite/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/_._",
-        "microsoft.entityframeworkcore.sqlite.6.0.10.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.7.0.0.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlite.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Sqlite.Core/6.0.10": {
-      "sha512": "5aynyix0/bvGlmlX3ude/ctTJ0t/styV3Cmd9BR9ujb0vlU8WuFxJqriVhuRnCLS9I7+vBgSh7FWdxWz8cHi3A==",
+    "Microsoft.EntityFrameworkCore.Sqlite.Core/7.0.0": {
+      "sha512": "aUClrz1PT06fPDY+9f2IeDhYXj3/oPxM0r3I6syiyP3Th59hObVI0QsRu5+y7FbJIkO3NgyAi+e2vzWGhmBVbQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlite.core/6.0.10",
+      "path": "microsoft.entityframeworkcore.sqlite.core/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.dll",
         "lib/net6.0/Microsoft.EntityFrameworkCore.Sqlite.xml",
-        "microsoft.entityframeworkcore.sqlite.core.6.0.10.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlite.core.7.0.0.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlite.core.nuspec"
       ]
     },
@@ -3729,21 +3766,30 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.DependencyModel/6.0.0": {
-      "sha512": "TD5QHg98m3+QhgEV1YVoNMl5KtBw/4rjfxLHO0e/YV9bPUBDKntApP4xdrVtGgCeQZHVfC2EXIGsdpRNrr87Pg==",
+    "Microsoft.Extensions.DependencyModel/7.0.0": {
+      "sha512": "oONNYd71J3LzkWc4fUHl3SvMfiQMYUCo/mDHDEu76hYYxdhdrPYv6fvGv9nnKVyhE9P0h20AU8RZB5OOWQcAXg==",
       "type": "package",
-      "path": "microsoft.extensions.dependencymodel/6.0.0",
+      "path": "microsoft.extensions.dependencymodel/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
+        "README.md",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.DependencyModel.dll",
-        "lib/net461/Microsoft.Extensions.DependencyModel.xml",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyModel.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyModel.targets",
+        "lib/net462/Microsoft.Extensions.DependencyModel.dll",
+        "lib/net462/Microsoft.Extensions.DependencyModel.xml",
+        "lib/net6.0/Microsoft.Extensions.DependencyModel.dll",
+        "lib/net6.0/Microsoft.Extensions.DependencyModel.xml",
+        "lib/net7.0/Microsoft.Extensions.DependencyModel.dll",
+        "lib/net7.0/Microsoft.Extensions.DependencyModel.xml",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.xml",
-        "microsoft.extensions.dependencymodel.6.0.0.nupkg.sha512",
+        "microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
         "microsoft.extensions.dependencymodel.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -5330,52 +5376,67 @@
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
       ]
     },
-    "SQLitePCLRaw.bundle_e_sqlite3/2.0.6": {
-      "sha512": "zssYqiaucyGArZfg74rJuzK0ewgZiidsRVrZTmP7JLNvK806gXg6PGA46XzoJGpNPPA5uRcumwvVp6YTYxtQ5w==",
+    "SQLitePCLRaw.bundle_e_sqlite3/2.1.2": {
+      "sha512": "ilkvNhrTersLmIVAcDwwPqfhUFCg19Z1GVMvCSi3xk6Akq94f4qadLORQCq/T8+9JgMiPs+F/NECw5uauviaNw==",
       "type": "package",
-      "path": "sqlitepclraw.bundle_e_sqlite3/2.0.6",
+      "path": "sqlitepclraw.bundle_e_sqlite3/2.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/Xamarin.iOS10/SQLitePCLRaw.batteries_v2.dll",
-        "lib/Xamarin.tvOS10/SQLitePCLRaw.batteries_v2.dll",
+        "lib/monoandroid90/SQLitePCLRaw.batteries_v2.dll",
         "lib/net461/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net6.0-android31.0/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net6.0-android31.0/SQLitePCLRaw.batteries_v2.xml",
+        "lib/net6.0-ios14.0/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net6.0-ios14.2/SQLitePCLRaw.batteries_v2.dll",
+        "lib/net6.0-tvos10.0/SQLitePCLRaw.batteries_v2.dll",
         "lib/netstandard2.0/SQLitePCLRaw.batteries_v2.dll",
-        "sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
+        "lib/xamarinios10/SQLitePCLRaw.batteries_v2.dll",
+        "sqlitepclraw.bundle_e_sqlite3.2.1.2.nupkg.sha512",
         "sqlitepclraw.bundle_e_sqlite3.nuspec"
       ]
     },
-    "SQLitePCLRaw.core/2.0.6": {
-      "sha512": "Vh8n0dTvwXkCGur2WqQTITvk4BUO8i8h9ucSx3wwuaej3s2S6ZC0R7vqCTf9TfS/I4QkXO6g3W2YQIRFkOcijA==",
+    "SQLitePCLRaw.core/2.1.2": {
+      "sha512": "A8EBepVqY2lnAp3a8jnhbgzF2tlj2S3HcJQGANTYg/TbYbKa8Z5cM1h74An/vy0svhfzT7tVY0sFmUglLgv+2g==",
       "type": "package",
-      "path": "sqlitepclraw.core/2.0.6",
+      "path": "sqlitepclraw.core/2.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/SQLitePCLRaw.core.dll",
-        "sqlitepclraw.core.2.0.6.nupkg.sha512",
+        "sqlitepclraw.core.2.1.2.nupkg.sha512",
         "sqlitepclraw.core.nuspec"
       ]
     },
-    "SQLitePCLRaw.lib.e_sqlite3/2.0.6": {
-      "sha512": "xlstskMKalKQl0H2uLNe0viBM6fvAGLWqKZUQ3twX5y1tSOZKe0+EbXopQKYdbjJytNGI6y5WSKjpI+kVr2Ckg==",
+    "SQLitePCLRaw.lib.e_sqlite3/2.1.2": {
+      "sha512": "zibGtku8M4Eea1R3ZCAxc86QbNvyEN17mAcQkvWKBuHvRpMiK2g5anG4R5Be7cWKSd1i6baYz8y4dMMAKcXKPg==",
       "type": "package",
-      "path": "sqlitepclraw.lib.e_sqlite3/2.0.6",
+      "path": "sqlitepclraw.lib.e_sqlite3/2.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "build/net461/SQLitePCLRaw.lib.e_sqlite3.targets",
+        "buildTransitive/net461/SQLitePCLRaw.lib.e_sqlite3.targets",
+        "buildTransitive/net6.0/SQLitePCLRaw.lib.e_sqlite3.targets",
+        "buildTransitive/net7.0/SQLitePCLRaw.lib.e_sqlite3.targets",
         "lib/net461/_._",
         "lib/netstandard2.0/_._",
+        "runtimes/alpine-arm/native/libe_sqlite3.so",
+        "runtimes/alpine-arm64/native/libe_sqlite3.so",
         "runtimes/alpine-x64/native/libe_sqlite3.so",
+        "runtimes/browser-wasm/nativeassets/net6.0/e_sqlite3.a",
+        "runtimes/browser-wasm/nativeassets/net7.0/e_sqlite3.a",
         "runtimes/linux-arm/native/libe_sqlite3.so",
         "runtimes/linux-arm64/native/libe_sqlite3.so",
         "runtimes/linux-armel/native/libe_sqlite3.so",
         "runtimes/linux-mips64/native/libe_sqlite3.so",
+        "runtimes/linux-musl-arm/native/libe_sqlite3.so",
+        "runtimes/linux-musl-arm64/native/libe_sqlite3.so",
         "runtimes/linux-musl-x64/native/libe_sqlite3.so",
         "runtimes/linux-s390x/native/libe_sqlite3.so",
         "runtimes/linux-x64/native/libe_sqlite3.so",
         "runtimes/linux-x86/native/libe_sqlite3.so",
+        "runtimes/maccatalyst-arm64/native/libe_sqlite3.dylib",
+        "runtimes/maccatalyst-x64/native/libe_sqlite3.dylib",
         "runtimes/osx-arm64/native/libe_sqlite3.dylib",
         "runtimes/osx-x64/native/libe_sqlite3.dylib",
         "runtimes/win-arm/native/e_sqlite3.dll",
@@ -5386,21 +5447,21 @@
         "runtimes/win10-arm64/nativeassets/uap10.0/e_sqlite3.dll",
         "runtimes/win10-x64/nativeassets/uap10.0/e_sqlite3.dll",
         "runtimes/win10-x86/nativeassets/uap10.0/e_sqlite3.dll",
-        "sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",
+        "sqlitepclraw.lib.e_sqlite3.2.1.2.nupkg.sha512",
         "sqlitepclraw.lib.e_sqlite3.nuspec"
       ]
     },
-    "SQLitePCLRaw.provider.e_sqlite3/2.0.6": {
-      "sha512": "peXLJbhU+0clVBIPirihM1NoTBqw8ouBpcUsVMlcZ4k6fcL2hwgkctVB2Nt5VsbnOJcPspQL5xQK7QvLpxkMgg==",
+    "SQLitePCLRaw.provider.e_sqlite3/2.1.2": {
+      "sha512": "lxCZarZdvAsMl2zw9bXHrXK6RxVhB4b23iTFhCOdHFhxfbsxLxWf+ocvswJwR/9Wh/E//ddMi+wJGqUKV7VwoA==",
       "type": "package",
-      "path": "sqlitepclraw.provider.e_sqlite3/2.0.6",
+      "path": "sqlitepclraw.provider.e_sqlite3/2.1.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net5.0/SQLitePCLRaw.provider.e_sqlite3.dll",
+        "lib/net6.0-windows7.0/SQLitePCLRaw.provider.e_sqlite3.dll",
+        "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll",
         "lib/netstandard2.0/SQLitePCLRaw.provider.e_sqlite3.dll",
-        "lib/uap10.0/SQLitePCLRaw.provider.e_sqlite3.dll",
-        "sqlitepclraw.provider.e_sqlite3.2.0.6.nupkg.sha512",
+        "sqlitepclraw.provider.e_sqlite3.2.1.2.nupkg.sha512",
         "sqlitepclraw.provider.e_sqlite3.nuspec"
       ]
     },
@@ -8506,42 +8567,47 @@
         "system.text.encoding.extensions.nuspec"
       ]
     },
-    "System.Text.Encodings.Web/6.0.0": {
-      "sha512": "Vg8eB5Tawm1IFqj4TVK1czJX89rhFxJo9ELqc/Eiq0eXy13RK00eubyU6TJE6y+GQXjyV5gSfiewDUZjQgSE0w==",
+    "System.Text.Encodings.Web/7.0.0": {
+      "sha512": "OP6umVGxc0Z0MvZQBVigj4/U31Pw72ITihDWP9WiWDm+q5aoe0GaJivsfYGq53o6dxH7DcXWiCTl7+0o2CGdmg==",
       "type": "package",
-      "path": "system.text.encodings.web/6.0.0",
+      "path": "system.text.encodings.web/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Text.Encodings.Web.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
         "buildTransitive/netcoreapp2.0/System.Text.Encodings.Web.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Text.Encodings.Web.dll",
-        "lib/net461/System.Text.Encodings.Web.xml",
+        "lib/net462/System.Text.Encodings.Web.dll",
+        "lib/net462/System.Text.Encodings.Web.xml",
         "lib/net6.0/System.Text.Encodings.Web.dll",
         "lib/net6.0/System.Text.Encodings.Web.xml",
-        "lib/netcoreapp3.1/System.Text.Encodings.Web.dll",
-        "lib/netcoreapp3.1/System.Text.Encodings.Web.xml",
+        "lib/net7.0/System.Text.Encodings.Web.dll",
+        "lib/net7.0/System.Text.Encodings.Web.xml",
         "lib/netstandard2.0/System.Text.Encodings.Web.dll",
         "lib/netstandard2.0/System.Text.Encodings.Web.xml",
         "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll",
         "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.xml",
-        "system.text.encodings.web.6.0.0.nupkg.sha512",
+        "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.dll",
+        "runtimes/browser/lib/net7.0/System.Text.Encodings.Web.xml",
+        "system.text.encodings.web.7.0.0.nupkg.sha512",
         "system.text.encodings.web.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/6.0.0": {
-      "sha512": "zaJsHfESQvJ11vbXnNlkrR46IaMULk/gHxYsJphzSF+07kTjPHv+Oc14w6QEOfo3Q4hqLJgStUaYB9DBl0TmWg==",
+    "System.Text.Json/7.0.0": {
+      "sha512": "DaGSsVqKsn/ia6RG8frjwmJonfos0srquhw09TlT8KRw5I43E+4gs+/bZj4K0vShJ5H9imCuXupb4RmS+dBy3w==",
       "type": "package",
-      "path": "system.text.json/6.0.0",
+      "path": "system.text.json/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
+        "README.md",
         "THIRD-PARTY-NOTICES.TXT",
         "analyzers/dotnet/roslyn3.11/cs/System.Text.Json.SourceGeneration.dll",
         "analyzers/dotnet/roslyn3.11/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
@@ -8571,18 +8637,34 @@
         "analyzers/dotnet/roslyn4.0/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
         "analyzers/dotnet/roslyn4.0/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
         "analyzers/dotnet/roslyn4.0/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
-        "build/System.Text.Json.targets",
+        "analyzers/dotnet/roslyn4.4/cs/System.Text.Json.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn4.4/cs/cs/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/de/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/es/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/fr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/it/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ja/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ko/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pl/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pt-BR/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ru/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/tr/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hans/System.Text.Json.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hant/System.Text.Json.SourceGeneration.resources.dll",
+        "buildTransitive/net461/System.Text.Json.targets",
+        "buildTransitive/net462/System.Text.Json.targets",
+        "buildTransitive/net6.0/System.Text.Json.targets",
         "buildTransitive/netcoreapp2.0/System.Text.Json.targets",
-        "buildTransitive/netcoreapp3.1/_._",
-        "lib/net461/System.Text.Json.dll",
-        "lib/net461/System.Text.Json.xml",
+        "buildTransitive/netstandard2.0/System.Text.Json.targets",
+        "lib/net462/System.Text.Json.dll",
+        "lib/net462/System.Text.Json.xml",
         "lib/net6.0/System.Text.Json.dll",
         "lib/net6.0/System.Text.Json.xml",
-        "lib/netcoreapp3.1/System.Text.Json.dll",
-        "lib/netcoreapp3.1/System.Text.Json.xml",
+        "lib/net7.0/System.Text.Json.dll",
+        "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.6.0.0.nupkg.sha512",
+        "system.text.json.7.0.0.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -9170,24 +9252,24 @@
         "xunit.extensibility.execution.nuspec"
       ]
     },
-    "xunit.runner.visualstudio/2.4.3": {
-      "sha512": "kZZSmOmKA8OBlAJaquPXnJJLM9RwQ27H7BMVqfMLUcTi9xHinWGJiWksa3D4NEtz0wZ/nxd2mogObvBgJKCRhQ==",
+    "xunit.runner.visualstudio/2.4.5": {
+      "sha512": "OwHamvBdUKgqsXfBzWiCW/O98BTx81UKzx2bieIOQI7CZFE5NEQZGi8PBQGIKawDW96xeRffiNf20SjfC0x9hw==",
       "type": "package",
-      "path": "xunit.runner.visualstudio/2.4.3",
+      "path": "xunit.runner.visualstudio/2.4.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "License.txt",
-        "build/net452/xunit.abstractions.dll",
-        "build/net452/xunit.runner.reporters.net452.dll",
-        "build/net452/xunit.runner.utility.net452.dll",
-        "build/net452/xunit.runner.visualstudio.props",
-        "build/net452/xunit.runner.visualstudio.testadapter.dll",
-        "build/netcoreapp2.1/xunit.abstractions.dll",
-        "build/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll",
-        "build/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll",
-        "build/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll",
-        "build/netcoreapp2.1/xunit.runner.visualstudio.props",
+        "build/net462/xunit.abstractions.dll",
+        "build/net462/xunit.runner.reporters.net452.dll",
+        "build/net462/xunit.runner.utility.net452.dll",
+        "build/net462/xunit.runner.visualstudio.props",
+        "build/net462/xunit.runner.visualstudio.testadapter.dll",
+        "build/netcoreapp3.1/xunit.abstractions.dll",
+        "build/netcoreapp3.1/xunit.runner.reporters.netcoreapp10.dll",
+        "build/netcoreapp3.1/xunit.runner.utility.netcoreapp10.dll",
+        "build/netcoreapp3.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll",
+        "build/netcoreapp3.1/xunit.runner.visualstudio.props",
         "build/uap10.0.16299/xunit.runner.reporters.netstandard15.dll",
         "build/uap10.0.16299/xunit.runner.utility.netstandard15.dll",
         "build/uap10.0.16299/xunit.runner.utility.uwp10.dll",
@@ -9196,8 +9278,11 @@
         "build/uap10.0.16299/xunit.runner.visualstudio.targets",
         "build/uap10.0.16299/xunit.runner.visualstudio.uwp.testadapter.dll",
         "build/uap10.0.16299/xunit.runner.visualstudio.uwp.testadapter.pri",
+        "lib/net462/_._",
+        "lib/netcoreapp3.1/_._",
+        "lib/uap10.0.16299/_._",
         "logo-512-transparent.png",
-        "xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+        "xunit.runner.visualstudio.2.4.5.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
     },
@@ -9214,23 +9299,23 @@
       "coverlet.collector >= 3.1.2",
       "roommate-app >= 1.0.0",
       "xunit >= 2.4.1",
-      "xunit.runner.visualstudio >= 2.4.3"
+      "xunit.runner.visualstudio >= 2.4.5"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\karoj\\.nuget\\packages\\": {}
+    "C:\\Users\\domin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
       "projectName": "roommate-app-testing.UnitTests",
-      "projectPath": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\karoj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app-testing.UnitTests\\obj\\",
+      "projectPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\domin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app-testing.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\karoj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\domin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9244,8 +9329,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app\\roommate-app.csproj": {
-              "projectPath": "C:\\Users\\karoj\\Desktop\\SEappIII\\roommate-app\\roommate-app.csproj"
+            "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj": {
+              "projectPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj"
             }
           }
         }
@@ -9282,7 +9367,7 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.4.3, )"
+            "version": "[2.4.5, )"
           }
         },
         "imports": [
@@ -9291,8 +9376,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -9301,7 +9385,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -9320,7 +9404,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Cors 5.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.AspNet.Cors 5.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Cors",
       "targetGraphs": [
         "net6.0"
@@ -9330,7 +9414,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Owin 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Owin",
       "targetGraphs": [
         "net6.0"
@@ -9340,7 +9424,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin.Cors 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Owin.Cors 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Owin.Cors",
       "targetGraphs": [
         "net6.0"
@@ -9350,7 +9434,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin.Host.SystemWeb 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Owin.Host.SystemWeb 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Owin.Host.SystemWeb",
       "targetGraphs": [
         "net6.0"
@@ -9360,7 +9444,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin.Security 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Owin.Security 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Owin.Security",
       "targetGraphs": [
         "net6.0"
@@ -9370,7 +9454,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin.Security.OAuth 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.Owin.Security.OAuth 4.2.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.Owin.Security.OAuth",
       "targetGraphs": [
         "net6.0"
@@ -9380,7 +9464,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
       "libraryId": "Owin",
       "targetGraphs": [
         "net6.0"

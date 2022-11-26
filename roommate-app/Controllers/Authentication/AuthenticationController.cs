@@ -17,14 +17,21 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Authenticate(AuthenticateRequest model)
+    public JsonResult Authenticate(AuthenticateRequest model)
     {
         var response = _userService.Authenticate(model);
 
         if (response == null)
-            return BadRequest(new { message = "Username or password is incorrect" });
+        {
+            var jsonResultUnauthorized = new JsonResult(new { message = "Username or password is incorrect" });
+            jsonResultUnauthorized.StatusCode = 401;
+            return jsonResultUnauthorized;
+        }
 
-        return Ok(response);
+        var jsonResult = new JsonResult(response);
+        jsonResult.StatusCode = 200;
+
+        return jsonResult;
     }
 
 }

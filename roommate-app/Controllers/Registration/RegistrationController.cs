@@ -16,9 +16,10 @@ public class RegistrationController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<OkObjectResult> Submit([FromBody] User user)
+    public async Task<JsonResult> Submit([FromBody] User user)
     {
         var emailExistsFlag = false;
+        var response = new JsonResult(new Object());
 
         List<User> existingUsers = await _genericService.GetAllAsync<User>();
 
@@ -33,14 +34,23 @@ public class RegistrationController : ControllerBase
             await _genericService.AddAsync<User>(user);
         }
 
-        return base.Ok(
-            new RegistrationResponse(
-                !emailExistsFlag,
-                emailExistsFlag
-                    ? "Account with this email already exists"
-                    : "Your account has been successfully created."
-            )
-        );
+        if (!emailExistsFlag)
+        {
+            response = new JsonResult(new RegistrationResponse(
+                true,
+                "Your account has been successfully created."
+            ));
+            response.StatusCode = 201;
+        } else
+        {
+            response = new JsonResult(new RegistrationResponse(
+                false,
+                "Account with this email already exists"
+            ));
+            response.StatusCode = 200;
+        }
+
+        return response;
     }
 }
 
