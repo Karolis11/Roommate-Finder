@@ -4,7 +4,6 @@ import { EditListingComponent } from '../Views/EditListingComponent';
 import { CreateListingButton } from '../Buttons/CreateListingButton';
 import { ListOfListings } from '../ListOfListings';
 import { FilterComponent } from '../Views/FilterComponent';
-import { LogOutButton } from '../Views/LogOutButton';
 import axios from 'axios';
 import Pusher from 'pusher-js';
 import './EntryScreen.css'
