@@ -36,7 +36,7 @@ public class ListingController : Controller
 
     [HttpGet]
     [Route("sort")]
-    public async Task<ActionResult> GetSortedListings(SortMode sort, string city)
+    public async Task<JsonResult> GetSortedListings(SortMode sort, string city)
     {
         var existingListings = await _genericService.GetAllAsync<Listing>();
 
@@ -45,7 +45,10 @@ public class ListingController : Controller
 
         existingListings.Sort(comparer);
 
-        return base.Ok(existingListings);
+        var response = new JsonResult(existingListings);
+        response.StatusCode = 200;
+
+        return response;
     }
 
     [HttpPost]
@@ -59,6 +62,10 @@ public class ListingController : Controller
         listing.UserId = user.Id;
         listing.User = user;
 
+        var response = new JsonResult(new Object());
+        var isInternalServerError = false;
+        var message = "";
+
         try
         {
             await _genericService.AddAsync<Listing>(listing);
@@ -68,25 +75,45 @@ public class ListingController : Controller
         {
             _errorLogging.LogError(e.Message);
             _errorLogging.MessageError("Failed to load existing listing");
+            isInternalServerError = true;
+            message = "Failed to load existing listing";
         }
         catch (SqlException e)
         {
             _errorLogging.LogError(e.Message);
             _errorLogging.MessageError("Could not insert a listing into the database.");
+            isInternalServerError = true;
+            message = "Could not insert a listing into the database.";
         }
         catch (Exception e)
         {
             _errorLogging.LogError(e.Message);
             _errorLogging.MessageError("Unexpected error, please restart the program");
+            isInternalServerError = true;
+            message = "Unexpected error, please restart the program";
         }
 
-        return base.Ok(await _genericService.GetAllAsync<Listing>());
+        if (isInternalServerError)
+        {
+            response = new JsonResult(message);
+            response.StatusCode = 500;
+        } else
+        {
+            response = new JsonResult(await _genericService.GetAllAsync<Listing>());
+            response.StatusCode = 201;
+        }
+
+        return response;
     }
 
     [HttpPost]
     [Route("update")]
     public async Task<ActionResult> UpdateListing([FromBody] Listing listing)
     {
+        var response = new JsonResult(new Object());
+        var isInternalServerError = false;
+        var message = "";
+
         try
         {
             await _listingService.UpdateAsync(listing.Id, listing);
@@ -95,19 +122,37 @@ public class ListingController : Controller
         {
             _errorLogging.LogError(e.Message);
             _errorLogging.MessageError("Could not update a listing (SQL database exception).");
+            isInternalServerError = true;
+            message = "Could not update a listing (SQL database exception).";
         }
         catch (Exception e)
         {
             _errorLogging.LogError(e.Message);
             _errorLogging.MessageError("Unexpected error, please restart the program");
+            isInternalServerError = true;
+            message = "Unexpected error, please restart the program";
         }
 
-        return base.Ok("Listing updated");
+        if (isInternalServerError)
+        {
+            response = new JsonResult(message);
+            response.StatusCode = 500;
+        } else
+        {
+            response = new JsonResult("Listing updated");
+            response.StatusCode = 200;
+        }
+
+        return response;
     }
 
     [HttpDelete]
     public async Task<ActionResult> DeleteListing(int Id)
     {
+        var response = new JsonResult(new Object());
+        var isInternalServerError = false;
+        var message = "";
+
         try
         {
             await _genericService.DeleteAsync<Listing>(Id);
@@ -115,14 +160,29 @@ public class ListingController : Controller
         catch (SqlException e)
         {
             _errorLogging.LogError(e.Message);
-            _errorLogging.MessageError("Could not delete a listing (SQL database exception).");
+            _errorLogging.MessageError("Could not update a listing (SQL database exception).");
+            isInternalServerError = true;
+            message = "Could not update a listing (SQL database exception).";
         }
         catch (Exception e)
         {
             _errorLogging.LogError(e.Message);
             _errorLogging.MessageError("Unexpected error, please restart the program");
+            isInternalServerError = true;
+            message = "Unexpected error, please restart the program";
         }
 
-        return base.Ok("Listing deleted");
+        if (isInternalServerError)
+        {
+            response = new JsonResult(message);
+            response.StatusCode = 500;
+        }
+        else
+        {
+            response = new JsonResult("Listing deleted");
+            response.StatusCode = 200;
+        }
+
+        return response;
     }
 }
