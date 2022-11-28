@@ -16,7 +16,7 @@ public class JwtMiddleware
 
     private readonly RequestDelegate _next;
     private IErrorLogging _errorLogging;
-
+    
     public JwtMiddleware(RequestDelegate next)
     {
         _next = next;
@@ -27,7 +27,7 @@ public class JwtMiddleware
         var userId = -1;
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
         if (token != null) {
-            userId = GetValidatedId(userService, token);
+            userId = userService.GetValidatedId(token);
             if (userId != -1) {
                 AttachUserToContext(context, userService, userId);
             }
@@ -35,25 +35,6 @@ public class JwtMiddleware
         await _next(context);
     }
 
-    public int GetValidatedId(IUserService userService, string token)
-    { 
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(EncodingString);
-        tokenHandler.ValidateToken(token, new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = false,
-            ValidateAudience = false,
-            // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
-            ClockSkew = TimeSpan.Zero
-        }, out SecurityToken validatedToken);
-
-        var jwtToken = (JwtSecurityToken)validatedToken;
-        var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
-
-        return userId;  
-    }
 
     private void AttachUserToContext(HttpContext context, IUserService userService, int userId)
     {

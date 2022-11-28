@@ -15,6 +15,8 @@ public interface IUserService
 {
     AuthenticateResponse Authenticate(AuthenticateRequest model);
     User GetById(int id);
+    int GetValidatedId(string token);
+
 }
 
 public class UserService : IUserService
@@ -63,6 +65,26 @@ public class UserService : IUserService
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
+    }
+
+    public int GetValidatedId(string token)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(EncodingString);
+        tokenHandler.ValidateToken(token, new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+            ClockSkew = TimeSpan.Zero
+        }, out SecurityToken validatedToken);
+
+        var jwtToken = (JwtSecurityToken)validatedToken;
+        var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+
+        return userId;
     }
 
     public User GetById(int id)
