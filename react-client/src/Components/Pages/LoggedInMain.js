@@ -23,7 +23,8 @@ export class LoggedInMain extends Component {
             editListingView: false,
             editedListing: null,
             deletedListing: null,
-            deleteListingView: false
+            deleteListingView: false,
+            currentUser: null,
         }
         
         this.toggleCreateListing = this.toggleCreateListing.bind(this);
@@ -56,7 +57,14 @@ export class LoggedInMain extends Component {
         })
     }
 
+    toggleCurrentUser = (user) => {
+        this.setState({
+            currentUser: user,
+        })
+    }
+
     componentDidMount() {
+        this.toggleCurrentUser(this.getUser())
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 axios({
@@ -101,49 +109,61 @@ export class LoggedInMain extends Component {
         })
     }
 
+    getUser = () => {
+        axios.get('https://localhost:44332/user/token', {
+            params: {
+                token: localStorage.getItem("token"),
+            }
+        })
+        .then((response) => {
+            this.setState({currentUser: response.data})
+            console.log(response)
+        })
+    }
+
     render() {
         return(
             <>
             <FilterComponent updateListings={this.updateListings.bind(this)}/>
             <div className={`logged-in-main-container ${this.state.createListingView && ' create-listing-on'}`}>
                 {
-                    this.state.createListingView
-                    ?
-                        <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
-                    :
-                        this.state.editListingView
+                        this.state.createListingView
                         ?
-                            <EditListingComponent 
-                                listing={this.state.editedListing} 
-                                toggleEditListing={this.toggleEditListingView.bind(this)}
-                            />
+                            <CreateListingComponent toggleCreateListing={this.toggleCreateListing}/>
                         :
-                            this.state.deleteListingView
+                            this.state.editListingView
                             ?
-                                    <DeleteListingComponent
-                                    listing={this.state.deletedListing}
-                                    toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
-                                    />
+                                <EditListingComponent 
+                                    listing={this.state.editedListing} 
+                                    toggleEditListing={this.toggleEditListingView.bind(this)}
+                                />
                             :
-                                <div className="listings-container">
-                                    <>
-                                        <CreateListingButton
-                                            id="create-listing-button"
-                                            text="New listing"
-                                            class="create-listing-btn"
-                                            onclick={this.toggleCreateListingWrapper.bind(this)}
+                                this.state.deleteListingView
+                                ?
+                                        <DeleteListingComponent
+                                        listing={this.state.deletedListing}
+                                        toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
                                         />
-                                        { 
-                                            this.state.listings && 
-                                            <ListOfListings 
-                                                    listings={this.state.listings}
-                                                    toggleEditListingView={this.toggleEditListingView.bind(this)}
-                                                    toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
-                                                /> 
-                                        }
-                                    
-                                    </>
-                                </div>
+                                :
+                                    <div className="listings-container">
+                                        <>
+                                            <CreateListingButton
+                                                id="create-listing-button"
+                                                text="New listing"
+                                                class="create-listing-btn"
+                                                onclick={this.toggleCreateListingWrapper.bind(this)}
+                                            />
+                                            { 
+                                                this.state.listings && 
+                                                <ListOfListings 
+                                                        listings={this.state.listings}
+                                                        toggleEditListingView={this.toggleEditListingView.bind(this)}
+                                                        toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
+                                                    /> 
+                                            }
+                                        
+                                        </>
+                                    </div>
                 }
             </div>
             </>
