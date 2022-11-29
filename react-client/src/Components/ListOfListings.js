@@ -1,11 +1,27 @@
 import { Component } from 'react';
 import { useState } from 'react';
 import "./ListStyles.css";
+import axios from 'axios';
 
 export class ListOfListings extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    state = {
+        userEmail: ""
+    }
+
+    getUser = () => {
+        axios.get('https://localhost:44332/user/token', {
+            params: {
+                token: localStorage.getItem("token"),
+            }
+        })
+        .then((response) => {
+            this.state.userEmail = response.data.email
+        })
     }
 
     render() {
@@ -25,10 +41,10 @@ export class ListOfListings extends Component {
                                             {listing.date}
                                         </div>
                                         <button
-                                            onClick={() => {this.props.toggleEditListingView(listing, true);}}
+                                            onClick={() => {this.getUser(); this.props.toggleEditListingView(listing, listing.email == this.state.userEmail);}}
                                         >Edit</button>
                                         <button
-                                            onClick={() => {this.props.toggleDeleteListingView(listing, true);}}
+                                            onClick={() => {this.getUser(); this.props.toggleDeleteListingView(listing, listing.email == this.state.userEmail);}}
                                         >Delete</button>
                                     </div>
 
