@@ -180,6 +180,12 @@ export const Signup = (props) => {
                     </div>
                 </div>
                 <button type="submit">Submit</button>
+                <home className="home"
+                    id="home"
+                    onClick={() => { navigate(`/`); }}
+                >
+                    Home
+                </home> 
             </form>
             <p>{redirectionMsg}</p>
         </div>

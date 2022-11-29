@@ -15,3 +15,44 @@
     font-size: 16px;
     margin: 10px;
 }
+
+.home {
+    position: absolute;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "montserrat";
+    font-size: 22px;
+    letter-spacing: 0px;
+    border-radius: 20px;
+    border-color: black;
+    border-style: solid;
+    background: white;
+    top: 5px;
+    right: 5px;
+    height: 30px;
+    width: 100px;
+    transition: 0.4s ease;
+}
+
+.home:hover {
+    box-shadow: 0px 0px 2px 2px black;
+}
+.logged-in-main-name {
+    color: black;
+    position: absolute;
+    top: 7px;
+    right: 25px;
+    font-family: verdana;
+    font-size: 20px;
+}
+.user-icon {
+    width: 30px;
+    position: relative;
+    top: 10px;
+    margin-right: 0px;
+    border-radius: 40px;
+    border-color: black;
+    border-style: solid;
+}
