@@ -26,7 +26,7 @@ namespace roommate_app.Controllers
 
             var userId = _userService.GetValidatedId(token);
 
-            var user = existingUsers.FirstOrDefault(u => u.Id == 0 || u.Id == 1);
+            var user = existingUsers.FirstOrDefault(u => u.Id == userId);
 
             var userResponse = new UserResponse(user);
 
