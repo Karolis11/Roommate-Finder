@@ -9,6 +9,7 @@ import Pusher from 'pusher-js';
 import './EntryScreen.css'
 import './Filters.css';
 import { DeleteListingComponent } from '../Views/DeleteListingComponent';
+import img1 from '../Pages/Icons/UserIcon.png';
 
 
 export class LoggedInMain extends Component {
@@ -25,6 +26,8 @@ export class LoggedInMain extends Component {
             deletedListing: null,
             deleteListingView: false,
             currentUser: null,
+            userFirstName: "",
+            userLastName: "",
         }
         
         this.toggleCreateListing = this.toggleCreateListing.bind(this);
@@ -116,7 +119,15 @@ export class LoggedInMain extends Component {
             }
         })
         .then((response) => {
-            this.setState({currentUser: response.data})
+            this.setState({
+                userFirstName: response.data.firstName
+            })
+            this.setState({
+                userLastName: response.data.lastName
+            })
+            this.setState({
+                currentUser: response.data
+            })
             console.log(response)
         })
     }
@@ -124,7 +135,13 @@ export class LoggedInMain extends Component {
     render() {
         return(
             <>
-            <FilterComponent updateListings={this.updateListings.bind(this)}/>
+            <FilterComponent updateListings={this.updateListings.bind(this)} />
+            
+            <div className="logged-in-main-name"
+                id="logged-in-main-name">
+                    <img className="user-icon" src={img1} />:
+                    {this.state.userFirstName} {this.state.userLastName}
+            </div>
             <div className={`logged-in-main-container ${this.state.createListingView && ' create-listing-on'}`}>
                 {
                         this.state.createListingView
@@ -154,12 +171,12 @@ export class LoggedInMain extends Component {
                                                 onclick={this.toggleCreateListingWrapper.bind(this)}
                                             />
                                             { 
-                                                this.state.listings && 
-                                                <ListOfListings 
-                                                        listings={this.state.listings}
-                                                        toggleEditListingView={this.toggleEditListingView.bind(this)}
-                                                        toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
-                                                    /> 
+                                                this.state.listings &&
+                                                <ListOfListings
+                                                    listings={this.state.listings}
+                                                    toggleEditListingView={this.toggleEditListingView.bind(this)}
+                                                    toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
+                                                />
                                             }
                                         
                                         </>

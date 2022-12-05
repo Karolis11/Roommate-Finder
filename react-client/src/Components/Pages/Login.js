@@ -106,6 +106,12 @@ export const Login = (props) => {
                     </div>
                 </div>
                 <button type="submit">Submit</button>
+                <home className="home"
+                    id="home"
+                    onClick={() => { navigate(`/`); }}
+                >
+                    Home
+                </home>    
             </form>          
         </div>
         </>
