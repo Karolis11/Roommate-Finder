@@ -709,7 +709,7 @@ namespace roommate_app_testing.UnitTests
             Assert.True(result);
         }
     }
-}
+
     public class JWTMiddlewareTest
     {
         [Fact]
