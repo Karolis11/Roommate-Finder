@@ -85,7 +85,7 @@ export const Signup = (props) => {
     return (
         <>
         <motion.div
-                className="entryscreen"
+                className="signup"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity:0 }}

@@ -137,11 +137,10 @@ export class LoggedInMain extends Component {
         return(
             <>
             <motion.div
-                className="entryscreen"
+                className="logged-in-main"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity:0 }}
-
             >
             <FilterComponent updateListings={this.updateListings.bind(this)} />
             <div className="logged-in-main-name"
