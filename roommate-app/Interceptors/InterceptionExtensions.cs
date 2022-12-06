@@ -1,4 +1,4 @@
-﻿/*using Castle.DynamicProxy;
+﻿using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace roommate_app.Interceptors;
@@ -23,4 +23,3 @@ public static class InterceptionExtensions
     }
 }
 
-*/

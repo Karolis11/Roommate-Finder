@@ -1,4 +1,4 @@
-﻿/*using System.Diagnostics;
+﻿using System.Diagnostics;
 using Castle.DynamicProxy;
 using roommate_app.Other.Logger;
 
@@ -18,12 +18,13 @@ public class DurationInterceptor : IInterceptor
         try
         {
             invocation.Proceed();
-        } finally
+        }
+        finally
         {
             sw.Stop();
             _logger.Log(
                 String.Format(
-                    "{0} took {1}ms", 
+                    "{0} took {1}ms",
                     invocation.Method.Name,
                     sw.ElapsedMilliseconds
                 )
@@ -32,4 +33,3 @@ public class DurationInterceptor : IInterceptor
     }
 }
 
-*/
