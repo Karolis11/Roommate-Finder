@@ -10,6 +10,7 @@ import './EntryScreen.css'
 import './Filters.css';
 import { DeleteListingComponent } from '../Views/DeleteListingComponent';
 import img1 from '../Pages/Icons/UserIcon.png';
+import LogOutButton from '../Views/LogOutButton';
 
 
 export class LoggedInMain extends Component {
@@ -141,6 +142,7 @@ export class LoggedInMain extends Component {
                 id="logged-in-main-name">
                     <img className="user-icon" src={img1} />:
                     {this.state.userFirstName} {this.state.userLastName}
+                    <LogOutButton />
             </div>
             <div className={`logged-in-main-container ${this.state.createListingView && ' create-listing-on'}`}>
                 {

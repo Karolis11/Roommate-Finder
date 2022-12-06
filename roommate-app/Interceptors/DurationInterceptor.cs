@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿/*using System.Diagnostics;
 using Castle.DynamicProxy;
 using roommate_app.Other.Logger;
 
@@ -32,3 +32,4 @@ public class DurationInterceptor : IInterceptor
     }
 }
 
+*/
