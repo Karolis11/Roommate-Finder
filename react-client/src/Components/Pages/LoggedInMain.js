@@ -148,7 +148,6 @@ export class LoggedInMain extends Component {
                             <NavDropdown.Item href="#action/3.2">My Listings</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">My Messages</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.4">My Reviews</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.4">My Reservations</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">My Account Settings</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.4">My Account Privacy</NavDropdown.Item>
