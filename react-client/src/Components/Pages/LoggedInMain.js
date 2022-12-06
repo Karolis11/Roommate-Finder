@@ -10,6 +10,7 @@ import './EntryScreen.css'
 import './Filters.css';
 import { DeleteListingComponent } from '../Views/DeleteListingComponent';
 import img1 from '../Pages/Icons/UserIcon.png';
+import { motion } from "framer-motion";
 
 
 export class LoggedInMain extends Component {
@@ -135,8 +136,14 @@ export class LoggedInMain extends Component {
     render() {
         return(
             <>
+            <motion.div
+                className="entryscreen"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity:0 }}
+
+            >
             <FilterComponent updateListings={this.updateListings.bind(this)} />
-            
             <div className="logged-in-main-name"
                 id="logged-in-main-name">
                     <img className="user-icon" src={img1} />:
@@ -183,6 +190,7 @@ export class LoggedInMain extends Component {
                                     </div>
                 }
             </div>
+            </motion.div>
             </>
         );
     }

@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from "../../Contexts/AuthProvider";
 import setAuthToken from "../../Contexts/SetAuthToken";
-
+import { motion } from "framer-motion";
 import '../Views/CenteredForm.css';
 
 const LOGIN_URL = '/auth';
@@ -64,6 +64,13 @@ export const Login = (props) => {
 
     return (
         <>
+            <motion.div
+                className="entryscreen"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+
+            >
             <div className="centered-container login-container">
                 <form onSubmit={formik.handleSubmit}>
                     <h2>Login</h2>
@@ -114,6 +121,7 @@ export const Login = (props) => {
                 </home>    
             </form>          
         </div>
+        </motion.div>
         </>
     )
 }
