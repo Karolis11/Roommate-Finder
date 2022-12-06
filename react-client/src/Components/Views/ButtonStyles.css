@@ -1,0 +1,22 @@
+.log-out-button {
+    position: absolute;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "montserrat";
+    font-size: 12px;
+    letter-spacing: 0px;
+    border-radius: 20px;
+    border-color: black;
+    border-style: solid;
+    background: white;
+    top: 17px;
+    right: 5px;
+    height: 30px;
+    width: 100px;
+    transition: 0.4s ease;
+}
+.log-out-button:hover {
+    box-shadow: 0px 0px 2px 2px black;
+}

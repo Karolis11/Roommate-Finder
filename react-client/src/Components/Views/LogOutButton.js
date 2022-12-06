@@ -1,4 +1,6 @@
 import React from 'react';
+import './ButtonStyles.css';
+
 
 export class LogOutButton extends React.Component {
 
@@ -12,16 +14,16 @@ export class LogOutButton extends React.Component {
   }
 
   handleClick(event) {
-//    event.preventDefault();
-//    localStorage.setItem("token", "");
-//    this.setState({ disabled: true });
-//    window.location.reload(false);
+    event.preventDefault();
+    localStorage.setItem("token", "");
+    this.setState({ disabled: true });
+    window.location.reload(false);
   }
 
   render() {
     return (
       <button
-        class= "button-top-container"
+        class= "log-out-button"
         onClick={this.handleClick}
         disabled={this.state.disabled}
       >

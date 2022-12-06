@@ -11,6 +11,10 @@ import './Filters.css';
 import { DeleteListingComponent } from '../Views/DeleteListingComponent';
 import img1 from '../Pages/Icons/UserIcon.png';
 import LogOutButton from '../Views/LogOutButton';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 export class LoggedInMain extends Component {
@@ -133,6 +137,33 @@ export class LoggedInMain extends Component {
         })
     }
 
+    makeDropdown = () => {
+        return(
+            <Navbar bg="light" expand="lg">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <NavDropdown title="My Account" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">My Listings</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">My Messages</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">My Reviews</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">My Reservations</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">My Account Settings</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">My Account Privacy</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">My Account Help</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">My Account FAQ</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">My Account Contact</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">My Account Logout</NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        )
+  }
     render() {
         return(
             <>
@@ -142,8 +173,12 @@ export class LoggedInMain extends Component {
                 id="logged-in-main-name">
                     <img className="user-icon" src={img1} />:
                     {this.state.userFirstName} {this.state.userLastName}
-                    <LogOutButton />
+
             </div>
+            
+            <LogOutButton>
+            </LogOutButton>
+            
             <div className={`logged-in-main-container ${this.state.createListingView && ' create-listing-on'}`}>
                 {
                         this.state.createListingView
