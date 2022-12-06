@@ -710,7 +710,7 @@ namespace roommate_app_testing.UnitTests
         }
     }
 }
-    /*public class JWTMiddlewareTest
+    public class JWTMiddlewareTest
     {
         [Fact]
         public void JWTMiddlewareValidatesCorrectly()
@@ -744,4 +744,4 @@ namespace roommate_app_testing.UnitTests
             Assert.Equal(1, validatedUserId);
         }
     }
-}*/
+}
