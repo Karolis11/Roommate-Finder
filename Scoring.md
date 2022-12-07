@@ -72,3 +72,11 @@ DEVINTA SAVAITE
 | EK | 3  | 3  | 3  | 3  |
 | KJ | 2  | 2  | 2  | 2  |
 | DE | 3  | 3  | 3  | 2  |
+
+VIENUOLIKTA SAVAITE
+|    | DB | EK | KJ | DE |
+|----|----|----|----|----|
+| DB | 2  | 2  | 3  |    |
+| EK | 3  | 3  | 2  |    |
+| KJ | 2  | 2  | 3  |    |
+| DE | 3  | 3  | 2  |    |
