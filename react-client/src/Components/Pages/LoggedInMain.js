@@ -15,6 +15,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { motion } from "framer-motion";
+
 
 
 export class LoggedInMain extends Component {
@@ -166,8 +168,13 @@ export class LoggedInMain extends Component {
     render() {
         return(
             <>
+            <motion.div
+                className="logged-in-main"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity:0 }}
+            >
             <FilterComponent updateListings={this.updateListings.bind(this)} />
-            
             <div className="logged-in-main-name"
                 id="logged-in-main-name">
                     <img className="user-icon" src={img1} />:
@@ -219,6 +226,7 @@ export class LoggedInMain extends Component {
                                     </div>
                 }
             </div>
+            </motion.div>
             </>
         );
     }

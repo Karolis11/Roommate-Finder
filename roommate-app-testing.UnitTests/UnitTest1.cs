@@ -347,7 +347,7 @@ namespace roommate_app_testing.UnitTests
 
             await genericService.UpdateAsync<User>(15, new User()
             {
-                Id=15,
+                Id = 15,
                 FirstName = "a",
                 LastName = "b",
                 Email = "abcd@email.com",
@@ -651,11 +651,11 @@ namespace roommate_app_testing.UnitTests
             Assert.Equal(1, validatedUserId);
         }
     }
-    
+
     public class ListingValidationTest
     {
         [Fact]
-        public void A_ListingValidateNameCorrectly()
+        public void ValidateNameCorrectly()
         {
             // Arrange
             Listing list = new Listing { FirstName = "Test-Test", LastName = "Test'Test" };
@@ -667,7 +667,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void B_ListingValidateEmailCorrectly()
+        public void ValidateEmailCorrectly()
         {
             // Arrange
             Listing list = new Listing { Email = "abc@abc.com" };
@@ -679,7 +679,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void C_ListingValidateCityCorrectly()
+        public void ValidateCityCorrectly()
         {
             // Arrange
             Listing list = new Listing { City = "Vilnius" };
@@ -691,7 +691,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void D_ListingValidateRoommateCountCorrectly()
+        public void ValidateRoommateCountCorrectly()
         {
             // Arrange
             Listing list = new Listing { RoommateCount = 3 };
@@ -703,7 +703,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void E_ListingValidatePhoneNumberCorrectly()
+        public void ValidatePhoneNumberCorrectly()
         {
             // Arrange
             Listing list = new Listing { Phone = "+37060026689" };
@@ -715,7 +715,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void F_ListingValidateExtraCommentCorrectly()
+        public void ValidateExtraCommentCorrectly()
         {
             // Arrange
             Listing list = new Listing { ExtraComment = "Test Test Test" };
@@ -727,7 +727,7 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void G_ListingValidateMaxPriceCorrectly()
+        public void ValidateMaxPriceCorrectly()
         {
             // Arrange
             Listing list = new Listing { MaxPrice = 1 };
@@ -736,6 +736,6 @@ namespace roommate_app_testing.UnitTests
             var result = ListingValidation.ValidateMaximumPrice(list);
             // Assert
             Assert.True(result);
-         }
+        }
     }
 }
