@@ -43,7 +43,7 @@
     color: black;
     position: absolute;
     top: 7px;
-    right: 25px;
+    right: 125px;
     font-family: verdana;
     font-size: 20px;
 }
@@ -55,4 +55,51 @@
     border-radius: 40px;
     border-color: black;
     border-style: solid;
+}
+.logged-in-main-dropdown {
+    position: absolute;
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "montserrat";
+    font-size: 22px;
+    letter-spacing: 0px;
+    border-radius: 20px;
+    border-color: black;
+    border-style: solid;
+    background: white;
+    top: 17px;
+    right: 5px;
+    height: 30px;
+    width: 100px;
+    transition: 0.4s ease;
+}
+.logged-in-main-dropdown:hover {
+    box-shadow: 0px 0px 2px 2px black;
+}
+.logged-in-main-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 5;
+    right: 0px;
+    top: 30px;
+}
+.logged-in-main-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.logged-in-main-dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.logged-in-main-dropdown:hover .logged-in-main-dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: #f1f1f1;
 }
