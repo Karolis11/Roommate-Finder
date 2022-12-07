@@ -6,6 +6,7 @@ import { useSnackbar } from 'notistack'
 import { useNavigate } from 'react-router-dom';
 import { LithuanianCities } from '../Views/LithuanianCities.js';
 import CitySelect from '../Views/CitySelect';
+import { motion } from "framer-motion";
 
 const cityOptions = []
 
@@ -83,6 +84,13 @@ export const Signup = (props) => {
 
     return (
         <>
+        <motion.div
+                className="signup"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity:0 }}
+
+        >
         <h1>Registration</h1>
         <div className="centered-container signup-container">
             <form onSubmit={formik.handleSubmit}>
@@ -189,6 +197,7 @@ export const Signup = (props) => {
             </form>
             <p>{redirectionMsg}</p>
         </div>
+        </motion.div>
         </>
     )
 }
