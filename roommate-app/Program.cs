@@ -6,16 +6,18 @@ using roommate_app.Exceptions;
 using roommate_app.Other.FileCreator;
 using roommate_app.Services;
 using roommate_app.Interceptors;
+using roommate_app.Other.Logger;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IFileCreator, FileCreator>();
 builder.Services.AddScoped<IListingCompreterFactory, ListingComparerFactory>();
 builder.Services.AddScoped<IErrorLogging, ErrorLogging>();
+builder.Services.AddScoped<IDurationLogger, DurationLogger>();
 
-builder.Services.AddInterceptedSingleton<IGenericService, GenericService, DurationInterceptor>();
-builder.Services.AddInterceptedSingleton<IListingService, ListingService, DurationInterceptor>();
-builder.Services.AddInterceptedSingleton<IUserService, UserService, DurationInterceptor>();
+builder.Services.AddInterceptedService<IGenericService, GenericService, DurationInterceptor>();
+builder.Services.AddInterceptedService<IListingService, ListingService, DurationInterceptor>();
+builder.Services.AddInterceptedService<IUserService, UserService, DurationInterceptor>();
 
 builder.Services.AddCors((options) =>
 {

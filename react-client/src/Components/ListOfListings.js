@@ -46,6 +46,9 @@ export class ListOfListings extends Component {
                                         <button
                                             onClick={() => {this.getUser(); this.props.toggleDeleteListingView(listing, listing.email == this.state.userEmail);}}
                                         >Delete</button>
+                                        <button 
+                                            onClick={() => {this.toggleConversation()}}
+                                        >Replies</button>
                                     </div>
 
                                     <div className="listingReview ">
