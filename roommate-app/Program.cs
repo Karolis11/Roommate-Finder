@@ -7,6 +7,7 @@ using roommate_app.Other.FileCreator;
 using roommate_app.Services;
 using roommate_app.Interceptors;
 using roommate_app.Other.Logger;
+using roommate_app.Other.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +45,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IListingService, ListingService>();
 builder.Services.AddScoped<IGenericService, GenericService>();
+builder.Services.AddScoped<IReplyService, ReplyService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
