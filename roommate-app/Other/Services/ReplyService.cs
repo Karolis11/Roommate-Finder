@@ -17,7 +17,7 @@ public class ReplyService: IReplyService
 
     public List<Reply> GetByListingId(int listingId)
     {
-        var replies = _context.Replies.Where<Reply>(r => r.ListingId == listingId);
+        var replies = _context.Replies.Where<Reply>(r => r.ListingId == listingId).ToList();
         return (List<Reply>)replies;
     }
 }
