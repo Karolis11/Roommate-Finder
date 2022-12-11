@@ -15,4 +15,5 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Listing> Listings { get; set; }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<Reply> Replies { get; set; }
 }
