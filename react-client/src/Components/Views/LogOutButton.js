@@ -23,7 +23,7 @@ export class LogOutButton extends React.Component {
   render() {
     return (
       <button
-        class= "log-out-button"
+        className= "log-out-button"
         onClick={this.handleClick}
         disabled={this.state.disabled}
       >

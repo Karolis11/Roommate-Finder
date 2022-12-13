@@ -1,13 +1,15 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Castle.DynamicProxy;
 using roommate_app.Other.Logger;
 
 namespace roommate_app.Interceptors;
+[ExcludeFromCodeCoverage]
 public class DurationInterceptor : IInterceptor
 {
     private readonly IDurationLogger _logger;
 
-    DurationInterceptor(IDurationLogger logger)
+    public DurationInterceptor(IDurationLogger logger)
     {
         _logger = logger;
     }

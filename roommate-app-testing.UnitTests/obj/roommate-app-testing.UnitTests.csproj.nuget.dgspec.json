@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SourceCode\\Repositories\\New folder\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj": {}
+    "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj": {}
   },
   "projects": {
-    "D:\\SourceCode\\Repositories\\New folder\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj": {
+    "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SourceCode\\Repositories\\New folder\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
         "projectName": "roommate-app-testing.UnitTests",
-        "projectPath": "D:\\SourceCode\\Repositories\\New folder\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
-        "packagesPath": "C:\\Users\\dom20\\.nuget\\packages\\",
-        "outputPath": "D:\\SourceCode\\Repositories\\New folder\\roommate-app-testing.UnitTests\\obj\\",
+        "projectPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app-testing.UnitTests\\roommate-app-testing.UnitTests.csproj",
+        "packagesPath": "C:\\Users\\domin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app-testing.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dom20\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\domin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\SourceCode\\Repositories\\New folder\\roommate-app\\roommate-app.csproj": {
-                "projectPath": "D:\\SourceCode\\Repositories\\New folder\\roommate-app\\roommate-app.csproj"
+              "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj": {
+                "projectPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj"
               }
             }
           }
@@ -79,8 +79,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -89,21 +88,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\SourceCode\\Repositories\\New folder\\roommate-app\\roommate-app.csproj": {
+    "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SourceCode\\Repositories\\New folder\\roommate-app\\roommate-app.csproj",
+        "projectUniqueName": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj",
         "projectName": "roommate-app",
-        "projectPath": "D:\\SourceCode\\Repositories\\New folder\\roommate-app\\roommate-app.csproj",
-        "packagesPath": "C:\\Users\\dom20\\.nuget\\packages\\",
-        "outputPath": "D:\\SourceCode\\Repositories\\New folder\\roommate-app\\obj\\",
+        "projectPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\roommate-app.csproj",
+        "packagesPath": "C:\\Users\\domin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\domin\\Documents\\CODING\\PROGRAMU SISTEMOS\\SOFTWARE ENGINEERING\\SEappIII\\roommate-app\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dom20\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\domin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -129,6 +128,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Autofac.Extras.DynamicProxy": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
             "Castle.Core": {
               "target": "Package",
               "version": "[5.1.0, )"
@@ -136,6 +143,10 @@
             "CryptoHelper": {
               "target": "Package",
               "version": "[3.0.2, )"
+            },
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.46.5, )"
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
@@ -165,7 +176,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.10, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
@@ -220,8 +231,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -233,7 +243,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

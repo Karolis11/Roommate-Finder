@@ -626,3 +626,23 @@ D:\SourceCode\Repositories\New folder\roommate-app-testing.UnitTests\obj\Debug\n
 D:\SourceCode\Repositories\New folder\roommate-app-testing.UnitTests\obj\Debug\net6.0\roommate-app-testing.UnitTests.pdb
 D:\SourceCode\Repositories\New folder\roommate-app-testing.UnitTests\obj\Debug\net6.0\roommate-app-testing.UnitTests.genruntimeconfig.cache
 D:\SourceCode\Repositories\New folder\roommate-app-testing.UnitTests\obj\Debug\net6.0\ref\roommate-app-testing.UnitTests.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\Autofac.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\Autofac.Extras.DynamicProxy.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\Castle.Core.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\Grpc.Core.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\Grpc.Core.Api.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\linux-arm64\native\libgrpc_csharp_ext.arm64.so
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\win-x86\native\grpc_csharp_ext.x86.dll
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\alpine-arm\native\libe_sqlite3.so
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\alpine-arm64\native\libe_sqlite3.so
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\browser-wasm\nativeassets\net6.0\e_sqlite3.a
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
+C:\Users\domin\Documents\CODING\PROGRAMU SISTEMOS\SOFTWARE ENGINEERING\SEappIII\roommate-app-testing.UnitTests\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

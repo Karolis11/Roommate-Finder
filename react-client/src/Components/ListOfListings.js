@@ -7,10 +7,14 @@ export class ListOfListings extends Component {
 
     constructor(props) {
         super(props);
-    }
 
-    state = {
-        userEmail: ""
+        this.state = {
+            userEmail: "",
+            userId: -1,
+            repliesView: undefined,
+            replyInputValue: "",
+            replies: undefined,
+        }
     }
 
     getUser = () => {
@@ -20,8 +24,51 @@ export class ListOfListings extends Component {
             }
         })
         .then((response) => {
-            this.state.userEmail = response.data.email
+            this.setState({
+                userEmail: response.data.email,
+                userId: response.data.id
+            });
         })
+    }
+
+
+
+    handleChange = (e) => {
+        this.setState({replyInputValue: e.target.value});
+    }
+
+    handleEnter = (e, id) => {
+        if (this.state.replyInputValue == "")
+            return;
+
+        if (e.key === "Enter") {
+            axios({
+                url: 'https://localhost:44332/reply',
+                method: 'post',
+                data: {
+                    ListingId: id,
+                    UserId: this.state.userId,
+                    Message: this.state.replyInputValue
+                }
+            }).then((response) => {
+                this.getReplies(id);
+                this.setState({replyInputValue: ""});
+            });
+        }
+    }
+
+    getReplies = (id) => {
+        axios.get('https://localhost:44332/reply', {
+            params: {
+                id: id
+            }
+        }).then(response => {
+            this.setState({replies: response.data});
+        })
+    }
+
+    toggleReplies = (id) => {
+        this.setState({repliesView: id});
     }
 
     render() {
@@ -46,6 +93,10 @@ export class ListOfListings extends Component {
                                         <button
                                             onClick={() => {this.getUser(); this.props.toggleDeleteListingView(listing, listing.email == this.state.userEmail);}}
                                         >Delete</button>
+                                        <br/>
+                                        <button 
+                                            onClick={() => {this.getUser(); this.toggleReplies(listing.id); this.getReplies(listing.id)}}
+                                        >Replies</button>
                                     </div>
 
                                     <div className="listingReview ">
@@ -68,6 +119,28 @@ export class ListOfListings extends Component {
                                                 {listing.maxPrice} &#8364;
                                             </span>
                                         </div>
+
+                                        {
+                                            this.state.repliesView == listing.id &&
+                                            <>
+                                            {
+                                                this.state.replies &&
+                                                this.state.replies.map((reply) => {
+                                                    return (
+                                                        <p key={reply.id}><strong>{reply.user.firstName} {reply.user.lastName}</strong>: {reply.message}</p>
+                                                    );
+                                                })
+                                            }
+                                            <input
+                                                type="text"
+                                                onChange={this.handleChange}
+                                                onKeyDown={(e) => {this.handleEnter(e, listing.id)}}
+                                                value={this.state.replyInputValue}
+                                                placeholder="Reply to this listing"
+                                            />
+                                            </>
+                                        }
+                                        
                                     </div>
                                     <hr className="line" />
                                 </li>

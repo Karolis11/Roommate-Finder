@@ -4,3 +4,4 @@ roommate-app/bin/**
 roommate-app/.vs/**
 node_modules
 LocalDatabase*
+log.txt
