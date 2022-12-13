@@ -127,12 +127,8 @@ export class LoggedInMain extends Component {
         })
         .then((response) => {
             this.setState({
-                userFirstName: response.data.firstName
-            })
-            this.setState({
-                userLastName: response.data.lastName
-            })
-            this.setState({
+                userFirstName: response.data.firstName,
+                userLastName: response.data.lastName,
                 currentUser: response.data
             })
             console.log(response)
