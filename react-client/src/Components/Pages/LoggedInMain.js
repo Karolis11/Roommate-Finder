@@ -109,13 +109,14 @@ export class LoggedInMain extends Component {
         })
     }
     
-    deleteListing = () => {
+    deleteListing = (listing) => {
         axios({
             method: 'delete',
             url: `https://localhost:44332/listing/delete`,
-            data: this.state.deletedListing
+            data: listing
         }).then((response) => {
             this.setState({ listings: response.data })
+            console.log(response)
         })
     }
 
@@ -199,6 +200,7 @@ export class LoggedInMain extends Component {
                                         <DeleteListingComponent
                                         listing={this.state.deletedListing}
                                         toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
+                                        deleteListing={this.deleteListing.bind(this)}
                                         />
                                 :
                                     <div className="listings-container">
@@ -215,6 +217,7 @@ export class LoggedInMain extends Component {
                                                     listings={this.state.listings}
                                                     toggleEditListingView={this.toggleEditListingView.bind(this)}
                                                     toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
+                                                    deleteListing={this.deleteListing.bind(this)}
                                                 />
                                             }
                                         
