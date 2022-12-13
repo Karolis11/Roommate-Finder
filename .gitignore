@@ -5,3 +5,5 @@ roommate-app/.vs/**
 node_modules
 LocalDatabase*
 log.txt
+roommate-app-testing.UnitTests/obj/**
+roommate-app-testing.UnitTests/bin/**
