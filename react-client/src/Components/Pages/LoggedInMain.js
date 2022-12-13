@@ -200,7 +200,7 @@ export class LoggedInMain extends Component {
                                         <DeleteListingComponent
                                         listing={this.state.deletedListing}
                                         toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
-                                        deleteListing={this.deleteListing.bind(this)}
+                                        deleteListing={this.deleteListing}
                                         />
                                 :
                                     <div className="listings-container">
@@ -217,7 +217,7 @@ export class LoggedInMain extends Component {
                                                     listings={this.state.listings}
                                                     toggleEditListingView={this.toggleEditListingView.bind(this)}
                                                     toggleDeleteListingView={this.toggleDeleteListingView.bind(this)}
-                                                    deleteListing={this.deleteListing.bind(this)}
+                                                    currentUser={this.state.currentUser}
                                                 />
                                             }
                                         
