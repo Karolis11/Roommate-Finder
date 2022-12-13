@@ -147,7 +147,8 @@ public class ListingController : Controller
     }
 
     [HttpDelete]
-    public async Task<ActionResult> DeleteListing(int Id)
+    [Route("delete")]
+    public async Task<ActionResult> DeleteListing([FromBody] Listing listing)
     {
         var response = new JsonResult(new Object());
         var isInternalServerError = false;
@@ -155,7 +156,7 @@ public class ListingController : Controller
 
         try
         {
-            await _genericService.DeleteAsync<Listing>(Id);
+            await _genericService.DeleteAsync<Listing>(listing.Id) ;
         }
         catch (SqlException e)
         {

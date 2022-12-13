@@ -17,22 +17,6 @@ export class ListOfListings extends Component {
         }
     }
 
-    getUser = () => {
-        axios.get('https://localhost:44332/user/token', {
-            params: {
-                token: localStorage.getItem("token"),
-            }
-        })
-        .then((response) => {
-            this.setState({
-                userEmail: response.data.email,
-                userId: response.data.id
-            });
-        })
-    }
-
-
-
     handleChange = (e) => {
         this.setState({replyInputValue: e.target.value});
     }
@@ -47,7 +31,7 @@ export class ListOfListings extends Component {
                 method: 'post',
                 data: {
                     ListingId: id,
-                    UserId: this.state.userId,
+                    UserId: this.props.currentUser.id,
                     Message: this.state.replyInputValue
                 }
             }).then((response) => {
@@ -88,14 +72,14 @@ export class ListOfListings extends Component {
                                             {listing.date}
                                         </div>
                                         <button
-                                            onClick={() => {this.getUser(); this.props.toggleEditListingView(listing, listing.email == this.state.userEmail);}}
+                                            onClick={() => {this.props.toggleEditListingView(listing, listing.email == this.props.currentUser.email);}}
                                         >Edit</button>
                                         <button
-                                            onClick={() => {this.getUser(); this.props.toggleDeleteListingView(listing, listing.email == this.state.userEmail);}}
+                                            onClick={() => { this.props.toggleDeleteListingView(listing, listing.email == this.props.currentUser.email);}}
                                         >Delete</button>
                                         <br/>
                                         <button 
-                                            onClick={() => {this.getUser(); this.toggleReplies(listing.id); this.getReplies(listing.id)}}
+                                            onClick={() => {this.toggleReplies(listing.id); this.getReplies(listing.id)}}
                                         >Replies</button>
                                     </div>
 
