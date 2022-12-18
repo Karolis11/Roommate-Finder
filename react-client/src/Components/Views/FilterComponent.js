@@ -1,10 +1,24 @@
 import { useFormik } from 'formik';
-import { Select, MenuItem } from '@mui/material';
+import { useState } from 'react';
+import { Select, MenuItem, Slider } from '@mui/material';
 import axios from 'axios';
+import {DropdownCheckboxList} from './DropdownCheckboxList';
+import {LithuanianCities} from './LithuanianCities';
+
+function useForceUpdate(){
+    const [value, setValue] = useState(0);
+    return () => setValue(value => value + 1);
+}
 
 export const FilterComponent = (props) => {
 
+    const [rangeValues, setRangeValues] = useState([100, 500]);
+    const [selectedCities, setSelectedCities] = useState([]);
+    const [citiesVisible, setCitiesVisible] = useState(false);
+    const forceUpdate = useForceUpdate();
+
     const getListings = (values, city) => {
+
         axios({
             method: 'get',
             url: `https://localhost:44332/listing/sort?sort=${values.sort}&city=${encodeURIComponent(city)}`,
@@ -17,6 +31,7 @@ export const FilterComponent = (props) => {
     const formik = useFormik({
         initialValues: {
             sort: 0,
+            priceRange: [100, 500],
         },
         onSubmit: (values) => {
             if (navigator.geolocation) {
@@ -35,8 +50,28 @@ export const FilterComponent = (props) => {
         }
     });
 
+    const setParentClass = (toggle) => {
+        setCitiesVisible(toggle);
+    }
+
+    const updateCheckboxList = (option) => {
+        if (selectedCities.includes(option)) {
+            let tempSelectedCities = selectedCities;
+            const index = tempSelectedCities.indexOf(option);
+            tempSelectedCities.splice(index, 1);
+            setSelectedCities(tempSelectedCities);
+        } else {
+            var tempSelectedCities = selectedCities;
+            tempSelectedCities.push(option);
+            setSelectedCities(tempSelectedCities);
+        }
+
+        forceUpdate();
+    }
+
     return (
-        <div className="filter-top-container">
+        
+        <div className={`filter-top-container${citiesVisible ? ' cities' : ''}`}>
             <label htmlFor="sort">Sort By</label>
             <Select
                 name="sort"
@@ -47,6 +82,23 @@ export const FilterComponent = (props) => {
                 <MenuItem value={1}>Number of roommates</MenuItem>
                 <MenuItem value={2}>City</MenuItem>
             </Select>
+            <label htmlFor="range">Price range</label>
+            <Slider
+                getAriaLabel={() => 'Price range'}
+                value={rangeValues}
+                min={0}
+                max={2000}
+                name="range"
+                onChange={(e) => {setRangeValues(e.target.value)}}
+                valueLabelDisplay="auto"
+                style={{width: "200px"}}
+            />
+            <DropdownCheckboxList 
+                options={LithuanianCities} 
+                selectedOptions={selectedCities}
+                setParentClass={setParentClass.bind(this)}
+                updateCheckboxList={updateCheckboxList.bind(this)}
+                />
         </div>
     );
 }
