@@ -186,4 +186,16 @@ public class ListingController : Controller
 
         return response;
     }
+
+    [HttpGet]
+    [Route("filter")]
+    public JsonResult Filter(float lowPrice, float highPrice, List<string> cities)
+    {
+        var listings = _listingService.Filter(lowPrice: lowPrice, highPrice: highPrice, cities: cities);
+
+        var response = new JsonResult(listings);
+        response.StatusCode = 200;
+
+        return response;
+    }
 }

@@ -1,6 +1,6 @@
 .filter-top-container {
-    min-height: 75px;
-    height: 75px;
+    min-height: 150px;
+    height: 150px;
     width: 100%;
     top: 0;
     left: 0;
@@ -8,7 +8,12 @@
     display: flex;
     border-bottom: 1px solid black;
     align-items: center;
+    flex-wrap: wrap;
     overflow: hidden;
+}
+
+.filter-top-container.cities {
+    height: 750px;
 }
 
 .filter-top-container label {
@@ -102,4 +107,21 @@
     display: block;
     position: absolute;
     background-color: #f1f1f1;
+}
+
+
+.city-checkboxes {
+    display: none;
+    background-color: white;
+    z-index: 100;
+}
+
+.city-checkboxes.visible {
+    display: flex;
+    width: 800px;
+    height: 600px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    z-index: 100;
 }

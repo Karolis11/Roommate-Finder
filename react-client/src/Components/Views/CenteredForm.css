@@ -50,16 +50,18 @@ h1:after {
 
 .logged-in-main-container {
     width: 100%;
-    height: calc(100% - 75px);
-    top: 75px;
+    height: calc(100% - 150px);
+    top: 150px;
     left: 0;
     position: absolute;
+    z-index: -1;
 }
 
 .logged-in-main-container.create-listing-on {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -1;
 }
 
 .centered-container {
