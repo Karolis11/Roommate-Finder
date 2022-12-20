@@ -4,6 +4,7 @@ import { Select, MenuItem, Slider } from '@mui/material';
 import axios from 'axios';
 import {DropdownCheckboxList} from './DropdownCheckboxList';
 import {LithuanianCities} from './LithuanianCities';
+//import State from 'pusher-js/types/src/core/http/state';
 
 function useForceUpdate(){
     const [value, setValue] = useState(0);
@@ -50,6 +51,26 @@ export const FilterComponent = (props) => {
         }
     });
 
+    const formik1 = useFormik({
+        initialValues: {
+            lowPrice: 0,
+            highPrice: 1,
+        },
+        onSubmit: (values) => {
+            console.log(values);
+            axios({
+                method: 'get',
+                url: 'https://localhost:44332/listing/filter',
+                params: {
+                    lowPrice: rangeValues[0],
+                    highPrice: rangeValues[1],
+                }
+            }).then((response) => {
+                this.setState({listings: response.data})
+            })
+        }
+    })
+
     const setParentClass = (toggle) => {
         setCitiesVisible(toggle);
     }
@@ -89,7 +110,7 @@ export const FilterComponent = (props) => {
                 min={0}
                 max={2000}
                 name="range"
-                onChange={(e) => {setRangeValues(e.target.value)}}
+                onChange={(e) => {setRangeValues(e.target.value); formik1.handleChange(e); formik1.submitForm();}}
                 valueLabelDisplay="auto"
                 style={{width: "200px"}}
             />
@@ -99,6 +120,7 @@ export const FilterComponent = (props) => {
                 setParentClass={setParentClass.bind(this)}
                 updateCheckboxList={updateCheckboxList.bind(this)}
                 />
+            
         </div>
     );
 }
