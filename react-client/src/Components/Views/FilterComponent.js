@@ -1,10 +1,13 @@
-import { useFormik } from 'formik';
+﻿import { useFormik } from 'formik';
 import { useState } from 'react';
 import { Select, MenuItem, Slider } from '@mui/material';
 import axios from 'axios';
 import {DropdownCheckboxList} from './DropdownCheckboxList';
-import {LithuanianCities} from './LithuanianCities';
-//import State from 'pusher-js/types/src/core/http/state';
+import { LithuanianCities } from './LithuanianCities';
+import CustomRoommates from './CustomRoommates'
+import CitySelect from './CitySelect';
+import '../Pages/Filters.css';
+
 
 function useForceUpdate(){
     const [value, setValue] = useState(0);
@@ -13,10 +16,11 @@ function useForceUpdate(){
 
 export const FilterComponent = (props) => {
 
-    const [rangeValues, setRangeValues] = useState([100, 500]);
-    const [selectedCities, setSelectedCities] = useState([]);
-    const [citiesVisible, setCitiesVisible] = useState(false);
+    const [rangeValues, setRangeValues] = useState([0, 500]);
+    const [citySelect, setCitySelect] = useState("Vilnius");
+    const [roommateCounts, setRoommateCount] = useState("1");
     const forceUpdate = useForceUpdate();
+
 
     const getListings = (values, city) => {
 
@@ -27,6 +31,24 @@ export const FilterComponent = (props) => {
         .then((response) => {
             props.updateListings(response.data);             
         })
+    }
+
+    const getFilteredListings = (event) => {
+
+        axios({
+            method: 'get',
+            url: `https://localhost:44332/listing/filter`,
+            params: {
+                lowPrice: rangeValues[0],
+                highPrice: rangeValues[1],
+                city: citySelect,
+                count: roommateCounts
+                }
+        })
+            .then((response) => {
+                console.log(response.data);
+                props.updateListings(response.data);
+            })
     }
 
     const formik = useFormik({
@@ -50,49 +72,8 @@ export const FilterComponent = (props) => {
             } 
         }
     });
-
-    const formik1 = useFormik({
-        initialValues: {
-            lowPrice: 0,
-            highPrice: 1,
-        },
-        onSubmit: (values) => {
-            console.log(values);
-            axios({
-                method: 'get',
-                url: 'https://localhost:44332/listing/filter',
-                params: {
-                    lowPrice: rangeValues[0],
-                    highPrice: rangeValues[1],
-                }
-            }).then((response) => {
-                this.setState({listings: response.data})
-            })
-        }
-    })
-
-    const setParentClass = (toggle) => {
-        setCitiesVisible(toggle);
-    }
-
-    const updateCheckboxList = (option) => {
-        if (selectedCities.includes(option)) {
-            let tempSelectedCities = selectedCities;
-            const index = tempSelectedCities.indexOf(option);
-            tempSelectedCities.splice(index, 1);
-            setSelectedCities(tempSelectedCities);
-        } else {
-            var tempSelectedCities = selectedCities;
-            tempSelectedCities.push(option);
-            setSelectedCities(tempSelectedCities);
-        }
-
-        forceUpdate();
-    }
-
     return (
-        
-        <div className={`filter-top-container${citiesVisible ? ' cities' : ''}`}>
+        <div className='filter-top-container'>
             <label htmlFor="sort">Sort By</label>
             <Select
                 name="sort"
@@ -103,24 +84,41 @@ export const FilterComponent = (props) => {
                 <MenuItem value={1}>Number of roommates</MenuItem>
                 <MenuItem value={2}>City</MenuItem>
             </Select>
-            <label htmlFor="range">Price range</label>
+            <div className="filter-text">Price range:</div>
             <Slider
                 getAriaLabel={() => 'Price range'}
                 value={rangeValues}
                 min={0}
-                max={2000}
+                max={5000}
                 name="range"
-                onChange={(e) => {setRangeValues(e.target.value); formik1.handleChange(e); formik1.submitForm();}}
+                onChange={(e) => { setRangeValues(e.target.value) }}
                 valueLabelDisplay="auto"
                 style={{width: "200px"}}
             />
-            <DropdownCheckboxList 
-                options={LithuanianCities} 
-                selectedOptions={selectedCities}
-                setParentClass={setParentClass.bind(this)}
-                updateCheckboxList={updateCheckboxList.bind(this)}
-                />
-            
+            <div className="filter-text">   City:  <label></label>
+                <select
+                    type="text"
+                    value={citySelect}
+                    onChange={(event) => setCitySelect(event.target.value)}>
+                    {
+                        LithuanianCities.map(opt => <option>{opt}</option>)
+                    }
+                </select>
+            </div>
+            <div className="filter-text">Roommate Count:
+                <select
+                    type="text"
+                    value={roommateCounts}
+                    onChange={(event) => setRoommateCount(+event.target.value)}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                </select>
+            </div>
+                <div1 className="filter-button"
+                    onClick={getFilteredListings}
+                > FILTER</div1>
+            </div>
         </div>
     );
 }

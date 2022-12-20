@@ -35,6 +35,7 @@ export class LoggedInMain extends Component {
             currentUser: null,
             userFirstName: "",
             userLastName: "",
+            userId: null,
         }
         
         this.toggleCreateListing = this.toggleCreateListing.bind(this);
@@ -108,7 +109,7 @@ export class LoggedInMain extends Component {
             this.setState({listings: response.data})
         })
     }
-    
+
     deleteListing = (listing) => {
         axios({
             method: 'delete',
@@ -130,9 +131,23 @@ export class LoggedInMain extends Component {
             this.setState({
                 userFirstName: response.data.firstName,
                 userLastName: response.data.lastName,
-                currentUser: response.data
+                currentUser: response.data,
+                userId: response.data.id
             })
             console.log(response)
+        })
+    }
+
+    getUserListings = () => {
+        axios({
+            method: 'get',
+            url: `https://localhost:44332/listing/userlistings`,
+            params: {
+                id: this.state.userId
+            }
+        }).then((response) => {
+            console.log(response)
+            this.setState({ listings: response.data })
         })
     }
 
@@ -172,12 +187,17 @@ export class LoggedInMain extends Component {
                 exit={{ opacity:0 }}
             >
             <FilterComponent updateListings={this.updateListings.bind(this)} />
-            <div className="logged-in-main-name"
-                id="logged-in-main-name">
-                    <img className="user-icon" src={img1} />:
-                    {this.state.userFirstName} {this.state.userLastName}
-
-            </div>
+                    <div className="logged-in-main-name"
+                        id="logged-in-main-name">
+                        <btn2 className="all-listings-button"
+                            onClick={this.getListings}>
+                            &nbsp;All Listings&nbsp;</btn2>
+                        <btn2 className="all-listings-button"
+                            onClick={this.getUserListings}>
+                            &nbsp;My Listings&nbsp;</btn2>
+                        <img className="user-icon" src={img1} />:
+                        {this.state.userFirstName} {this.state.userLastName}
+                    </div>
             
             <LogOutButton>
             </LogOutButton>

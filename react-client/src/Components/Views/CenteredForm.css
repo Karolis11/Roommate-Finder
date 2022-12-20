@@ -60,6 +60,7 @@ h1:after {
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 200px;
 }
 
 .centered-container {
