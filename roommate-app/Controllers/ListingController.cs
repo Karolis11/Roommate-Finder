@@ -200,9 +200,9 @@ public class ListingController : Controller
 
     [HttpGet]
     [Route("filter")]
-    public JsonResult Filter(int lowPrice, int highPrice)
+    public JsonResult Filter(int lowPrice, int highPrice, string city, int count)
     {
-        var listings = _listingService.Filter(lowPrice: lowPrice, highPrice: highPrice);
+        var listings = _listingService.Filter(lowPrice: lowPrice, highPrice: highPrice, city: city, count: count);
 
         var response = new JsonResult(listings);
         response.StatusCode = 200;

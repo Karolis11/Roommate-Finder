@@ -123,3 +123,52 @@
     flex-wrap: wrap;
     border: 1px solid black;
 }
+
+.filter-text {
+    border: 1px solid black;
+    font-family: Arial;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.filter-button {
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: "montserrat";
+    font-size: 12px;
+    letter-spacing: 0px;
+    border-radius: 20px;
+    border-color: black;
+    border-style: solid;
+    background: white;
+    top: 17px;
+    right: 5px;
+    height: 15px;
+    width: 100px;
+    transition: 0.4s ease;
+}
+
+.filter-button:hover {
+    box-shadow: 0px 0px 2px 2px black;
+}
+.all-listings-button {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Arial;
+    text-align: center;
+    font-family: Arial;
+    font-size: 16px;
+    margin-left: 0px;
+    margin-right: 20px;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    border-color: black;
+    border-style: solid;
+    overflow-wrap: break-word;
+}
+    .all-listings-button:hover {
+        -moz-box-shadow: 0px 1px 5px 0px #676767;
+        -webkit-box-shadow: 0px 1px 5px 0px #676767;
+        box-shadow: 0px 1px 5px 0px #676767;
+    }

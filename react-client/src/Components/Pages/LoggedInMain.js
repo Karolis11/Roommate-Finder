@@ -189,15 +189,14 @@ export class LoggedInMain extends Component {
             <FilterComponent updateListings={this.updateListings.bind(this)} />
                     <div className="logged-in-main-name"
                         id="logged-in-main-name">
-                        <btn2 className="all-listings-btn"
-                            onClick={this.getUserListings}>
-                            User Listings </btn2>
-                        <btn2 className="all-listings-btn"
+                        <btn2 className="all-listings-button"
                             onClick={this.getListings}>
-                            All Listings </btn2>
+                            &nbsp;All Listings&nbsp;</btn2>
+                        <btn2 className="all-listings-button"
+                            onClick={this.getUserListings}>
+                            &nbsp;My Listings&nbsp;</btn2>
                         <img className="user-icon" src={img1} />:
                         {this.state.userFirstName} {this.state.userLastName}
-
                     </div>
             
             <LogOutButton>
