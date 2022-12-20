@@ -89,7 +89,7 @@ export const FilterComponent = (props) => {
                 min={0}
                 max={2000}
                 name="range"
-                onChange={(e) => {setRangeValues(e.target.value)}}
+                onChange={(e) => { setRangeValues(e.target.value) }}
                 valueLabelDisplay="auto"
                 style={{width: "200px"}}
             />
