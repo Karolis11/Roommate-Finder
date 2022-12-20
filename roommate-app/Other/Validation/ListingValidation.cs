@@ -29,7 +29,7 @@ public class ListingValidation
 
     public bool ValidateRoommateCount(Listing? number)
     {
-        return !(number.RoommateCount == null) && number.RoommateCount > 0 && number.RoommateCount < 4; ;
+        return number.RoommateCount > 0 && number.RoommateCount < 4;
     }
 
     public bool ValidatePhoneNumber(Listing? str)

@@ -11,7 +11,7 @@
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore.InMemory": "7.0.0",
           "Microsoft.NET.Test.Sdk": "17.1.0",
-          "coverlet.collector": "3.1.2",
+          "coverlet.collector": "3.2.0",
           "roommate-app": "1.0.0",
           "xunit": "2.4.1",
           "xunit.runner.visualstudio": "2.4.5"
@@ -88,7 +88,7 @@
           }
         }
       },
-      "coverlet.collector/3.1.2": {},
+      "coverlet.collector/3.2.0": {},
       "CryptoHelper/3.0.2": {
         "dependencies": {
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.6"
@@ -2215,12 +2215,12 @@
       "path": "castle.core/5.1.0",
       "hashPath": "castle.core.5.1.0.nupkg.sha512"
     },
-    "coverlet.collector/3.1.2": {
+    "coverlet.collector/3.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-wuLDIDKD5XMt0A7lE31JPenT7QQwZPFkP5rRpdJeblyXZ9MGLI8rYjvm5fvAKln+2/X+4IxxQDxBtwdrqKNLZw==",
-      "path": "coverlet.collector/3.1.2",
-      "hashPath": "coverlet.collector.3.1.2.nupkg.sha512"
+      "sha512": "sha512-xjY8xBigSeWIYs4I7DgUHqSNoGqnHi7Fv7/7RZD02rvZyG3hlsjnQKiVKVWKgr9kRKgmV+dEfu8KScvysiC0Wg==",
+      "path": "coverlet.collector/3.2.0",
+      "hashPath": "coverlet.collector.3.2.0.nupkg.sha512"
     },
     "CryptoHelper/3.0.2": {
       "type": "package",

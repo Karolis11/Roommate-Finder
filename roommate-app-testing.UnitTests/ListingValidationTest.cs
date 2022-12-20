@@ -14,7 +14,7 @@ namespace roommate_app_testing.UnitTests
     public class ListingValidationTest
     {
         [Fact]
-        public void ValidateNameCorrectly()
+        public void ValidateNameTrueCase()
         {
             // Arrange
             Listing list = new Listing { FirstName = "Test-Test", LastName = "Test'Test" };
@@ -24,9 +24,20 @@ namespace roommate_app_testing.UnitTests
             // Assert
             Assert.True(result);
         }
+        [Fact]
+        public void ValidateNameFalseCase()
+        {
+            // Arrange
+            Listing list = new Listing { FirstName = "123", LastName = "456" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateName(list);
+            // Assert
+            Assert.False(result);
+        }
 
         [Fact]
-        public void ValidateEmailCorrectly()
+        public void ValidateEmailTrueCase()
         {
             // Arrange
             Listing list = new Listing { Email = "abc@abc.com" };
@@ -38,7 +49,32 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void ValidateCityCorrectly()
+        public void ValidateEmailFalseCase()
+        {
+            // Arrange
+            Listing list = new Listing { Email = "abc.com" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateEmail(list);
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void ValidateEmailFalseCase2()
+        {
+            // Arrange
+            Listing list = new Listing { Email = "" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateEmail(list);
+            // Assert
+            Assert.False(result);
+        }
+
+
+        [Fact]
+        public void ValidateCityTrueCase()
         {
             // Arrange
             Listing list = new Listing { City = "Vilnius" };
@@ -50,7 +86,31 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void ValidateRoommateCountCorrectly()
+        public void ValidateCityFalseCase()
+        {
+            // Arrange
+            Listing list = new Listing { City = "123" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateCity(list);
+            // Assert
+            Assert.False(result);
+        }
+        [Fact]
+        public void ValidateCityFalseCase2()
+        {
+            // Arrange
+            Listing list = new Listing { City = "" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateCity(list);
+            // Assert
+            Assert.False(result);
+        }
+
+
+        [Fact]
+        public void ValidateRoommateTrueCase()
         {
             // Arrange
             Listing list = new Listing { RoommateCount = 3 };
@@ -62,7 +122,19 @@ namespace roommate_app_testing.UnitTests
         }
 
         [Fact]
-        public void ValidatePhoneNumberCorrectly()
+        public void ValidateRoommateFalseCase()
+        {
+            // Arrange
+            Listing list = new Listing { RoommateCount = 12 };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidateRoommateCount(list);
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void ValidatePhoneNumberTrueCase()
         {
             // Arrange
             Listing list = new Listing { Phone = "+37060026689" };
@@ -71,6 +143,18 @@ namespace roommate_app_testing.UnitTests
             var result = ListingValidation.ValidatePhoneNumber(list);
             // Assert
             Assert.True(result);
+        }
+
+        [Fact]
+        public void ValidatePhoneNumberFalseCase()
+        {
+            // Arrange
+            Listing list = new Listing { Phone = "+860026689" };
+            ListingValidation ListingValidation = new ListingValidation();
+            // Act
+            var result = ListingValidation.ValidatePhoneNumber(list);
+            // Assert
+            Assert.False(result);
         }
 
         [Fact]

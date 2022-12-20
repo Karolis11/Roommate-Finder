@@ -1,7 +1,9 @@
 ﻿using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Interceptors;
+[ExcludeFromCodeCoverage]
 public static class InterceptionExtensions
 {
     public static void AddInterceptedService<TInterface, TImplementation, TInterceptor>(
