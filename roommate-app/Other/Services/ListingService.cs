@@ -10,7 +10,7 @@ public interface IListingService
 {
     IList<Listing> GetByUserId(int id);
     Task UpdateAsync(int id, Listing listing);
-    List<Listing> Filter(List<string> cities, float lowPrice, float highPrice);
+    List<Listing> Filter(float lowPrice, float highPrice);
 }
 
 public class ListingService : IListingService
@@ -51,13 +51,13 @@ public class ListingService : IListingService
         OnListingFeedUpdated();
     }
 
-    public List<Listing> Filter(List<string> cities, float lowPrice = 0, float highPrice = 100000)
+    public List<Listing> Filter(float lowPrice = 0, float highPrice = 100000)
     {
         decimal low = (decimal)lowPrice;
         decimal high = (decimal)highPrice;
 
         var listings = _context.Listings
-            .Where(l => l.MaxPrice >= low && l.MaxPrice <= high && cities.Contains(l.City))
+            .Where(l => l.MaxPrice >= low && l.MaxPrice <= high)
             .ToList();
 
         return listings;
