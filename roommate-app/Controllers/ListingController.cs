@@ -189,12 +189,19 @@ public class ListingController : Controller
 
     [HttpGet]
     [Route("filter")]
-    public JsonResult Filter(float lowPrice, float highPrice, List<string> cities)
+    public JsonResult Filter(float lowPrice, float highPrice)
     {
-        var listings = _listingService.Filter(lowPrice: lowPrice, highPrice: highPrice, cities: cities);
+        //float lowPrice = values[0];
+        //float highPrice = values[1];
+        //List<string> cities = citiesArray.ToList();
+        Console.WriteLine("000");
+
+        var listings = _listingService.Filter(lowPrice: lowPrice, highPrice: lowPrice);
 
         var response = new JsonResult(listings);
         response.StatusCode = 200;
+
+        
 
         return response;
     }
