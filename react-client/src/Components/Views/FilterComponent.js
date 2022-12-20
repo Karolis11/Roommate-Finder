@@ -8,6 +8,7 @@ import CustomRoommates from './CustomRoommates'
 import CitySelect from './CitySelect';
 import '../Pages/Filters.css';
 
+
 function useForceUpdate(){
     const [value, setValue] = useState(0);
     return () => setValue(value => value + 1);
@@ -72,7 +73,6 @@ export const FilterComponent = (props) => {
         }
     });
     return (
-        
         <div className='filter-top-container'>
             <label htmlFor="sort">Sort By</label>
             <Select
@@ -119,5 +119,6 @@ export const FilterComponent = (props) => {
                     onClick={getFilteredListings}
                 > FILTER</div1>
             </div>
+        </div>
     );
 }

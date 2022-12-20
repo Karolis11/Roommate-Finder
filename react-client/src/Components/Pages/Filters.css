@@ -89,7 +89,6 @@
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 5;
     right: 0px;
     top: 30px;
 }
@@ -167,8 +166,8 @@
     border-style: solid;
     overflow-wrap: break-word;
 }
-    .all-listings-button:hover {
-        -moz-box-shadow: 0px 1px 5px 0px #676767;
-        -webkit-box-shadow: 0px 1px 5px 0px #676767;
-        box-shadow: 0px 1px 5px 0px #676767;
-    }
+.all-listings-button:hover {
+    -moz-box-shadow: 0px 1px 5px 0px #676767;
+    -webkit-box-shadow: 0px 1px 5px 0px #676767;
+    box-shadow: 0px 1px 5px 0px #676767;
+}

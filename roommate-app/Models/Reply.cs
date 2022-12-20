@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Models;
+[ExcludeFromCodeCoverage]
 public class Reply
 {
     public int Id { get; set; }

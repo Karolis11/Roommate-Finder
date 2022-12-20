@@ -207,6 +207,7 @@ public class ListingController : Controller
         var response = new JsonResult(listings);
         response.StatusCode = 200;
 
+        
         return response;
     }
 }

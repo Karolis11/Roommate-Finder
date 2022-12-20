@@ -64,10 +64,12 @@ public class GenericService : IGenericService
         _context.Set<T>().Remove(existing);
         await SaveAsync();
     }
+    [ExcludeFromCodeCoverage]
     public async Task SaveAsync()
     {
         await _context.SaveChangesAsync();
     }
+    [ExcludeFromCodeCoverage]
     protected virtual void OnListingFeedUpdated()
     {
         if (ListingFeedUpdated != null)

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using roommate_app.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace roommate_app.Controllers;
+[ExcludeFromCodeCoverage]
 public class UserResponse
 {
     public UserResponse(User user)
