@@ -54,14 +54,13 @@ h1:after {
     top: 150px;
     left: 0;
     position: absolute;
-    z-index: -1;
 }
 
 .logged-in-main-container.create-listing-on {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: -1;
+    top: 200px;
 }
 
 .centered-container {

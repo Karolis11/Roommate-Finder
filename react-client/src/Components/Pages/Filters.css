@@ -113,7 +113,6 @@
 .city-checkboxes {
     display: none;
     background-color: white;
-    z-index: 100;
 }
 
 .city-checkboxes.visible {
@@ -123,5 +122,4 @@
     flex-direction: row;
     flex-wrap: wrap;
     border: 1px solid black;
-    z-index: 100;
 }

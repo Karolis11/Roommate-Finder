@@ -50,6 +50,17 @@ public class ListingController : Controller
 
         return response;
     }
+    [HttpGet]
+    [Route("userlistings")]
+    public async Task<JsonResult> GetUserListings(int id)
+    {
+        var existingListings = _listingService.GetByUserId(id);
+
+        var response = new JsonResult(existingListings);
+        response.StatusCode = 200;
+
+        return response;
+    }
 
     [HttpPost]
     public async Task<ActionResult> Submit([FromBody] Listing listing)
@@ -189,9 +200,9 @@ public class ListingController : Controller
 
     [HttpGet]
     [Route("filter")]
-    public JsonResult Filter(float lowPrice, float highPrice, List<string> cities)
+    public JsonResult Filter(int lowPrice, int highPrice)
     {
-        var listings = _listingService.Filter(lowPrice: lowPrice, highPrice: highPrice, cities: cities);
+        var listings = _listingService.Filter(lowPrice: lowPrice, highPrice: highPrice);
 
         var response = new JsonResult(listings);
         response.StatusCode = 200;
